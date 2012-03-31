@@ -1,0 +1,371 @@
+; -------------------------------------------------
+; | Please do not modify this file by hand
+; | It may crash the program if mistakes are found
+; | Use BIM to modify it
+; -------------------------------------------------
+; | Last modified: Y=2012, M= 03, D=31 at 02:44:58
+; -------------------------------------------------
+[Header]
+FileID = Bytessence Install Maker
+FileVersion = 5
+; -------------------------------------------------
+[GeneralInformation]
+ProgramName = Citation
+ProgramVersion = 1.0
+ProgramWebsite = http://www.netversa.com
+SupportEmail = support@netversa.com
+CompanyName = NetVersa
+CopyrightString = Copyright (c) 2012 NetVersa
+OutputFile = C:\Users\jonathan\dev\Citation\dist\Setup.exe
+IconFile = 
+InstallerBandText = <ProgramName> Setup
+InstallerWindowTitle = <ProgramName> <ProgramVersion> Setup
+CompressionAlgo = ZIP/Deflate
+CompressionLevel = 3
+; -------------------------------------------------
+[InstallerExeInfo]
+CompanyName = NetVersa
+Copyright = © 2012 NetVersa
+Email = support@netversa.com
+FileDescription = Citation installer
+ProductName = Citation
+ProductVersion = 1.0
+Website = http://www.netversa.com
+MajorHigh = 1
+MajorLow = 0
+MinorHigh = 0
+MinorLow = 0
+; -------------------------------------------------
+[SystemRequirements]
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 1
+Win2003 = 1
+WinVista = 1
+Win2008 = 1
+Win7 = 1
+InstallerType = 0
+RequireAdminRights = 1
+DotNETVersion = 0
+DotNETVisitWebpage = 0
+DotNETWebpageAddress = http://
+IEVersion = 10
+IEVisitWebpage = 0
+IEWebpageAddress = http://
+CheckSysRequirements = 1
+CheckCPUSpeed = 0
+CPUSpeedMin = 133
+CPUSpeedRec = 266
+CheckMemSize = 0
+MemSizeMin = 64
+MemSizeRec = 128
+CheckExtraSpace = 0
+ExtraSpaceScope = 0
+ExtraSpaceMin = 8
+ExtraSpaceRec = 16
+FailMinimumReqs = 1
+FailRecommendedReqs = 0
+RequireExistingItems = 1
+CheckForInstances = 0
+; -------------------------------------------------
+[RegistryVars]
+CreateRegistryVars = 0
+; -------------------------------------------------
+[FileConfig]
+ReplaceStatus = 0
+; -------------------------------------------------
+[Categories]
+Items = 19588577
+; -------------------------------------------------
+[19588577]
+ID = 19588577
+InternalName = Program
+LocalizedNameID = 59679840
+; -------------------------------------------------
+[59679840]
+1033 = Program
+; -------------------------------------------------
+[Components]
+Items = 49691563
+; -------------------------------------------------
+[49691563]
+ID = 49691563
+CategoryID = 19588577
+InternalName = Citation
+LocalizedNameID = 49992128
+DescriptionID = 42878074
+PathVariable = <Citation>
+InstallationPath = <ProgramFiles>\<ProgramName>\
+IsPrincipal = 1
+IsPathEnforced = 0
+IsMandatory = 1
+IsMarked = 1
+; -------------------------------------------------
+[49992128]
+-1 = Citation
+; -------------------------------------------------
+[42878074]
+-1 = The citation generator engine.
+; -------------------------------------------------
+[Folders]
+Items = 73821298
+; -------------------------------------------------
+[73821298]
+ID = 73821298
+ComponentID = 49691563
+FolderPath = C:\Users\jonathan\dev\Citation\build\
+; -------------------------------------------------
+[DetectExistingInstallations]
+PromptUninstallExisting = 0
+; -------------------------------------------------
+[LookAndFeel]
+InstallerType = 0
+WizardImage = C:\Program Files (x86)\Bytessence InstallMaker\Graphics\Wizard\Classic_blue.bmp
+HeaderImage = C:\Program Files (x86)\Bytessence InstallMaker\Graphics\Header\Modern_blue.bmp
+HeaderTitleTextFont = MS Sans Serif
+HeaderTitleTextSize = 8
+HeaderTitleTextFlags = 256
+HeaderTitleTextPosX = 10
+HeaderTitleTextPosY = 13
+HeaderTitleTextColor = 0
+HeaderTitleTextShadow = 0
+HeaderTitleTextShadowColor = 14145495
+HeaderTextFont = MS Sans Serif
+HeaderTextSize = 8
+HeaderTextFlags = 0
+HeaderTextPosX = 15
+HeaderTextPosY = 34
+HeaderTextColor = 0
+HeaderTextShadow = 0
+HeaderTextShadowColor = 14145495
+ShowInformation = 1
+ShowLicense = 1
+ShowWebsiteLink = 1
+ShowCopyrightNotice = 1
+BKUseGradient = 1
+BKUsePicture = 0
+BKFirstColor = 8421504
+BKSecondColor = 16777215
+BKTextColor = 15132390
+BKVertical = 1
+BKHorizontal = 0
+BKPicturePath = 
+BKText = 
+BKShowCopyright = 0
+; -------------------------------------------------
+[ReadmeFiles]
+-1 = C:\Users\jonathan\dev\Citation\readme.rtf
+; -------------------------------------------------
+[LicenseFiles]
+-1 = C:\Users\jonathan\dev\Citation\license.rtf
+; -------------------------------------------------
+[Localization]
+2 = 1033
+; -------------------------------------------------
+[InstallerSettings]
+CreateGroup = 0
+CustomStartMenuGroup = <ProgramName>
+CreateUninstallShortcut = 0
+CustomStartMenuUninstall = Uninstall <ProgramName>
+CreateInternetLink = 0
+CustomStartMenuWebLink = Website
+CreateSMProgramShortcut = 0
+SMProgramOutputPath = 
+SMProgramOutputName = 
+SMProgramFilePath = 
+SMProgramIconPath = 
+SMProgramIconIndex = 0
+SMProgramCommandLine = 
+SMProgramStartIn = 
+SMProgramComment = 
+SMProgramComponentID = 0
+CreateSMDocumentationShortcut = 0
+SMDocumentationOutputPath = 
+SMDocumentationOutputName = 
+SMDocumentationFilePath = 
+SMDocumentationIconPath = 
+SMDocumentationIconIndex = 0
+SMDocumentationCommandLine = 
+SMDocumentationStartIn = 
+SMDocumentationComment = 
+SMDocumentationComponentID = 0
+CreateSMReadmeShortcut = 0
+SMReadmeOutputPath = 
+SMReadmeOutputName = 
+SMReadmeFilePath = 
+SMReadmeIconPath = 
+SMReadmeIconIndex = 0
+SMReadmeCommandLine = 
+SMReadmeStartIn = 
+SMReadmeComment = 
+SMReadmeComponentID = 0
+CreateSMLicenseShortcut = 0
+SMLicenseOutputPath = 
+SMLicenseOutputName = 
+SMLicenseFilePath = 
+SMLicenseIconPath = 
+SMLicenseIconIndex = 0
+SMLicenseCommandLine = 
+SMLicenseStartIn = 
+SMLicenseComment = 
+SMLicenseComponentID = 0
+ShowRestartComputerCheckbox = 0
+LaunchProgramCheckbox = 0
+LaunchProgramProgramPath = 
+LaunchProgramCommandLine = 
+LaunchProgramRunMode = 0
+LaunchProgramRunHidden = 0
+LaunchProgramWaitUntilQuit = 0
+LaunchProgramComponentID = 0
+ViewDocumentationCheckbox = 0
+ViewDocumentationProgramPath = 
+ViewDocumentationCommandLine = 
+ViewDocumentationRunMode = 1
+ViewDocumentationRunHidden = 0
+ViewDocumentationWaitUntilQuit = 0
+ViewDocumentationComponentID = 0
+ViewReadmeCheckbox = 0
+ViewReadmePath = 
+ViewReadmeCommandLine = 
+ViewReadmeRunMode = 1
+ViewReadmeRunHidden = 0
+ViewReadmeWaitUntilQuit = 0
+ViewReadmeComponentID = 0
+ViewLicenseCheckbox = 0
+ViewLicensePath = 
+ViewLicenseCommandLine = 
+ViewLicenseRunMode = 1
+ViewLicenseRunHidden = 0
+ViewLicenseWaitUntilQuit = 0
+ViewLicenseComponentID = 0
+VisitWebsiteCheckbox = 1
+VisitWebsiteAddress = http://cite.netversa.com
+; -------------------------------------------------
+[InstallerTasks]
+Items = 89453655,14319016,12070950
+; -------------------------------------------------
+[89453655]
+ID = 89453655
+Name = Copy
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\citation.exe
+DestinationFile = <Citation>\citation.exe
+; -------------------------------------------------
+[14319016]
+ID = 14319016
+Name = Move Key
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\key.txt
+DestinationFile = <Citation>\key.txt
+; -------------------------------------------------
+[12070950]
+ID = 12070950
+Name = Add Scheduled Task
+Type = 0
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+ProgramPath = schtasks
+CommandLine = /create /tn "Citation" /tr "<Citation>\citation.exe" /sc MINUTE /mo 1
+RunMode = 0
+ExecutionTime = 1
+RunHidden = 1
+WaitUntilQuit = 0
+; -------------------------------------------------
+[UninstallerSettings]
+CreateUninstaller = 1
+CreateAddRemoveEntry = 1
+AddRemoveEntryName = <ProgramName> <ProgramVersion>
+UninstallerIconPath = 
+UninstRestartPC = 0
+CheckForInstances = 0
+; -------------------------------------------------
+[UninstallerExeInfo]
+CompanyName = MyCompany
+Copyright = © MyCompany
+Email = support@mycompany.com
+FileDescription = MyProgram uninstaller
+ProductName = MyProgram
+ProductVersion = 1.0
+Website = http://www.mycompany.com
+MajorHigh = 1
+MajorLow = 0
+MinorHigh = 0
+MinorLow = 0
+; -------------------------------------------------
+[SkipUninstallFiles]
+; -------------------------------------------------
+[UninstallerTasks]
+Items = 75070587,35627274
+; -------------------------------------------------
+[75070587]
+ID = 75070587
+Name = Remove Task
+Type = 0
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+ProgramPath = schtasks
+CommandLine = /Delete /tn "Citation" /f
+RunMode = 0
+ExecutionTime = 0
+RunHidden = 1
+WaitUntilQuit = 1
+; -------------------------------------------------
+[35627274]
+ID = 35627274
+Name = Remove Program
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\citation.exe

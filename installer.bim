@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 03, D=31 at 02:44:58
+; | Last modified: Y=2012, M= 04, D=01 at 11:06:40
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -55,7 +55,7 @@ DotNETWebpageAddress = http://
 IEVersion = 10
 IEVisitWebpage = 0
 IEWebpageAddress = http://
-CheckSysRequirements = 1
+CheckSysRequirements = 0
 CheckCPUSpeed = 0
 CPUSpeedMin = 133
 CPUSpeedRec = 266
@@ -68,7 +68,7 @@ ExtraSpaceMin = 8
 ExtraSpaceRec = 16
 FailMinimumReqs = 1
 FailRecommendedReqs = 0
-RequireExistingItems = 1
+RequireExistingItems = 0
 CheckForInstances = 0
 ; -------------------------------------------------
 [RegistryVars]
@@ -111,10 +111,10 @@ IsMarked = 1
 -1 = The citation generator engine.
 ; -------------------------------------------------
 [Folders]
-Items = 73821298
+Items = 89930417
 ; -------------------------------------------------
-[73821298]
-ID = 73821298
+[89930417]
+ID = 89930417
 ComponentID = 49691563
 FolderPath = C:\Users\jonathan\dev\Citation\build\
 ; -------------------------------------------------
@@ -245,7 +245,7 @@ VisitWebsiteCheckbox = 1
 VisitWebsiteAddress = http://cite.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 89453655,14319016,12070950
+Items = 89453655,18570816,14319016,12070950
 ; -------------------------------------------------
 [89453655]
 ID = 89453655
@@ -264,6 +264,24 @@ Win7 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\citation.exe
 DestinationFile = <Citation>\citation.exe
+; -------------------------------------------------
+[18570816]
+ID = 18570816
+Name = Copy citationCheck.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\citationCheck.exe
+DestinationFile = <Citation>\citationCheck.exe
 ; -------------------------------------------------
 [14319016]
 ID = 14319016
@@ -298,9 +316,9 @@ WinVista = 1
 WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
-ProgramPath = schtasks
-CommandLine = /create /tn "Citation" /tr "<Citation>\citation.exe" /sc MINUTE /mo 1
-RunMode = 0
+ProgramPath = <system>\schtasks.exe
+CommandLine = /create /tn "Citation" /tr "\"<Citation>\citation.exe\"" /sc MINUTE /mo 1
+RunMode = 1
 ExecutionTime = 1
 RunHidden = 1
 WaitUntilQuit = 0
@@ -329,7 +347,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 75070587,35627274
+Items = 75070587,35627274,15139959,4474323
 ; -------------------------------------------------
 [75070587]
 ID = 75070587
@@ -346,9 +364,9 @@ WinVista = 1
 WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
-ProgramPath = schtasks
+ProgramPath = <system>\schtasks.exe
 CommandLine = /Delete /tn "Citation" /f
-RunMode = 0
+RunMode = 1
 ExecutionTime = 0
 RunHidden = 1
 WaitUntilQuit = 1
@@ -369,3 +387,37 @@ WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
 FilePath = <Citation>\citation.exe
+; -------------------------------------------------
+[15139959]
+ID = 15139959
+Name = Remove citationCheck.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\citationCheck.exe
+; -------------------------------------------------
+[4474323]
+ID = 4474323
+Name = Remove key
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\key.txt

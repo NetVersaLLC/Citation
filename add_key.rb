@@ -4,13 +4,23 @@ require 'rubygems'
 require 'zip/zip'
 
 file = 'dist\\Setup.exe'
-key  = File.open("key.txt", "r").read
+key  = 'key.txt'
+dir  = nil
 Zip::ZipFile.open(file) { |zip_file|
-    dir = nil
     zip_file.each { |f|
         next unless f.name =~ /^(\d+)\\/
         dir = $1
     }
     STDERR.puts "Error: Could not find inner dir!" and exit 10 unless dir
-    zip_file.get_output_stream("#{dir}\\key.txt") { |f| f.puts key }
 }
+
+STDERR.puts "Creating inner directory: #{dir}"
+Dir.mkdir dir
+STDERR.puts "Copy #{key} to #{dir}\\key.txt..."
+system "copy \"#{key}\" #{dir}\\key.txt"
+STDERR.puts "Adding #{dir}\\key.txt to #{file}..."
+system "zip -0 \"#{file}\" \"#{dir}\\key.txt\""
+STDERR.puts "Unlinking #{dir}\\key.txt"
+File.unlink "#{dir}/key.txt"
+STDERR.puts "Removing temporary directory #{dir}..."
+Dir.rmdir dir

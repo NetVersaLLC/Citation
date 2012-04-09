@@ -1,3 +1,4 @@
+pik dev
 STDERR.puts "Wrong ruby version: #{RUBY_VERSION}" and exit if RUBY_VERSION != '1.8.7'
 STDERR.puts "Cleaning..."
 system "rm -rf build/*"

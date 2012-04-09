@@ -13,6 +13,37 @@ logDriver$   = logDir$ + sep + "driver.log"
 fd           = 0
 killFile$    = logDir$ + sep + "kill.txt"
 
+#INTERNET_OPEN_TYPE_DIRECT = 1
+#HTTP_ADDREQ_FLAG_ADD = $20000000
+#HTTP_ADDREQ_FLAG_REPLACE = $80000000
+#INTERNET_FLAG_SECURE = $800000
+#INTERNET_SERVICE_HTTP = 3
+#INTERNET_DEFAULT_HTTP_PORT = 443 
+
+Procedure do_post()
+  host.s = "cite.netversa.com"
+  get_url.s = "/results" 
+  result.s = ""
+  open_handle = InternetOpen_("NetVersa Citation 1.0",#INTERNET_OPEN_TYPE_DIRECT,"","",0)
+  connect_handle = InternetConnect_(open_handle,host,#INTERNET_DEFAULT_HTTP_PORT,"","",#INTERNET_SERVICE_HTTP,0,0)
+  request_handle = HttpOpenRequest_(connect_handle,"POST",get_url,"","",0,#INTERNET_FLAG_SECURE,0)
+  headers.s = "Content-Type: application/x-www-form-urlencoded" +Chr(13)+Chr(10)
+  HttpAddRequestHeaders_(request_handle,headers,Len(headers), #HTTP_ADDREQ_FLAG_REPLACE | #HTTP_ADDREQ_FLAG_ADD)
+  post_data.s = "testval=dootdedootdoot"
+  post_data_len = Len(post_data)
+  send_handle = HttpSendRequest_(request_handle,"",0,post_data,post_data_len)
+  buffer.s = Space(1024)
+  bytes_read.l
+  total_read.l
+  total_read = 0
+ 
+  Repeat
+    InternetReadFile_(request_handle,@buffer,1024,@bytes_read)
+    result + Left(buffer,bytes_read)
+    buffer = Space(1024)   
+  Until bytes_read=0
+EndProcedure
+
 Procedure WriteToLog(line.s)
   FileSeek(fd, Lof(fd))
   WriteStringN(fd, FormatDate("%yyyy-%mm-%dd %hh:%ii:%ss", Date())+": "+line)
@@ -67,8 +98,8 @@ EndIf
 
 CloseFile(fd)
 ; IDE Options = PureBasic 4.61 Beta 1 (Windows - x64)
-; CursorPosition = 59
-; FirstLine = 47
+; CursorPosition = 57
+; FirstLine = 36
 ; Folding = -
 ; EnableXP
 ; Executable = build\citation.exe

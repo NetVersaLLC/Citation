@@ -1,9 +1,15 @@
 require "rubygems"
 require "watir"
+require "json"
+require "multi_json"
+MultiJson.engine = :json_gem
+
 require "httparty"
 require "./lib/contact_job"
 
-#$HIDE_IE=true
+Watir::Browser.default = "ie"
+
+$HIDE_IE=false
 
 key  = ARGV.shift
 file = ARGV.shift
@@ -12,9 +18,6 @@ $stdout.reopen("out.txt", "a")
 $stderr.reopen("err.txt", "a")
 
 puts "Key: #{key}"
-
-#api_base = 'http://localhost:3000/'
-api_base = 'http://cite.netversa.com/'
 
 begin
     if file

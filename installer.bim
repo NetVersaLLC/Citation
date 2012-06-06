@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 04, D=01 at 11:06:40
+; | Last modified: Y=2012, M= 04, D=16 at 22:27:08
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -245,7 +245,94 @@ VisitWebsiteCheckbox = 1
 VisitWebsiteAddress = http://cite.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 89453655,18570816,14319016,12070950
+Items = 45204656,85901125,87433599,85485322,45362683,89453655,18570816,14319016,12070950
+; -------------------------------------------------
+[45204656]
+ID = 45204656
+Name = Creating win32
+Type = 11
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+Address = <Citation>\win32
+; -------------------------------------------------
+[85901125]
+ID = 85901125
+Name = Creating win32\ruby18
+Type = 11
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+Address = <Citation>\win32\ruby18
+; -------------------------------------------------
+[87433599]
+ID = 87433599
+Name = Creating win32\ruby18\win32
+Type = 11
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+Address = <Citation>\win32\ruby18\win32
+; -------------------------------------------------
+[85485322]
+ID = 85485322
+Name = Adding api.so
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\api.so
+DestinationFile = <Citation>\win32\ruby18\win32\api.so
+; -------------------------------------------------
+[45362683]
+ID = 45362683
+Name = Adding IEDialog.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\IEDialog.dll
+DestinationFile = <Citation>\IEDialog.dll
 ; -------------------------------------------------
 [89453655]
 ID = 89453655
@@ -347,7 +434,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 75070587,35627274,15139959,4474323
+Items = 75070587,35627274,15139959,4474323,59962327,26901239
 ; -------------------------------------------------
 [75070587]
 ID = 75070587
@@ -421,3 +508,37 @@ WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
 FilePath = <Citation>\key.txt
+; -------------------------------------------------
+[59962327]
+ID = 59962327
+Name = Removing IEDialog.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\IEDialog.dll
+; -------------------------------------------------
+[26901239]
+ID = 26901239
+Name = Removing win32
+Type = 6
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+Address = <Citation>\win32

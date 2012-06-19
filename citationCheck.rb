@@ -28,7 +28,7 @@ begin
     else
         ContactJob.run(key, bid)
     end
-rescue Exception => e
-    STDERR.puts e.inspect
-    ContactJob.booboo(e.inspect)
+rescue => detail
+    STDERR.puts detail.backtrace.join("\n")
+    ContactJob.booboo(detail.backtrace.join("\n"))
 end

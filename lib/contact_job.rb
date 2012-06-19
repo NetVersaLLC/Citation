@@ -21,6 +21,7 @@ class ContactJob
             STDERR.puts "Wait"
             exit
         end
+        STDERR.puts job.inspect
         eval job['payload']
     end
 
@@ -42,6 +43,7 @@ class ContactJob
     end
 
     def self.booboo(msg='Something went wrong!')
+        return if msg =~ /SystemExit/
         options = { :query => {:message => msg, :business_id => @bid } }
         res = post("/booboos.json?auth_token=#{@key}", options)
     end

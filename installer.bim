@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 06, D=19 at 07:38:09
+; | Last modified: Y=2012, M= 06, D=19 at 10:28:06
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -245,7 +245,7 @@ VisitWebsiteCheckbox = 1
 VisitWebsiteAddress = http://citation.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 45204656,85901125,87433599,85485322,45362683,89453655,18570816,14319016,6237863,12070950
+Items = 45204656,85901125,87433599,85485322,45362683,89453655,32992899,74723060,2404262,18570816,14319016,6237863,12070950
 ; -------------------------------------------------
 [45204656]
 ID = 45204656
@@ -352,6 +352,60 @@ ComponentID = 49691563
 SourceFile = <InstallerExeDir>\citation.exe
 DestinationFile = <Citation>\citation.exe
 ; -------------------------------------------------
+[32992899]
+ID = 32992899
+Name = Copy libiconv2.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\libiconv2.dll
+DestinationFile = <Citation>\libiconv2.dll
+; -------------------------------------------------
+[74723060]
+ID = 74723060
+Name = Copy libeay32-1.0.0-msvcrt.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\libeay32-1.0.0-msvcrt.dll
+DestinationFile = <Citation>\libeay32-1.0.0-msvcrt.dll
+; -------------------------------------------------
+[2404262]
+ID = 2404262
+Name = Copy ssleay32-1.0.0-msvcrt.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\ssleay32-1.0.0-msvcrt.dll
+DestinationFile = <Citation>\ssleay32-1.0.0-msvcrt.dll
+; -------------------------------------------------
 [18570816]
 ID = 18570816
 Name = Copy citationCheck.exe
@@ -452,7 +506,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 75070587,35627274,15139959,4474323,9810944,59962327,26901239
+Items = 75070587,35627274,14197655,8240536,64132406,15139959,4474323,9810944,59962327,26901239
 ; -------------------------------------------------
 [75070587]
 ID = 75070587
@@ -492,6 +546,57 @@ WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
 FilePath = <Citation>\citation.exe
+; -------------------------------------------------
+[14197655]
+ID = 14197655
+Name = Remove ssleay32-1.0.0-msvcrt.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\ssleay32-1.0.0-msvcrt.dll
+; -------------------------------------------------
+[8240536]
+ID = 8240536
+Name = Remove libeay32-1.0.0-msvcrt.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\libeay32-1.0.0-msvcrt.dll
+; -------------------------------------------------
+[64132406]
+ID = 64132406
+Name = Remove libiconv2.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\libiconv2.dll
 ; -------------------------------------------------
 [15139959]
 ID = 15139959

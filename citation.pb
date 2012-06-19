@@ -106,7 +106,7 @@ If FileSize(killFile$) >= 0
 EndIf
 
 WriteToLog("Starting up...")
-program = RunProgram(programName$, key$, bid$, logDir$, #PB_Program_Hide|#PB_Program_Open)
+program = RunProgram(programName$, key$+" "+bid$, logDir$, #PB_Program_Hide|#PB_Program_Open)
 If program <> 0 And ProgramRunning(program)
   WriteToLog("Started...")
 Else
@@ -116,7 +116,7 @@ EndIf
 
 CloseFile(fd)
 ; IDE Options = PureBasic 4.61 Beta 1 (Windows - x64)
-; CursorPosition = 6
+; CursorPosition = 108
 ; FirstLine = 96
 ; Folding = -
 ; EnableXP

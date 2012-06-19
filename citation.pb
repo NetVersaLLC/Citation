@@ -4,10 +4,13 @@ Global fd
 sep.s        = "\"
 program      = 0
 productName$ = "Citation v1.0"
-contactName$ = "Jonathan Jeffus <jonathan@blazingdev.com>"
+contactName$ = "Jonathan Jeffus <jonathan.jeffus@netversa.com>"
 programName$ = GetPathPart(ProgramFilename()) + "citationCheck.exe"
 keyFile$     = GetPathPart(ProgramFilename()) + "key.txt"
+bidFile$     = GetPathPart(ProgramFilename()) + "bid.txt"
 key$         = Space(#KEY_LENGTH + 1)
+bid$         = Space(#KEY_LENGTH + 1)
+
 logDir$      = GetHomeDirectory() + "citation"
 logDriver$   = logDir$ + sep + "driver.log"
 fd           = 0
@@ -21,7 +24,7 @@ killFile$    = logDir$ + sep + "kill.txt"
 #INTERNET_DEFAULT_HTTP_PORT = 443 
 
 Procedure do_post()
-  host.s = "cite.netversa.com"
+  host.s = "citation.netversa.com"
   get_url.s = "/results" 
   result.s = ""
   open_handle = InternetOpen_("NetVersa Citation 1.0",#INTERNET_OPEN_TYPE_DIRECT,"","",0)
@@ -82,13 +85,28 @@ Else
   FatalError(4, "Error: Could not read access key file: "+keyFile$)
 EndIf
 
+FillMemory(@bid$, #KEY_LENGTH+1, 0)
+bidFd = ReadFile(#PB_Any, bidFile$)
+If bidFd <> 0
+  len = FileSize(bidFile$)
+  If len >= #KEY_LENGTH
+    len = #KEY_LENGTH
+  EndIf
+  If ReadData(bidFd, @bid$, len) = 0
+    FatalError(3, "Error: Error reading bid file: "+bidFile$)
+  EndIf
+Else
+  FatalError(4, "Error: Could not read bid file: "+bidFile$)
+EndIf
+
+
 If FileSize(killFile$) >= 0
   WriteToLog("Dying from KillFile!")
   End 5
 EndIf
 
 WriteToLog("Starting up...")
-program = RunProgram(programName$, key$, logDir$, #PB_Program_Hide|#PB_Program_Open)
+program = RunProgram(programName$, key$, bid$, logDir$, #PB_Program_Hide|#PB_Program_Open)
 If program <> 0 And ProgramRunning(program)
   WriteToLog("Started...")
 Else
@@ -98,8 +116,8 @@ EndIf
 
 CloseFile(fd)
 ; IDE Options = PureBasic 4.61 Beta 1 (Windows - x64)
-; CursorPosition = 57
-; FirstLine = 36
+; CursorPosition = 6
+; FirstLine = 96
 ; Folding = -
 ; EnableXP
 ; Executable = build\citation.exe

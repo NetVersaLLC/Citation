@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 04, D=16 at 22:27:08
+; | Last modified: Y=2012, M= 06, D=19 at 06:10:01
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -245,7 +245,7 @@ VisitWebsiteCheckbox = 1
 VisitWebsiteAddress = http://cite.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 45204656,85901125,87433599,85485322,45362683,89453655,18570816,14319016,12070950
+Items = 45204656,85901125,87433599,85485322,45362683,89453655,18570816,14319016,6237863,12070950
 ; -------------------------------------------------
 [45204656]
 ID = 45204656
@@ -388,6 +388,24 @@ ComponentID = 49691563
 SourceFile = <InstallerExeDir>\key.txt
 DestinationFile = <Citation>\key.txt
 ; -------------------------------------------------
+[6237863]
+ID = 6237863
+Name = Move Business Id
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\bid.txt
+DestinationFile = <Citation>\bid.txt
+; -------------------------------------------------
 [12070950]
 ID = 12070950
 Name = Add Scheduled Task
@@ -434,7 +452,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 75070587,35627274,15139959,4474323,59962327,26901239
+Items = 75070587,35627274,15139959,4474323,9810944,59962327,26901239
 ; -------------------------------------------------
 [75070587]
 ID = 75070587
@@ -508,6 +526,23 @@ WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
 FilePath = <Citation>\key.txt
+; -------------------------------------------------
+[9810944]
+ID = 9810944
+Name = Remove Business Id
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\bid.txt
 ; -------------------------------------------------
 [59962327]
 ID = 59962327

@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 06, D=19 at 06:10:01
+; | Last modified: Y=2012, M= 06, D=19 at 07:38:09
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -242,7 +242,7 @@ ViewLicenseRunHidden = 0
 ViewLicenseWaitUntilQuit = 0
 ViewLicenseComponentID = 0
 VisitWebsiteCheckbox = 1
-VisitWebsiteAddress = http://cite.netversa.com
+VisitWebsiteAddress = http://citation.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]
 Items = 45204656,85901125,87433599,85485322,45362683,89453655,18570816,14319016,6237863,12070950

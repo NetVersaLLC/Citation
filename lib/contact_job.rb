@@ -15,7 +15,7 @@ class ContactJob
     def self.run(key, bid)
         @key = key
         @bid = bid
-        job = get('/jobs.json?auth_token='+key)
+        job = get("/jobs.json?auth_token=#{@key}&business_id=#{@bid}")
         data = job[:data]
         if job['status'] == 'wait'
             STDERR.puts "Wait"
@@ -42,7 +42,7 @@ class ContactJob
     end
 
     def self.booboo(msg='Something went wrong!')
-        options = { :query => {:message => msg, :business_id => @bim} }
+        options = { :query => {:message => msg, :business_id => @bid } }
         res = post("/booboos.json?auth_token=#{@key}", options)
     end
 

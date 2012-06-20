@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 06, D=19 at 10:28:06
+; | Last modified: Y=2012, M= 06, D=20 at 08:19:49
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -12,10 +12,10 @@ FileVersion = 5
 [GeneralInformation]
 ProgramName = Citation
 ProgramVersion = 1.0
-ProgramWebsite = http://www.netversa.com
-SupportEmail = support@netversa.com
-CompanyName = NetVersa
-CopyrightString = Copyright (c) 2012 NetVersa
+ProgramWebsite = 
+SupportEmail = 
+CompanyName = 
+CopyrightString = Copyright (c) 2012 NetVersa, LLC.
 OutputFile = C:\Users\jonathan\dev\Citation\dist\Setup.exe
 IconFile = 
 InstallerBandText = <ProgramName> Setup
@@ -241,7 +241,7 @@ ViewLicenseRunMode = 1
 ViewLicenseRunHidden = 0
 ViewLicenseWaitUntilQuit = 0
 ViewLicenseComponentID = 0
-VisitWebsiteCheckbox = 1
+VisitWebsiteCheckbox = 0
 VisitWebsiteAddress = http://citation.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]

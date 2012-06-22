@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+#
+# Copyright (C) NetVersa, LLC.
+# All rights reserved.
+#
+
 require 'rubygems'
 require 'zip/zip'
 

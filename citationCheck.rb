@@ -1,3 +1,8 @@
+#
+# Copyright (C) NetVersa, LLC.
+# All rights reserved.
+#
+
 require "rubygems"
 require "watir"
 require "json"

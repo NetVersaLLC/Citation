@@ -1,8 +1,14 @@
+;;
+;; Copyright (C) 2012 NetVersa, LLC.
+;; All rights reserved.
+;;
+
 Global fd
 
 #KEY_LENGTH  = 64
 sep.s        = "\"
 program      = 0
+copyright$   = "Copyright (C) 2012 NetVersa, LLC."
 productName$ = "Citation v1.0"
 contactName$ = "Jonathan Jeffus <jonathan.jeffus@netversa.com>"
 programName$ = GetPathPart(ProgramFilename()) + "citationCheck.exe"
@@ -115,9 +121,8 @@ Else
 EndIf
 
 CloseFile(fd)
-; IDE Options = PureBasic 4.61 Beta 1 (Windows - x64)
-; CursorPosition = 108
-; FirstLine = 96
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; CursorPosition = 3
 ; Folding = -
 ; EnableXP
 ; Executable = build\citation.exe

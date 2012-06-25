@@ -112,7 +112,7 @@ If FileSize(killFile$) >= 0
 EndIf
 
 WriteToLog("Starting up...")
-program = RunProgram(programName$, key$+" "+bid$, logDir$, #PB_Program_Hide|#PB_Program_Open)
+program = RunProgram(programName$, key$+" "+bid$+" "+logDir$, logDir$, #PB_Program_Hide|#PB_Program_Open)
 If program <> 0 And ProgramRunning(program)
   WriteToLog("Started...")
 Else
@@ -122,7 +122,8 @@ EndIf
 
 CloseFile(fd)
 ; IDE Options = PureBasic 4.61 (Windows - x86)
-; CursorPosition = 3
+; CursorPosition = 116
+; FirstLine = 102
 ; Folding = -
 ; EnableXP
 ; Executable = build\citation.exe

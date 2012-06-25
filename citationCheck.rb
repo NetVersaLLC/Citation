@@ -18,10 +18,11 @@ $HIDE_IE=true
 
 key  = ARGV.shift
 bid  = ARGV.shift
+dir  = ARGV.shift
 file = ARGV.shift
 
-$stdout.reopen("out.txt", "a")
-$stderr.reopen("err.txt", "a")
+$stdout.reopen("#{dir}\\out.txt", "a")
+$stderr.reopen("#{dir}\\err.txt", "a")
 
 puts "Key: #{key}"
 puts "bid: #{bid}"

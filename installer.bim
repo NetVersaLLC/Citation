@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 06, D=22 at 10:42:57
+; | Last modified: Y=2012, M= 06, D=29 at 12:01:04
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -11,7 +11,7 @@ FileVersion = 5
 ; -------------------------------------------------
 [GeneralInformation]
 ProgramName = Local Lighthouse Client
-ProgramVersion = 1.0
+ProgramVersion = 1.01
 ProgramWebsite = http://www.locallighthouse.com/
 SupportEmail = help@locallighthouse.com
 CompanyName = NetVersa, LLC.
@@ -20,7 +20,7 @@ OutputFile = C:\Users\jonathan\dev\Citation\dist\Setup.exe
 IconFile = 
 InstallerBandText = <ProgramName> Setup
 InstallerWindowTitle = <ProgramName> <ProgramVersion> Setup
-CompressionAlgo = ZIP/Deflate
+CompressionAlgo = BLP/LZMA
 CompressionLevel = 3
 ; -------------------------------------------------
 [InstallerExeInfo]
@@ -119,10 +119,47 @@ ComponentID = 49691563
 FolderPath = C:\Users\jonathan\dev\Citation\build\
 ; -------------------------------------------------
 [DetectExistingInstallations]
-PromptUninstallExisting = 0
+PromptUninstallExisting = 1
+Items = 15991861,74981514,35135489,25166637,9993061,41714837
+; -------------------------------------------------
+[15991861]
+ID = 15991861
+ProgramName = Local Lighthouse Client
+ProgramVersion = 1.0
+Remove = 1
+; -------------------------------------------------
+[74981514]
+ID = 74981514
+ProgramName = Local Lighthouse Client 1.0
+ProgramVersion = 1.0
+Remove = 1
+; -------------------------------------------------
+[35135489]
+ID = 35135489
+ProgramName = Local Lighthouse Client 1.0
+ProgramVersion = 
+Remove = 1
+; -------------------------------------------------
+[25166637]
+ID = 25166637
+ProgramName = Local Lighthouse Client 1.01
+ProgramVersion = 
+Remove = 1
+; -------------------------------------------------
+[9993061]
+ID = 9993061
+ProgramName = Local Lighthouse Client 1.01
+ProgramVersion = 1.01
+Remove = 1
+; -------------------------------------------------
+[41714837]
+ID = 41714837
+ProgramName = Local Lighthouse Client
+ProgramVersion = 1.01
+Remove = 1
 ; -------------------------------------------------
 [LookAndFeel]
-InstallerType = 0
+InstallerType = 1
 WizardImage = C:\Users\jonathan\dev\Citation\LocalLighthouse\installer_bg.bmp
 HeaderImage = C:\Program Files (x86)\Bytessence InstallMaker\Graphics\Header\Modern_blue.bmp
 HeaderTitleTextFont = MS Sans Serif

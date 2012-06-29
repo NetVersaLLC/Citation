@@ -4,6 +4,7 @@
 #
 
 require "rubygems"
+require 'time'
 require "watir"
 require "json"
 require "multi_json"
@@ -16,25 +17,32 @@ Watir::Browser.default = "ie"
 
 $HIDE_IE=true
 
-key  = ARGV.shift
-bid  = ARGV.shift
-dir  = ARGV.shift
+key  = ARGV.shift.strip
+bid  = ARGV.shift.strip
 file = ARGV.shift
 
-$stdout.reopen("#{dir}\\out.txt", "a")
-$stderr.reopen("#{dir}\\err.txt", "a")
+# key = File.open("#{pwd}\\key.txt", 'r').read
+# bid = File.open("#{pwd}\\bid.txt", 'r').read
+# dir = File.expand_path('~')
 
+#$stdout.reopen("#{dir}\\out.txt", "a")
+#$stderr.reopen("#{dir}\\err.txt", "a")
+
+#log = File.open("#{dir}\\log.txt", "w")
+puts "Doing run: #{Time.now.iso8601}"
 puts "Key: #{key}"
 puts "bid: #{bid}"
 
+puts "Mark: #{Time.now.iso8601}"
+
 begin
     if file
-        STDERR.puts "opening from file: #{file}"
+        puts "opening from file: #{file}"
         ContactJob.run_from_file(file, key, bid)
     else
         ContactJob.run(key, bid)
     end
 rescue => detail
-    STDERR.puts detail.backtrace.join("\n")
+    puts detail.message + "\n" + detail.backtrace.join("\n")
     ContactJob.booboo(detail.backtrace.join("\n"))
 end

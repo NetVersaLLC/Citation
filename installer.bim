@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 06, D=29 at 12:01:04
+; | Last modified: Y=2012, M= 06, D=29 at 21:23:20
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -20,7 +20,7 @@ OutputFile = C:\Users\jonathan\dev\Citation\dist\Setup.exe
 IconFile = 
 InstallerBandText = <ProgramName> Setup
 InstallerWindowTitle = <ProgramName> <ProgramVersion> Setup
-CompressionAlgo = BLP/LZMA
+CompressionAlgo = ZIP/Deflate
 CompressionLevel = 3
 ; -------------------------------------------------
 [InstallerExeInfo]

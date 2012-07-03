@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 06, D=29 at 21:23:20
+; | Last modified: Y=2012, M= 07, D=03 at 10:43:12
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -543,7 +543,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 75070587,35627274,14197655,8240536,64132406,15139959,4474323,9810944,59962327,26901239
+Items = 75070587,35627274,14197655,8240536,64132406,15139959,59962327,26901239
 ; -------------------------------------------------
 [75070587]
 ID = 75070587
@@ -651,40 +651,6 @@ WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
 FilePath = <Citation>\citationCheck.exe
-; -------------------------------------------------
-[4474323]
-ID = 4474323
-Name = Remove key
-Type = 4
-Win95 = 1
-WinNT4 = 1
-Win98 = 1
-WinMe = 1
-Win2000 = 1
-WinXP = 1
-WinServer2003 = 1
-WinVista = 1
-WinServer2008 = 1
-Win7 = 1
-ComponentID = 49691563
-FilePath = <Citation>\key.txt
-; -------------------------------------------------
-[9810944]
-ID = 9810944
-Name = Remove Business Id
-Type = 4
-Win95 = 1
-WinNT4 = 1
-Win98 = 1
-WinMe = 1
-Win2000 = 1
-WinXP = 1
-WinServer2003 = 1
-WinVista = 1
-WinServer2008 = 1
-Win7 = 1
-ComponentID = 49691563
-FilePath = <Citation>\bid.txt
 ; -------------------------------------------------
 [59962327]
 ID = 59962327

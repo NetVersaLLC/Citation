@@ -8,6 +8,7 @@ require 'time'
 require "watir"
 require "json"
 require "multi_json"
+require 'watir/ie'
 MultiJson.engine = :json_gem
 
 require "httparty"
@@ -20,6 +21,12 @@ $HIDE_IE=true
 key  = ARGV.shift.strip
 bid  = ARGV.shift.strip
 file = ARGV.shift
+
+if key == nil
+    ie = Watir::Browser.new
+    ie.goto "http://slashdot.org"
+    sleep 1
+end
 
 # key = File.open("#{pwd}\\key.txt", 'r').read
 # bid = File.open("#{pwd}\\bid.txt", 'r').read

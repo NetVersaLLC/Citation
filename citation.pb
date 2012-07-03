@@ -162,7 +162,7 @@ If FileSize(killFile$) >= 0
 EndIf
 
 WriteToLog(logDriver, "Starting up...")
-program = RunProgram(programName$, key$ + " " + bid$, logDir$, #PB_Program_Hide|#PB_Program_Open|#PB_Program_Read|#PB_Program_Error)
+program = RunProgram(programName$, key$ + " " + bid$, GetPathPart(ProgramFilename()), #PB_Program_Hide|#PB_Program_Open|#PB_Program_Read|#PB_Program_Error)
 If program <> 0 And ProgramRunning(program)
   WriteToLog(logDriver, "Started...")
   While ProgramRunning(program) <> 0
@@ -187,8 +187,8 @@ CloseFile(logErr)
 CloseFile(logOut)
 CloseFile(logDriver)
 ; IDE Options = PureBasic 4.61 (Windows - x86)
-; CursorPosition = 169
-; FirstLine = 159
+; CursorPosition = 164
+; FirstLine = 155
 ; Folding = --
 ; EnableXP
 ; Executable = build\citation.exe

@@ -161,18 +161,8 @@ EndProcedure
 ; get a REG_QWORD
 ;Debug Reg_GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winsat", "TimeLastFormalAssessment") ; Winsat on Vista and above
 ; get a REG_QWORD
-Debug Reg_GetValue("HKEY_CURRENT_USER\Control Panel\Appearance\New Schemes\0\Sizes\0", "Size #0")
-;get a REG_SZ
-Debug Reg_GetValue("HKEY_CURRENT_USER\Control Panel\Colors", "ActiveBorder")
-; get a REG_EXPAND_SZ
-Debug Reg_GetValue("HKEY_CURRENT_USER\Control Panel\Cursors", "AppStarting")
-; get a REG_DWORD
-Debug Reg_GetValue("HKEY_CURRENT_USER\Control Panel\Cursors", "Scheme Source")
-; get a #REG_BINARY
-Debug Reg_GetValue("HKEY_CURRENT_USER\Control Panel\Appearance", "SchemeLangID")
-
 ; IDE Options = PureBasic 4.61 (Windows - x86)
-; CursorPosition = 163
-; FirstLine = 152
+; CursorPosition = 162
+; FirstLine = 133
 ; Folding = -
 ; EnableXP

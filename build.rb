@@ -28,7 +28,7 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "citatio
 STDERR.puts "Building Setup.exe"
 system "C:\\Program Files (x86)\\Bytessence InstallMaker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\installer.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 #STDERR.puts "Copying to Contact"
-#system "copy dist\\Setup.exe ..\\Contact\\doc"
+system "copy dist\\Setup.exe ..\\Contact\\doc"
 #STDERR.puts "Adding key.txt"
 #system "ruby add_key.rb"
 #system "ruby check_key.rb"

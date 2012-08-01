@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 07, D=03 at 10:43:12
+; | Last modified: Y=2012, M= 07, D=31 at 16:38:16
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -111,10 +111,10 @@ IsMarked = 1
 -1 = The citation generator engine.
 ; -------------------------------------------------
 [Folders]
-Items = 89930417
+Items = 32464249
 ; -------------------------------------------------
-[89930417]
-ID = 89930417
+[32464249]
+ID = 32464249
 ComponentID = 49691563
 FolderPath = C:\Users\jonathan\dev\Citation\build\
 ; -------------------------------------------------

@@ -16,7 +16,7 @@ require "./lib/contact_job"
 
 Watir::Browser.default = "ie"
 
-$HIDE_IE=true
+$HIDE_IE=false
 
 key  = ARGV.shift.strip
 bid  = ARGV.shift.strip

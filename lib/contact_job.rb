@@ -3,7 +3,7 @@ class ContactJob
     format :json;
 
     def self.host
-        'https://citation.netversa.com'
+        $REMOTE
     end
 
     base_uri ContactJob.host

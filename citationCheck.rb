@@ -5,27 +5,35 @@
 
 require "rubygems"
 require 'time'
-require "watir"
+if RUBY_PLATFORM.downcase.include?("mswin")
+  require "watir"
+  require 'watir/ie'
+  Watir::Browser.default = "ie"
+else
+  require "watir-webdriver"
+end
 require "json"
 require "multi_json"
-require 'watir/ie'
 MultiJson.engine = :json_gem
 
+require "rest-client"
 require "httparty"
 require "./lib/contact_job"
-
-Watir::Browser.default = "ie"
+require "./lib/captcha"
 
 $HIDE_IE=false
+$REMOTE = 'http://localhost:3000'
+# $REMOTE = 'https://citation.netversa.com'
 
-key  = ARGV.shift.strip
-bid  = ARGV.shift.strip
+key  = ARGV.shift
+bid  = ARGV.shift
 file = ARGV.shift
 
 if key == nil
     ie = Watir::Browser.new
     ie.goto "http://slashdot.org"
     sleep 1
+    exit
 end
 
 # key = File.open("#{pwd}\\key.txt", 'r').read

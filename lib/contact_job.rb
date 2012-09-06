@@ -6,12 +6,13 @@ class ContactJob
         $REMOTE
     end
 
-    base_uri ContactJob.host
+    base_uri self.host
 
     def self.run_from_file(file, key, bid)
         @key = key.strip
         @bid = bid.strip
         eval File.open(file, 'r').read
+        self.success(job)
     end
 
     def self.run(key, bid)
@@ -25,6 +26,7 @@ class ContactJob
         end
         puts job.inspect
         eval job['payload']
+        self.success(job)
     end
 
     def self.success(job, msg='Job completed successfully.')
@@ -39,8 +41,8 @@ class ContactJob
         puts res.inspect
     end
 
-    def self.queue(payload, msg='Client job.')
-        options = { :query => {:message => msg, :payload => payload}}
+    def self.start(name, msg='Client job.')
+        options = { :query => {:message => msg, :name => name}}
         res = post("/jobs.json?auth_token=#{@key}&business_id=#{@bid}", options)
     end
 
@@ -49,6 +51,4 @@ class ContactJob
         options = { :query => {:message => msg, :business_id => @bid } }
         res = post("/booboos.json?auth_token=#{@key}&business_id=#{@bid}", options)
     end
-
-    base_uri self.host
 end

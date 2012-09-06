@@ -24,9 +24,11 @@ class ContactJob
             puts "Wait"
             exit
         end
-        puts job.inspect
-        eval job['payload']
-        self.success(job)
+        if eval job['payload'] == nil
+          self.success(job)
+        else
+          self.failure(job)
+        end
     end
 
     def self.success(job, msg='Job completed successfully.')

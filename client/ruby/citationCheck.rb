@@ -19,7 +19,7 @@ require "./lib/contact_job"
 require "./lib/captcha"
 
 $HIDE_IE = false
-$REMOTE  = 'http://localhost:3000'
+$REMOTE  = 'http://192.168.0.22:3000'
 # $REMOTE = 'https://citation.netversa.com'
 
 key  = ARGV.shift

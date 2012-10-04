@@ -1,0 +1,39 @@
+#
+# Copyright (C) NetVersa, LLC.
+# All rights reserved.
+#
+
+require "rubygems"
+require 'time'
+require "watir"
+require 'watir/ie'
+Watir::Browser.default = "ie"
+
+require "json"
+require "multi_json"
+MultiJson.engine = :json_gem
+
+require "rest-client"
+require "httparty"
+require "./lib/contact_job"
+require "./lib/captcha"
+
+$HIDE_IE = false
+$REMOTE  = 'http://localhost:3000'
+# $REMOTE = 'https://citation.netversa.com'
+
+key  = ARGV.shift
+bid  = ARGV.shift
+
+puts "Doing run: #{Time.now.iso8601}"
+puts "Key: #{key}"
+puts "bid: #{bid}"
+puts "Mark: #{Time.now.iso8601}"
+
+begin
+    cj = ContactJob.new key, bid
+    cj.run
+rescue => detail
+    puts detail.message + "\n" + detail.backtrace.join("\n")
+    ContactJob.booboo(detail.backtrace.join("\n"))
+end

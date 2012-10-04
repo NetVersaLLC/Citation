@@ -31,7 +31,7 @@ Until Event = #PB_Event_CloseWindow ; End of the event loop
 End
 ;
 
-; IDE Options = PureBasic 4.61 (MacOS X - x86)
-; CursorPosition = 25
-; FirstLine = 9
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; ExecutableFormat = Console
+; CursorPosition = 4
 ; EnableXP

@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 07, D=31 at 16:38:16
+; | Last modified: Y=2012, M= 10, D=04 at 16:34:01
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -16,7 +16,7 @@ ProgramWebsite = http://www.locallighthouse.com/
 SupportEmail = help@locallighthouse.com
 CompanyName = NetVersa, LLC.
 CopyrightString = Copyright (c) 2012 NetVersa, LLC.
-OutputFile = C:\Users\jonathan\dev\Citation\dist\Setup.exe
+OutputFile = C:\Users\jonathan\dev\Citation\Setup.exe
 IconFile = 
 InstallerBandText = <ProgramName> Setup
 InstallerWindowTitle = <ProgramName> <ProgramVersion> Setup
@@ -194,10 +194,10 @@ BKText =
 BKShowCopyright = 0
 ; -------------------------------------------------
 [ReadmeFiles]
--1 = C:\Users\jonathan\dev\Citation\readme.rtf
+-1 = C:\Users\jonathan\dev\Citation\files\readme.rtf
 ; -------------------------------------------------
 [LicenseFiles]
--1 = C:\Users\jonathan\dev\Citation\license.rtf
+-1 = C:\Users\jonathan\dev\Citation\files\license.rtf
 ; -------------------------------------------------
 [Localization]
 2 = 1033
@@ -282,7 +282,7 @@ VisitWebsiteCheckbox = 0
 VisitWebsiteAddress = http://citation.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 45204656,85901125,87433599,85485322,45362683,89453655,32992899,74723060,2404262,18570816,14319016,6237863,12070950
+Items = 45204656,85901125,87433599,85485322,45362683,89453655,32992899,74723060,2404262,18570816,71074726,956399,32440427,93459741,14319016,6237863,12070950
 ; -------------------------------------------------
 [45204656]
 ID = 45204656
@@ -461,6 +461,78 @@ ComponentID = 49691563
 SourceFile = <InstallerExeDir>\citationCheck.exe
 DestinationFile = <Citation>\citationCheck.exe
 ; -------------------------------------------------
+[71074726]
+ID = 71074726
+Name = Copy captcha.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\captcha.exe
+DestinationFile = <Citation>\captcha.exe
+; -------------------------------------------------
+[956399]
+ID = 956399
+Name = Copy incoming_call.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\incoming_call.exe
+DestinationFile = <Citation>\incoming_call.exe
+; -------------------------------------------------
+[32440427]
+ID = 32440427
+Name = Copy verify_account.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\verify_account.exe
+DestinationFile = <Citation>\verify_account.exe
+; -------------------------------------------------
+[93459741]
+ID = 93459741
+Name = Copy ask.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\ask.exe
+DestinationFile = <Citation>\ask.exe
+; -------------------------------------------------
 [14319016]
 ID = 14319016
 Name = Move Key
@@ -543,7 +615,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 75070587,35627274,14197655,8240536,64132406,15139959,59962327,26901239
+Items = 75070587,35627274,14197655,8240536,64132406,46405092,86556251,45586610,79640839,15139959,59962327,26901239
 ; -------------------------------------------------
 [75070587]
 ID = 75070587
@@ -634,6 +706,74 @@ WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
 FilePath = <Citation>\libiconv2.dll
+; -------------------------------------------------
+[46405092]
+ID = 46405092
+Name = Remove captcha.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\captcha.exe
+; -------------------------------------------------
+[86556251]
+ID = 86556251
+Name = Remove incoming_call.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\incoming_call.exe
+; -------------------------------------------------
+[45586610]
+ID = 45586610
+Name = Remove ask.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\ask.exe
+; -------------------------------------------------
+[79640839]
+ID = 79640839
+Name = Remove verify_account.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\verify_account.exe
 ; -------------------------------------------------
 [15139959]
 ID = 15139959

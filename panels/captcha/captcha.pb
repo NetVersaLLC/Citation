@@ -1,12 +1,14 @@
 ; PureBasic Visual Designer v3.95 build 1485 (PB4Code)
 
 OpenConsole()
+
 UseJPEG2000ImageDecoder()
 UseJPEGImageDecoder()
 UsePNGImageDecoder()
 
 #Img = 0
 fileName$ = ProgramParameter(1)
+fileName$ = "C:\Users\jonathan\dev\Citation\panels\captcha\image.jpeg"
 ;fileName$ = "/Users/jjeffus/dev/Citation/panels/captcha/image.jpeg"
 If LoadImage(#Img, fileName$)
 Else
@@ -32,7 +34,8 @@ Repeat ; Start of the event loop
   If Event = #PB_Event_Gadget
     
     If GadgetID = #Button
-      PrintN( GetGadgetText( #Solution ))
+      str.s = GetGadgetText( #Solution )
+      WriteConsoleData( @str, Len(str) )
       End 100
     EndIf
     
@@ -42,6 +45,8 @@ Until Event = #PB_Event_CloseWindow ; End of the event loop
 
 End
 ;
-; IDE Options = PureBasic 4.61 (MacOS X - x86)
-; CursorPosition = 9
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; ExecutableFormat = Console
+; CursorPosition = 28
 ; EnableXP
+; Executable = ..\..\build\captcha.exe

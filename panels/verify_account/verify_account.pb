@@ -1,6 +1,7 @@
 ; PureBasic Visual Designer v3.95 build 1485 (PB4Code)
 
-phoneNumber$ = ProgramParameter(1)
+;phoneNumber$ = ProgramParameter(1)
+Global phoneNumber$ = ProgramParameter(0)
 
 IncludeFile "Common.pb"
 
@@ -32,7 +33,7 @@ Until Event = #PB_Event_CloseWindow ; End of the event loop
 End
 ;
 
-; IDE Options = PureBasic 4.61 (MacOS X - x86)
-; CursorPosition = 31
-; FirstLine = 13
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; ExecutableFormat = Console
+; CursorPosition = 3
 ; EnableXP

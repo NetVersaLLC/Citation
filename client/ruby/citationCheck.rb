@@ -13,15 +13,14 @@ require "json"
 require "multi_json"
 MultiJson.engine = :json_gem
 
-require "rest-client"
-require "httparty"
+require "open-uri"
+require "./lib/restclient"
 require "./lib/contact_job"
 require "./lib/captcha"
 
 $HIDE_IE = false
-$REMOTE  = 'http://192.168.0.22:3000'
-# $REMOTE = 'https://citation.netversa.com'
 
+host = 'http://192.168.0.22:3000'
 key  = ARGV.shift
 bid  = ARGV.shift
 
@@ -31,7 +30,7 @@ puts "bid: #{bid}"
 puts "Mark: #{Time.now.iso8601}"
 
 begin
-    cj = ContactJob.new key, bid
+    cj = ContactJob.new host, key, bid
     cj.run
 rescue => detail
     puts detail.message + "\n" + detail.backtrace.join("\n")

@@ -5,6 +5,8 @@
 
 require "rubygems"
 require 'time'
+require 'win32/registry'
+require 'rautomation'
 require "watir"
 require 'watir/ie'
 Watir::Browser.default = "ie"
@@ -14,6 +16,7 @@ require "multi_json"
 MultiJson.engine = :json_gem
 
 require "open-uri"
+require "nokogiri"
 require "./lib/restclient"
 require "./lib/contact_job"
 require "./lib/captcha"

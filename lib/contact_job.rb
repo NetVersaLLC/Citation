@@ -14,6 +14,9 @@ class ContactJob
             puts "Wait"
             exit
         end
+
+        # Make it so jobs load other jobs when finished.
+        @chained = true
         begin
             STDERR.puts "Payload: #{@job['payload']}"
             if eval(@job['payload']) == nil

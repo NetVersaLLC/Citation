@@ -3,17 +3,17 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 10, D=04 at 16:34:01
+; | Last modified: Y=2012, M= 10, D=08 at 17:28:34
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
 FileVersion = 5
 ; -------------------------------------------------
 [GeneralInformation]
-ProgramName = Local Lighthouse Client
-ProgramVersion = 1.01
-ProgramWebsite = http://www.locallighthouse.com/
-SupportEmail = help@locallighthouse.com
+ProgramName = Splatr Client
+ProgramVersion = 1.02
+ProgramWebsite = http://www.splatr.com
+SupportEmail = support@splatr.com
 CompanyName = NetVersa, LLC.
 CopyrightString = Copyright (c) 2012 NetVersa, LLC.
 OutputFile = C:\Users\jonathan\dev\Citation\Setup.exe
@@ -119,7 +119,7 @@ ComponentID = 49691563
 FolderPath = C:\Users\jonathan\dev\Citation\build\
 ; -------------------------------------------------
 [DetectExistingInstallations]
-PromptUninstallExisting = 1
+PromptUninstallExisting = 0
 Items = 15991861,74981514,35135489,25166637,9993061,41714837
 ; -------------------------------------------------
 [15991861]
@@ -159,8 +159,8 @@ ProgramVersion = 1.01
 Remove = 1
 ; -------------------------------------------------
 [LookAndFeel]
-InstallerType = 1
-WizardImage = C:\Users\jonathan\dev\Citation\LocalLighthouse\installer_bg.bmp
+InstallerType = 0
+WizardImage = C:\Users\jonathan\dev\Citation\labels\Splatr\wizard.bmp
 HeaderImage = C:\Program Files (x86)\Bytessence InstallMaker\Graphics\Header\Modern_blue.bmp
 HeaderTitleTextFont = MS Sans Serif
 HeaderTitleTextSize = 8

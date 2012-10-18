@@ -4,13 +4,11 @@
 #
 
 require "rubygems"
+require 'ffi'
+FFI::typedef(:int, :intptr_t)
 require 'time'
-require 'win32/registry'
-require 'rautomation'
-require "watir"
-require 'watir/ie'
-Watir::Browser.default = "ie"
-
+require 'ipaddr'
+require "watir-webdriver"
 require "json"
 require "multi_json"
 MultiJson.engine = :json_gem
@@ -21,7 +19,7 @@ require "./lib/restclient"
 require "./lib/contact_job"
 require "./lib/captcha"
 
-$HIDE_IE = false
+$HIDE_IE = true
 
 host = 'http://192.168.0.22:3000'
 key  = ARGV.shift

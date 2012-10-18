@@ -9,22 +9,21 @@ STDERR.puts "Cleaning..."
 system "rm -rf build/*"
 system "rm -rf dist/*"
 
-STDERR.puts "Adding files.."
-system "cp client\\populate\\populate.exe build"
-system "cp files\\IAccessibleDLL.dll build"
-system "cp files\\IEDialog.dll build"
-system "cp files\\libiconv2.dll build"
-system "cp files\\libeay32-1.0.0-msvcrt.dll build"
-system "cp files\\ssleay32-1.0.0-msvcrt.dll build"
-system "cp -r files\\win32 build"
-
 STDERR.puts "Building citationCheck.exe"
 system "exerb client\\ruby\\citationCheck.exy"
+
+STDERR.puts "Copying data"
+system "cp -r atoms build/atoms"
+system "cp prefs.json build"
+system "cp webdriver.xpi build"
+system "cp files\\ssleay32-0.9.8-msvcrt.dll build"
+system "cp files\\libeay32-0.9.8-msvcrt.dll build"
+system "cp files\\libiconv2.dll build"
 
 STDERR.puts "Moving to build/"
 File.rename "client\\ruby\\citationCheck.exe", "build/citationCheck.exe"
 
-STDERR.puts "Packing..."
+# STDERR.puts "Packing..."
 system "upx --best build/citationCheck.exe"
 
 STDERR.puts "Compiling citation.exe"

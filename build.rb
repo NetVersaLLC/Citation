@@ -34,7 +34,9 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/console", "/exe", "build/verify_account.exe"
 
 STDERR.puts "Building Setup.exe"
-system "C:\\Program Files (x86)\\Bytessence InstallMaker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\installer.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
+system "cp -f installer.bim build.bim"
+system "bin\\whitelabel.exe"
+system "C:\\Program Files (x86)\\Bytessence InstallMaker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 
 STDERR.puts "Copying to Contact"
 system "copy Setup.exe ..\\Contact\\doc"

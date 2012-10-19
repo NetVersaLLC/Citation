@@ -19,10 +19,13 @@ class ContactJob
         @chained = true
         begin
             STDERR.puts "Payload: #{@job['payload']}"
-            if eval(@job['payload']) == nil
+            ret =  eval(@job['payload'])
+            if ret == true
                 self.success()
-            else
+            elsif ret == false
                 self.failure()
+            else
+                # Presume the script handled reporting back
             end
         rescue => e
             self.failure "#{e}: #{e.backtrace.join("\n")}"

@@ -18,18 +18,12 @@ program      = 0
 copyright$   = "Copyright (C) 2012 NetVersa, LLC."
 productName$ = "Citation v1.0"
 contactName$ = "Jonathan Jeffus <jonathan.jeffus@netversa.com>"
-booboosUrl$  = "https://signup.netversa.com/booboos.json"
+booboosUrl$  = "https://citation.netversa.com/booboos.json"
 programName$ = GetPathPart(ProgramFilename()) + "citationCheck.exe"
 keyFile$     = GetPathPart(ProgramFilename()) + "key.txt"
 bidFile$     = GetPathPart(ProgramFilename()) + "bid.txt"
 key$         = Space(#KEY_LENGTH + 1)
 bid$         = Space(#KEY_LENGTH + 1)
-
-logDir$      = GetHomeDirectory() + "citation"
-logDriver$   = logDir$ + sep + "driver.log"
-logErr$      = logDir$ + sep + "err.txt"
-logOut$      = logDir$ + sep + "out.txt"
-killFile$    = logDir$ + sep + "kill.txt"
 
 If ReadKeyfile(@key$, keyFile$)
   Debug "Can't open keyfile: "+keyFile$
@@ -41,6 +35,24 @@ If ReadKeyfile(@bid$, bidFile$)
   ReportBooboo("Can't open bidfile: "+bidFile$)
   End 8
 EndIf
+
+logDir$      = GetHomeDirectory() + "citation"
+If FileSize(logDir$) <> -2
+  If CreateDirectory(logDir$) = 0
+    ReportBooboo(bid$+": Could not create log directory: "+logDir$)
+   End
+  EndIf
+EndIf
+If FileSize(logDir$ + sep + bid$) <> -2
+  If CreateDirectory(logDir$ + sep + bid$) = 0
+    ReportBooboo(bid$+": Could not create log directory: "+logDir$+sep+bid$)
+    End
+  EndIf
+EndIf
+logDriver$   = logDir$ + sep + bid$ + sep + "driver.log"
+logErr$      = logDir$ + sep + bid$ + sep + "err.txt"
+logOut$      = logDir$ + sep + bid$ + sep + "out.txt"
+killFile$    = logDir$ + sep + bid$ + sep + "kill.txt"
 
 Debug "Opening logs"
 
@@ -186,9 +198,10 @@ EndIf
 CloseFile(logErr)
 CloseFile(logOut)
 CloseFile(logDriver)
-; IDE Options = PureBasic 4.61 (Windows - x86)
-; CursorPosition = 5
+; IDE Options = PureBasic 4.61 (MacOS X - x86)
+; CursorPosition = 49
+; FirstLine = 33
 ; Folding = --
 ; EnableXP
-; Executable = build\citation.exe
+; Executable = build/citation.exe
 ; CompileSourceDirectory

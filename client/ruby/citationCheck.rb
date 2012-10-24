@@ -21,7 +21,7 @@ require "./lib/captcha"
 
 $HIDE_IE = true
 
-host = 'http://192.168.0.22:3000'
+host = 'http://192.168.0.21:3000'
 key  = ARGV.shift
 bid  = ARGV.shift
 

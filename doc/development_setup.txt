@@ -1,0 +1,11 @@
+First start the contact server on localhost then go to:
+http://localhost:3000/
+And sign up and download the client and install it. Now you can cd into:
+c:\program files (x86)\splatr client
+Next run the following commands:
+set CITATION_HOST=http://localhost:3000
+clip < key.txt
+citationCheck.exe <paste key.txt> 1
+This will connect and look for a job
+You can assign a job in the web interface at
+http://localhost:3000/admin

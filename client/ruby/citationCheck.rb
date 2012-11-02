@@ -19,21 +19,30 @@ require "./lib/restclient"
 require "./lib/contact_job"
 require "./lib/captcha"
 
-$HIDE_IE = true
+$host = ENV['CITATION_HOST'] || 'https://citation.netversa.com'
+$key  = ARGV.shift
+$bid  = ARGV.shift
 
-host = 'http://192.168.0.21:3000'
-key  = ARGV.shift
-bid  = ARGV.shift
+if ENV['CITATION_HOST']
+    puts "Connecting to: #{$host}"
+end
 
-puts "Doing run: #{Time.now.iso8601}"
-puts "Key: #{key}"
-puts "bid: #{bid}"
-puts "Mark: #{Time.now.iso8601}"
+if $key == nil or $key.strip == ''
+    puts "Error: Cannot run without access key!"
+    exit
+end
+
+if $bid == nil or $bid.strip == ''
+    puts "Error: Cannot run without business id!"
+    exit
+end
+
+puts "M: #{Time.now.iso8601}"
 
 begin
-    cj = ContactJob.new host, key, bid
+    cj = ContactJob.new $host, $key, $bid
     cj.run
 rescue => detail
     puts detail.message + "\n" + detail.backtrace.join("\n")
-    ContactJob.booboo(detail.backtrace.join("\n"))
+    ContactJob.booboo(detail.backtrace.join("\n"), $key, $bid)
 end

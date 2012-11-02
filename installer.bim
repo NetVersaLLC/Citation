@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2012, M= 10, D=17 at 16:21:08
+; | Last modified: Y=2012, M= 10, D=24 at 14:29:30
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -68,8 +68,31 @@ ExtraSpaceMin = 8
 ExtraSpaceRec = 16
 FailMinimumReqs = 1
 FailRecommendedReqs = 0
-RequireExistingItems = 0
+RequireExistingItems = 1
 CheckForInstances = 0
+; -------------------------------------------------
+[RequireExistingItems]
+Items = 21751038
+; -------------------------------------------------
+[21751038]
+ProgramName = Firefox
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinME = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ID = 21751038
+Keys = 61137617
+; -------------------------------------------------
+[61137617]
+ID = 61137617
+MainKey = 2
+SubKey = Software\Mozilla\Mozilla Firefox
 ; -------------------------------------------------
 [RegistryVars]
 CreateRegistryVars = 0

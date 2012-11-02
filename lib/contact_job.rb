@@ -46,12 +46,13 @@ class ContactJob
 
     def booboo(msg='Something went wrong!')
         return if msg =~ /SystemExit/
-        STDERR.puts "Posting to: #{@host}/booboos.json?auth_token=#{@key}&business_id=#{@bid}"
+        puts "Posting to: #{@host}/booboos.json?auth_token=#{@key}&business_id=#{@bid}"
         res = RestClient.post("#{@host}/booboos.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg)
     end
 
-    def self.booboo(msg='Something went wrong!')
+    def self.booboo(msg='Something went wrong!', key='',bid='')
         return if msg =~ /SystemExit/
-        res = RestClient.post("#{@host}/booboos.json", :message => msg)
+        puts "Posting to: #{$host}/booboos.json?auth_token=#{key}&business_id=#{bid}"
+        res = RestClient.post("#{$host}/booboos.json?auth_token=#{key}&business_id=#{bid}", :message => msg)
     end
 end

@@ -1,0 +1,985 @@
+; -------------------------------------------------
+; | Please do not modify this file by hand
+; | It may crash the program if mistakes are found
+; | Use BIM to modify it
+; -------------------------------------------------
+; | Last modified: Y=2012, M= 10, D=17 at 16:21:08
+; -------------------------------------------------
+[Header]
+FileID = Bytessence Install Maker
+FileVersion = 5
+; -------------------------------------------------
+[GeneralInformation]
+ProgramName = TownCenter Client
+ProgramVersion = 1.02
+ProgramWebsite = http://www.towncenter.com
+SupportEmail = support@towncenter.com
+CompanyName = NetVersa, LLC.
+CopyrightString = Copyright (c) 2012 NetVersa, LLC.
+OutputFile = C:\Users\jonathan\dev\Citation\Setup.exe
+IconFile =
+InstallerBandText = <ProgramName> Setup
+InstallerWindowTitle = <ProgramName> <ProgramVersion> Setup
+CompressionAlgo = ZIP/Deflate
+CompressionLevel = 3
+; -------------------------------------------------
+[InstallerExeInfo]
+CompanyName = NetVersa
+Copyright = © 2012 NetVersa
+Email = support@netversa.com
+FileDescription = Citation installer
+ProductName = Citation
+ProductVersion = 1.0
+Website = http://www.netversa.com
+MajorHigh = 1
+MajorLow = 0
+MinorHigh = 0
+MinorLow = 0
+; -------------------------------------------------
+[SystemRequirements]
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 1
+Win2003 = 1
+WinVista = 1
+Win2008 = 1
+Win7 = 1
+InstallerType = 0
+RequireAdminRights = 1
+DotNETVersion = 0
+DotNETVisitWebpage = 0
+DotNETWebpageAddress = http://
+IEVersion = 10
+IEVisitWebpage = 0
+IEWebpageAddress = http://
+CheckSysRequirements = 0
+CheckCPUSpeed = 0
+CPUSpeedMin = 133
+CPUSpeedRec = 266
+CheckMemSize = 0
+MemSizeMin = 64
+MemSizeRec = 128
+CheckExtraSpace = 0
+ExtraSpaceScope = 0
+ExtraSpaceMin = 8
+ExtraSpaceRec = 16
+FailMinimumReqs = 1
+FailRecommendedReqs = 0
+RequireExistingItems = 0
+CheckForInstances = 0
+; -------------------------------------------------
+[RegistryVars]
+CreateRegistryVars = 0
+; -------------------------------------------------
+[FileConfig]
+ReplaceStatus = 0
+; -------------------------------------------------
+[Categories]
+Items = 19588577
+; -------------------------------------------------
+[19588577]
+ID = 19588577
+InternalName = Program
+LocalizedNameID = 59679840
+; -------------------------------------------------
+[59679840]
+1033 = Program
+; -------------------------------------------------
+[Components]
+Items = 49691563
+; -------------------------------------------------
+[49691563]
+ID = 49691563
+CategoryID = 19588577
+InternalName = Citation
+LocalizedNameID = 49992128
+DescriptionID = 42878074
+PathVariable = <Citation>
+InstallationPath = <ProgramFiles>\<ProgramName>\
+IsPrincipal = 1
+IsPathEnforced = 0
+IsMandatory = 1
+IsMarked = 1
+; -------------------------------------------------
+[49992128]
+-1 = Citation
+; -------------------------------------------------
+[42878074]
+-1 = The citation generator engine.
+; -------------------------------------------------
+[Folders]
+Items = 32464249
+; -------------------------------------------------
+[32464249]
+ID = 32464249
+ComponentID = 49691563
+FolderPath = C:\Users\jonathan\dev\Citation\build\
+; -------------------------------------------------
+[DetectExistingInstallations]
+PromptUninstallExisting = 0
+Items = 15991861,74981514,35135489,25166637,9993061,41714837
+; -------------------------------------------------
+[15991861]
+ID = 15991861
+ProgramName = Local Lighthouse Client
+ProgramVersion = 1.0
+Remove = 1
+; -------------------------------------------------
+[74981514]
+ID = 74981514
+ProgramName = Local Lighthouse Client 1.0
+ProgramVersion = 1.0
+Remove = 1
+; -------------------------------------------------
+[35135489]
+ID = 35135489
+ProgramName = Local Lighthouse Client 1.0
+ProgramVersion =
+Remove = 1
+; -------------------------------------------------
+[25166637]
+ID = 25166637
+ProgramName = Local Lighthouse Client 1.01
+ProgramVersion =
+Remove = 1
+; -------------------------------------------------
+[9993061]
+ID = 9993061
+ProgramName = Local Lighthouse Client 1.01
+ProgramVersion = 1.01
+Remove = 1
+; -------------------------------------------------
+[41714837]
+ID = 41714837
+ProgramName = Local Lighthouse Client
+ProgramVersion = 1.01
+Remove = 1
+; -------------------------------------------------
+[LookAndFeel]
+InstallerType = 0
+WizardImage = C:\Users\jonathan\dev\Citation\labels\TownCenter\wizard.bmp
+HeaderImage = C:\Users\jonathan\dev\Citation\labels\TownCenter\header.bmp
+HeaderTitleTextFont = MS Sans Serif
+HeaderTitleTextSize = 8
+HeaderTitleTextFlags = 256
+HeaderTitleTextPosX = 10
+HeaderTitleTextPosY = 13
+HeaderTitleTextColor = 0
+HeaderTitleTextShadow = 0
+HeaderTitleTextShadowColor = 14145495
+HeaderTextFont = MS Sans Serif
+HeaderTextSize = 8
+HeaderTextFlags = 0
+HeaderTextPosX = 15
+HeaderTextPosY = 34
+HeaderTextColor = 0
+HeaderTextShadow = 0
+HeaderTextShadowColor = 14145495
+ShowInformation = 1
+ShowLicense = 1
+ShowWebsiteLink = 1
+ShowCopyrightNotice = 1
+BKUseGradient = 1
+BKUsePicture = 0
+BKFirstColor = 8421504
+BKSecondColor = 16777215
+BKTextColor = 15132390
+BKVertical = 1
+BKHorizontal = 0
+BKPicturePath =
+BKText =
+BKShowCopyright = 0
+; -------------------------------------------------
+[ReadmeFiles]
+-1 = C:\Users\jonathan\dev\Citation\labels\TownCenter\readme.rtf
+; -------------------------------------------------
+[LicenseFiles]
+-1 = C:\Users\jonathan\dev\Citation\labels\TownCenter\license.rtf
+; -------------------------------------------------
+[Localization]
+2 = 1033
+; -------------------------------------------------
+[InstallerSettings]
+CreateGroup = 0
+CustomStartMenuGroup = <ProgramName>
+CreateUninstallShortcut = 0
+CustomStartMenuUninstall = Uninstall <ProgramName>
+CreateInternetLink = 0
+CustomStartMenuWebLink = Website
+CreateSMProgramShortcut = 0
+SMProgramOutputPath =
+SMProgramOutputName =
+SMProgramFilePath =
+SMProgramIconPath =
+SMProgramIconIndex = 0
+SMProgramCommandLine =
+SMProgramStartIn =
+SMProgramComment =
+SMProgramComponentID = 0
+CreateSMDocumentationShortcut = 0
+SMDocumentationOutputPath =
+SMDocumentationOutputName =
+SMDocumentationFilePath =
+SMDocumentationIconPath =
+SMDocumentationIconIndex = 0
+SMDocumentationCommandLine =
+SMDocumentationStartIn =
+SMDocumentationComment =
+SMDocumentationComponentID = 0
+CreateSMReadmeShortcut = 0
+SMReadmeOutputPath =
+SMReadmeOutputName =
+SMReadmeFilePath =
+SMReadmeIconPath =
+SMReadmeIconIndex = 0
+SMReadmeCommandLine =
+SMReadmeStartIn =
+SMReadmeComment =
+SMReadmeComponentID = 0
+CreateSMLicenseShortcut = 0
+SMLicenseOutputPath =
+SMLicenseOutputName =
+SMLicenseFilePath =
+SMLicenseIconPath =
+SMLicenseIconIndex = 0
+SMLicenseCommandLine =
+SMLicenseStartIn =
+SMLicenseComment =
+SMLicenseComponentID = 0
+ShowRestartComputerCheckbox = 0
+LaunchProgramCheckbox = 0
+LaunchProgramProgramPath =
+LaunchProgramCommandLine =
+LaunchProgramRunMode = 0
+LaunchProgramRunHidden = 0
+LaunchProgramWaitUntilQuit = 0
+LaunchProgramComponentID = 0
+ViewDocumentationCheckbox = 0
+ViewDocumentationProgramPath =
+ViewDocumentationCommandLine =
+ViewDocumentationRunMode = 1
+ViewDocumentationRunHidden = 0
+ViewDocumentationWaitUntilQuit = 0
+ViewDocumentationComponentID = 0
+ViewReadmeCheckbox = 0
+ViewReadmePath =
+ViewReadmeCommandLine =
+ViewReadmeRunMode = 1
+ViewReadmeRunHidden = 0
+ViewReadmeWaitUntilQuit = 0
+ViewReadmeComponentID = 0
+ViewLicenseCheckbox = 0
+ViewLicensePath =
+ViewLicenseCommandLine =
+ViewLicenseRunMode = 1
+ViewLicenseRunHidden = 0
+ViewLicenseWaitUntilQuit = 0
+ViewLicenseComponentID = 0
+VisitWebsiteCheckbox = 0
+VisitWebsiteAddress = http://citation.netversa.com
+; -------------------------------------------------
+[InstallerTasks]
+Items = 89453655,18570816,71074726,956399,32440427,93459741,14319016,6237863,12070950,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007
+; -------------------------------------------------
+[89453655]
+ID = 89453655
+Name = Copy
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\citation.exe
+DestinationFile = <Citation>\citation.exe
+; -------------------------------------------------
+[18570816]
+ID = 18570816
+Name = Copy citationCheck.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\citationCheck.exe
+DestinationFile = <Citation>\citationCheck.exe
+; -------------------------------------------------
+[71074726]
+ID = 71074726
+Name = Copy captcha.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\captcha.exe
+DestinationFile = <Citation>\captcha.exe
+; -------------------------------------------------
+[956399]
+ID = 956399
+Name = Copy incoming_call.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\incoming_call.exe
+DestinationFile = <Citation>\incoming_call.exe
+; -------------------------------------------------
+[32440427]
+ID = 32440427
+Name = Copy verify_account.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\verify_account.exe
+DestinationFile = <Citation>\verify_account.exe
+; -------------------------------------------------
+[93459741]
+ID = 93459741
+Name = Copy ask.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\ask.exe
+DestinationFile = <Citation>\ask.exe
+; -------------------------------------------------
+[14319016]
+ID = 14319016
+Name = Move Key
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\key.txt
+DestinationFile = <Citation>\key.txt
+; -------------------------------------------------
+[6237863]
+ID = 6237863
+Name = Move Business Id
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\bid.txt
+DestinationFile = <Citation>\bid.txt
+; -------------------------------------------------
+[12070950]
+ID = 12070950
+Name = Add Scheduled Task
+Type = 0
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+ProgramPath = <system>\schtasks.exe
+CommandLine = /create /tn "Citation" /tr "\"<Citation>\citation.exe\"" /sc MINUTE /mo 1
+RunMode = 1
+ExecutionTime = 1
+RunHidden = 1
+WaitUntilQuit = 0
+; -------------------------------------------------
+[97679389]
+ID = 97679389
+Name = Create atoms
+Type = 11
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+Address = <Citation>\atoms
+; -------------------------------------------------
+[29729341]
+ID = 29729341
+Name = Copy fireEvents.js
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\fireEvent.js
+DestinationFile = <Citation>\atoms\fireEvent.js
+; -------------------------------------------------
+[54303778]
+ID = 54303778
+Name = Copy getAttribute.js
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\getAttribute.js
+DestinationFile = <Citation>\atoms\getAttribute.js
+; -------------------------------------------------
+[50073238]
+ID = 50073238
+Name = Copy getOuterHtml.js
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\getOuterHtml.js
+DestinationFile = <Citation>\atoms\getOuterHtml.js
+; -------------------------------------------------
+[83302021]
+ID = 83302021
+Name = Copy getParentElement.js
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\getParentElement.js
+DestinationFile = <Citation>\atoms\getParentElement.js
+; -------------------------------------------------
+[71535112]
+ID = 71535112
+Name = Copy selectText.js
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\selectText.js
+DestinationFile = <Citation>\atoms\selectText.js
+; -------------------------------------------------
+[92211375]
+ID = 92211375
+Name = Copy prefs.json
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\prefs.json
+DestinationFile = <Citation>\prefs.json
+; -------------------------------------------------
+[84697209]
+ID = 84697209
+Name = Copy webdriver.xpi
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\webdriver.xpi
+DestinationFile = <Citation>\webdriver.xpi
+; -------------------------------------------------
+[87574049]
+ID = 87574049
+Name = Copy libeay32-0.9.8-msvcrt.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\libeay32-0.9.8-msvcrt.dll
+DestinationFile = <Citation>\libeay32-0.9.8-msvcrt.dll
+; -------------------------------------------------
+[94756409]
+ID = 94756409
+Name = Copy libiconv2.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\libiconv2.dll
+DestinationFile = <Citation>\libiconv2.dll
+; -------------------------------------------------
+[59864007]
+ID = 59864007
+Name = Copy ssleay32-0.9.8-msvcrt.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\ssleay32-0.9.8-msvcrt.dll
+DestinationFile = <Citation>\ssleay32-0.9.8-msvcrt.dll
+; -------------------------------------------------
+[UninstallerSettings]
+CreateUninstaller = 1
+CreateAddRemoveEntry = 1
+AddRemoveEntryName = <ProgramName> <ProgramVersion>
+UninstallerIconPath =
+UninstRestartPC = 0
+CheckForInstances = 0
+; -------------------------------------------------
+[UninstallerExeInfo]
+CompanyName = MyCompany
+Copyright = © MyCompany
+Email = support@mycompany.com
+FileDescription = MyProgram uninstaller
+ProductName = MyProgram
+ProductVersion = 1.0
+Website = http://www.mycompany.com
+MajorHigh = 1
+MajorLow = 0
+MinorHigh = 0
+MinorLow = 0
+; -------------------------------------------------
+[SkipUninstallFiles]
+; -------------------------------------------------
+[UninstallerTasks]
+Items = 75070587,35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364
+; -------------------------------------------------
+[75070587]
+ID = 75070587
+Name = Remove Task
+Type = 0
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+ProgramPath = <system>\schtasks.exe
+CommandLine = /Delete /tn "Citation" /f
+RunMode = 1
+ExecutionTime = 0
+RunHidden = 1
+WaitUntilQuit = 1
+; -------------------------------------------------
+[35627274]
+ID = 35627274
+Name = Remove Program
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\citation.exe
+; -------------------------------------------------
+[46405092]
+ID = 46405092
+Name = Remove captcha.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\captcha.exe
+; -------------------------------------------------
+[86556251]
+ID = 86556251
+Name = Remove incoming_call.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\incoming_call.exe
+; -------------------------------------------------
+[45586610]
+ID = 45586610
+Name = Remove ask.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\ask.exe
+; -------------------------------------------------
+[79640839]
+ID = 79640839
+Name = Remove verify_account.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\verify_account.exe
+; -------------------------------------------------
+[15139959]
+ID = 15139959
+Name = Remove citationCheck.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\citationCheck.exe
+; -------------------------------------------------
+[30631698]
+ID = 30631698
+Name = Remove prefs.json
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\prefs.json
+; -------------------------------------------------
+[91965188]
+ID = 91965188
+Name = Remove webdriver.xpi
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\webdriver.xpi
+; -------------------------------------------------
+[68217543]
+ID = 68217543
+Name = Remove atoms\fireEvent.js
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\atoms\fireEvent.js
+; -------------------------------------------------
+[86637782]
+ID = 86637782
+Name = Remove atoms\getAttribute.js
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\atoms\getAttribute.js
+; -------------------------------------------------
+[29978902]
+ID = 29978902
+Name = Remove atoms\getOuterHtml.js
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\atoms\getOuterHtml.js
+; -------------------------------------------------
+[84386414]
+ID = 84386414
+Name = Remove atoms\getParentElement.js
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\atoms\getParentElement.js
+; -------------------------------------------------
+[23876964]
+ID = 23876964
+Name = Remove atoms\selectText.js
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\atoms\selectText.js
+; -------------------------------------------------
+[24026631]
+ID = 24026631
+Name = Remove atoms
+Type = 6
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+Address = <Citation>\atoms
+; -------------------------------------------------
+[43232807]
+ID = 43232807
+Name = Delete ssleay32-0.9.8-msvcrt.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\ssleay32-0.9.8-msvcrt.dll
+; -------------------------------------------------
+[3291363]
+ID = 3291363
+Name = Delete libiconv2.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\libiconv2.dll
+; -------------------------------------------------
+[78491364]
+ID = 78491364
+Name = Delete ssleay32-0.9.8-msvcrt.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\ssleay32-0.9.8-msvcrt.dll

@@ -3,6 +3,9 @@
 # All rights reserved.
 #
 
+require 'rubygems'
+require 'fileutils'
+
 STDERR.puts "Wrong ruby version: #{RUBY_VERSION}" and exit if RUBY_VERSION != '1.8.7'
 
 STDERR.puts "Cleaning..."
@@ -34,9 +37,16 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/console", "/exe", "build/verify_account.exe"
 
 STDERR.puts "Building Setup.exe"
-system "cp -f installer.bim build.bim"
-system "bin\\whitelabel.exe"
-system "C:\\Program Files (x86)\\Bytessence InstallMaker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
+Dir.open("./labels").each do |label|
+    next unless File.directory? "./labels/#{label}"
+    next if label =~ /^\./
+    system "cp -fv installer.bim build.bim"
+    STDERR.puts "bin\\whitelabel.exe #{label}"
+    system "bin\\whitelabel.exe #{label}"
+    system "C:\\Program Files (x86)\\Bytessence InstallMaker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 
-STDERR.puts "Copying to Contact"
-system "copy Setup.exe ..\\Contact\\doc"
+    labeldir = "..\\Contact\\labels\\#{label}"
+    FileUtils.mkdir_p labeldir
+    STDERR.puts "Copying to Contact"
+    system "copy Setup.exe #{labeldir}"
+end

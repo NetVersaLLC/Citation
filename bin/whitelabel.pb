@@ -1,6 +1,6 @@
 OpenConsole()
 
-whiteLabel.s = "Splatr"; ProgramParameter(1)
+whiteLabel.s = ProgramParameter(0)
 
 programName.s = ""
 programWebsite.s = ""
@@ -14,7 +14,8 @@ headerImage.s = ""
 readme.s = ""
 license.s = ""
 
-If OpenPreferences("labels\"+whiteLabel+"\installer.bim")
+whiteLabelBim.s =  "labels\"+whiteLabel+"\installer.bim"
+If OpenPreferences(whiteLabelBim)
   If ExaminePreferenceGroups()
     While NextPreferenceGroup()
       If PreferenceGroupName() = "GeneralInformation"
@@ -37,6 +38,9 @@ If OpenPreferences("labels\"+whiteLabel+"\installer.bim")
     Wend
   EndIf
   ClosePreferences()
+Else
+  PrintN("Cannot open whitelabel file: "+whiteLabelBim)
+  End 3
 EndIf
 
 PrintN("Patching installer for: "+whiteLabel)
@@ -75,7 +79,12 @@ If OpenPreferences("build.bim")
     Wend
   EndIf
   ClosePreferences()
+Else
+  PrintN("Could not open build.bim!")
+  End 5
 EndIf
-; IDE Options = PureBasic 4.60 (MacOS X - x86)
-; CursorPosition = 76
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; ExecutableFormat = Console
+; CursorPosition = 2
 ; EnableXP
+; Executable = whitelabel.exe

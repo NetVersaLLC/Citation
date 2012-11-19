@@ -44,6 +44,14 @@ class ContactJob
         res = RestClient.post("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg, :name => name)
     end
 
+    def list()
+        res = RestClient.get("#{@host}/jobs/list.json?auth_token=#{@key}&business_id=#{@bid}")
+    end
+
+    def remove(job_id)
+        res = RestClient.delete("#{@host}/jobs/#{job_id}.json?auth_token=#{@key}&business_id=#{@bid}")
+    end
+
     def booboo(msg='Something went wrong!')
         return if msg =~ /SystemExit/
         puts "Posting to: #{@host}/booboos.json?auth_token=#{@key}&business_id=#{@bid}"

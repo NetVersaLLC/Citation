@@ -25,6 +25,7 @@ FontID2 = LoadFont(2, "Calibri", 18)
 ;- Image Plugins
 
 Procedure Open_Window()
+  Debug "OpenWindow()"
   IW = ImageWidth(#Img)
   IH = ImageHeight(#Img)
   MinWin = 394
@@ -34,6 +35,8 @@ Procedure Open_Window()
     WW = IW + 20
   EndIf
   WH = IH + 232
+  Debug "Width: "+Str(WW)
+  Debug "Height: "+Str(WH)
   If OpenWindow(#Window, 282, 37, WW, WH, "CAPTCHA",  #PB_Window_SystemMenu | #PB_Window_SizeGadget | #PB_Window_TitleBar )
       IX = 20
       IY = 10
@@ -49,8 +52,8 @@ Procedure Open_Window()
   EndIf
 EndProcedure
 
-; IDE Options = PureBasic 4.61 (MacOS X - x86)
-; CursorPosition = 35
-; FirstLine = 26
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; CursorPosition = 27
+; FirstLine = 24
 ; Folding = -
 ; EnableXP

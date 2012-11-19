@@ -2,17 +2,16 @@
 
 OpenConsole()
 
-UseJPEG2000ImageDecoder()
 UseJPEGImageDecoder()
 UsePNGImageDecoder()
 
 #Img = 0
-fileName$ = ProgramParameter(1)
-; fileName$ = "C:\Users\jonathan\dev\Citation\panels\captcha\image.jpeg"
-;fileName$ = "/Users/jjeffus/dev/Citation/panels/captcha/image.jpeg"
+fileName$ = ProgramParameter(0)
+; fileName$ = "C:\Users\jonathan\Desktop\image.jpg"
 If LoadImage(#Img, fileName$)
+  Debug "Loaded image: "+fileName$
 Else
-  End
+  End 101
 EndIf
 
 IncludeFile "Common.pb"
@@ -47,6 +46,6 @@ End
 ;
 ; IDE Options = PureBasic 4.61 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 10
+; CursorPosition = 3
 ; EnableXP
 ; Executable = ..\..\build\captcha.exe

@@ -19,6 +19,7 @@ class ContactJob
         @chained = true
         begin
             STDERR.puts "Payload: #{@job['payload']}"
+            @browser = Watir::Browser.new
             ret =  eval(@job['payload'])
             if ret == true
                 self.success()
@@ -29,6 +30,14 @@ class ContactJob
             end
         rescue => e
             self.failure "#{e}: #{e.backtrace.join("\n")}"
+        end
+        begin
+            @browser.close
+        rescue
+        end
+        begin
+            browser.close
+        rescue
         end
     end
 

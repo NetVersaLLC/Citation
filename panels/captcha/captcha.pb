@@ -7,7 +7,7 @@ UsePNGImageDecoder()
 
 #Img = 0
 fileName$ = ProgramParameter(0)
-; fileName$ = "C:\Users\jonathan\Desktop\image.jpg"
+ fileName$ = "C:\Users\jonathan\Desktop\image.jpg"
 If LoadImage(#Img, fileName$)
   Debug "Loaded image: "+fileName$
 Else
@@ -16,7 +16,11 @@ EndIf
 
 IncludeFile "Common.pb"
 
+
 Open_Window()
+
+AddKeyboardShortcut(#Window, #PB_Shortcut_Return, 15)
+
 
 Repeat ; Start of the event loop
   
@@ -31,21 +35,26 @@ Repeat ; Start of the event loop
   ;You can place code here, and use the result as parameters for the procedures
   
   If Event = #PB_Event_Gadget
-    
     If GadgetID = #Button
       str.s = GetGadgetText( #Solution )
       WriteConsoleData( @str, Len(str) )
       End 100
     EndIf
-    
+  ElseIf Event = #PB_Event_Menu
+    Select EventMenu()
+      Case 15
+        str.s = GetGadgetText( #Solution )
+        WriteConsoleData( @str, Len(str) )
+        End 100
+    EndSelect
   EndIf
-  
 Until Event = #PB_Event_CloseWindow ; End of the event loop
 
 End
 ;
 ; IDE Options = PureBasic 4.61 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 3
+; CursorPosition = 47
+; FirstLine = 22
 ; EnableXP
 ; Executable = ..\..\build\captcha.exe

@@ -1,7 +1,6 @@
 ;
 ; PureBasic Visual Designer v3.95 build 1485 (PB4Code)
 
-
 ;- Window Constants
 ;
 Enumeration
@@ -53,7 +52,6 @@ Procedure Open_Window()
 EndProcedure
 
 ; IDE Options = PureBasic 4.61 (Windows - x86)
-; CursorPosition = 27
-; FirstLine = 24
+; CursorPosition = 2
 ; Folding = -
 ; EnableXP

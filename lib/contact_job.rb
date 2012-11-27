@@ -31,13 +31,15 @@ class ContactJob
         rescue => e
             self.failure "#{e}: #{e.backtrace.join("\n")}"
         end
-        begin
-            @browser.close
-        rescue
-        end
-        begin
-            browser.close
-        rescue
+        unless ENV['CITATION_HOST']
+            begin
+                @browser.close
+            rescue
+            end
+            begin
+                browser.close
+            rescue
+            end
         end
     end
 

@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
 class PhoneVerify
-    def initialize(job)
-        @job = job
+    def self.ask_for_code()
+        code = `incoming_call.exe`
     end
-    def start
+    def self.enter_code(code)
+        `verify_account.exe #{code}`
     end
 end

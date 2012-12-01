@@ -5,7 +5,8 @@
 ;- Window Constants
 ;
 Enumeration
-  #Window
+  #Notice
+  #Entry
 EndEnumeration
 
 ;- Gadget Constants
@@ -15,6 +16,10 @@ Enumeration
   #Frame3D
   #Phone
   #Button
+  #Text2
+  #Frame3D2
+  #Code
+  #Button2
 EndEnumeration
 
 ;- Fonts
@@ -23,21 +28,21 @@ FontID1 = LoadFont(1, "Calibri", 14)
 Global FontID2
 FontID2 = LoadFont(2, "Calibri", 20)
 
-Procedure Open_Window()
-  If OpenWindow(#Window, 527, 79, 327, 312, "Verify Account",  #PB_Window_SystemMenu | #PB_Window_SizeGadget | #PB_Window_TitleBar )
-      TextGadget(#Text, 30, 10, 290, 120, "In order to verify your business listing many sites require that you receive a call at your listed phone number. Press the button below to start the call.")
-      SetGadgetFont(#Text, FontID1)
-      Frame3DGadget(#Frame3D, 30, 150, 270, 70, "Calling")
-      TextGadget(#Phone, 50, 170, 230, 40, phoneNumber$)
-      SetGadgetFont(#Phone, FontID2)
-      ButtonGadget(#Button, 30, 240, 270, 50, "I'm Ready, Call Me")
-      SetGadgetFont(#Button, FontID1)
+Procedure Open_Entry()
+  If OpenWindow(#Entry, 253, 8, 311, 265, "Incoming Call",  #PB_Window_SystemMenu | #PB_Window_SizeGadget | #PB_Window_TitleBar )
+      TextGadget(#Text2, 20, 10, 290, 60, "Please enter the numbers provided in the box below when prompted.")
+      SetGadgetFont(#Text2, FontID1)
+      Frame3DGadget(#Frame3D2, 20, 80, 270, 80, "Verification Code")
+      TextGadget(#Code, 40, 100, 230, 40, verificationCode$)
+      SetGadgetFont(#Code, FontID2)
+      ButtonGadget(#Button2, 20, 180, 270, 60, "Done")
+      SetGadgetFont(#Button2, FontID2)
   EndIf
 EndProcedure
 
 
-; IDE Options = PureBasic 4.61 (MacOS X - x86)
-; CursorPosition = 33
-; FirstLine = 17
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; CursorPosition = 38
+; FirstLine = 14
 ; Folding = -
 ; EnableXP

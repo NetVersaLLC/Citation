@@ -77,6 +77,14 @@ Procedure.s WindowsVersion()
   ProcedureReturn Str(Version\dwMajorVersion) + "."+ Str(Version\dwMinorVersion) + " (" + Str(Version\dwBuildNumber) +") " + Str(Version\dwPlatformId)
 EndProcedure
 
+Procedure.s OSInfo()
+  CompilerIf #PB_Compiler_OS == #PB_OS_Linux
+    "Linux"
+  CompilerElse
+    WindowsVersion()
+  CompilerEndIf
+EndProcedure
+
 Procedure.s do_post(url.s, post_data.s)
   post_data = URLEncoder(post_data)
   Debug "Posting: "+url
@@ -122,8 +130,7 @@ Procedure ReportBooboo(msg.s)
   Debug "Posting: "+msg
   Debug "UUUUUURL: "+booboosUrl$
   os$ = WindowsVersion()
-  browser$ = Reg_GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Version Vector", "IE")
-  do_post(booboosUrl$, "auth_token="+key$+"&business_id="+bid$+"&osversion="+os$+"&browser="+browser$+"&message="+msg)
+  do_post(booboosUrl$, "auth_token="+key$+"&business_id="+bid$+"&osversion="+os$+"&message="+msg)
 EndProcedure
 
 Procedure WriteToLog(fd, line.s)
@@ -168,39 +175,45 @@ If FileSize(logDir$) = -1
   EndIf
 EndIf
 
-If FileSize(killFile$) >= 0
-  WriteToLog(logDriver, "Dying from KillFile!")
-  End 5
-EndIf
+timer = 0
+While 1
+  timer = timer + 1000
+  Delay(1000)
+  If timer > 60*1000
+    If FileSize(killFile$) >= 0
+      WriteToLog(logDriver, "Dying from KillFile!")
+      Next
+    EndIf
+    WriteToLog(logDriver, "Starting up...")
+    program = RunProgram(programName$, key$ + " " + bid$, GetPathPart(ProgramFilename()), #PB_Program_Hide|#PB_Program_Open|#PB_Program_Read|#PB_Program_Error)
+    If program <> 0 And ProgramRunning(program)
+      WriteToLog(logDriver, "Started...")
+      While ProgramRunning(program) <> 0
+        While AvailableProgramOutput(program) > 0
+          line$ = ReadProgramString(Program)
+          If line$ <> ""
+            WriteToLog(logOut, line$)
+          EndIf
+        Wend
+        Delay(500)
+      Wend
+    EndIf
 
-WriteToLog(logDriver, "Starting up...")
-program = RunProgram(programName$, key$ + " " + bid$, GetPathPart(ProgramFilename()), #PB_Program_Hide|#PB_Program_Open|#PB_Program_Read|#PB_Program_Error)
-If program <> 0 And ProgramRunning(program)
-  WriteToLog(logDriver, "Started...")
-  While ProgramRunning(program) <> 0
-    While AvailableProgramOutput(program) > 0
-      line$ = ReadProgramString(Program)
-      If line$ <> ""
-        WriteToLog(logOut, line$)
-      EndIf
-    Wend
-    Delay(500)
-  Wend
-EndIf
-
-If program <> 0
-  WriteToLog(logDriver, "Process exit: "+Str(ProgramExitCode(program)))
-  CloseProgram(program)
-Else
-  FatalError(99, "Could not start process: "+programName$)
-EndIf
-
+    If program <> 0
+      WriteToLog(logDriver, "Process exit: "+Str(ProgramExitCode(program)))
+      CloseProgram(program)
+    Else
+      FatalError(99, "Could not start process: "+programName$)
+    EndIf
+  EndIf
+Wend
+    
 CloseFile(logErr)
 CloseFile(logOut)
 CloseFile(logDriver)
-; IDE Options = PureBasic 4.61 (MacOS X - x86)
-; CursorPosition = 49
-; FirstLine = 33
+; IDE Options = PureBasic 5.00 (Linux - x64)
+; CursorPosition = 198
+; FirstLine = 176
 ; Folding = --
 ; EnableXP
 ; Executable = build/citation.exe

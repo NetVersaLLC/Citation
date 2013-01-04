@@ -7,7 +7,7 @@ UsePNGImageDecoder()
 
 #Img = 0
 fileName$ = ProgramParameter(0)
- fileName$ = "C:\Users\jonathan\Desktop\image.jpg"
+ ;fileName$ = "C:\Users\jonathan\Desktop\image.jpg"
 If LoadImage(#Img, fileName$)
   Debug "Loaded image: "+fileName$
 Else
@@ -54,7 +54,6 @@ End
 ;
 ; IDE Options = PureBasic 4.61 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 47
-; FirstLine = 22
+; CursorPosition = 9
 ; EnableXP
 ; Executable = ..\..\build\captcha.exe

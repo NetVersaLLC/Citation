@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
+#define sleep(seconds) Sleep((seconds)*1000)
 
 void catchTerm(sig) {
   fprintf(stderr, "Sleeper dying...\n");

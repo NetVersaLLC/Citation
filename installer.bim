@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2013, M= 01, D=04 at 14:14:31
+; | Last modified: Y=2013, M= 01, D=07 at 16:37:49
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -725,7 +725,7 @@ WinVista = 1
 WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
-BaseKey = 0
+BaseKey = 2
 KeyPath = \Software\Microsoft\Windows\CurrentVersion\Run
 ValueName = Citation
 ValueData = <Citation>\server.exe
@@ -1149,7 +1149,7 @@ WinVista = 1
 WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
-BaseKey = 0
+BaseKey = 2
 KeyPath = \Software\Microsoft\Windows\CurrentVersion\Run
 ValueName = Citation
 ; -------------------------------------------------

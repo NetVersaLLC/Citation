@@ -62,11 +62,11 @@ logOut    = OpenLog(logOut$)
 
 Debug "Logs opened"
 
-#INTERNET_OPEN_TYPE_DIRECT = 1
-#HTTP_ADDREQ_FLAG_ADD = $20000000
-#HTTP_ADDREQ_FLAG_REPLACE = $80000000
-#INTERNET_FLAG_SECURE = $800000
-#INTERNET_SERVICE_HTTP = 3
+#INTERNET_OPEN_TYPE_DIRECT   = 1
+#HTTP_ADDREQ_FLAG_ADD        = $20000000
+#HTTP_ADDREQ_FLAG_REPLACE    = $80000000
+#INTERNET_FLAG_SECURE        = $800000
+#INTERNET_SERVICE_HTTP       = 3
 #INTERNET_DEFAULT_HTTPS_PORT = 443 
 
 Procedure.s WindowsVersion()
@@ -198,10 +198,10 @@ EndIf
 CloseFile(logErr)
 CloseFile(logOut)
 CloseFile(logDriver)
-; IDE Options = PureBasic 4.61 (MacOS X - x86)
-; CursorPosition = 49
-; FirstLine = 33
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; CursorPosition = 65
+; FirstLine = 54
 ; Folding = --
 ; EnableXP
-; Executable = build/citation.exe
+; Executable = build\citation.exe
 ; CompileSourceDirectory

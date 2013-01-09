@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2013, M= 01, D=07 at 16:37:49
+; | Last modified: Y=2013, M= 01, D=09 at 15:30:11
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -305,7 +305,7 @@ VisitWebsiteCheckbox = 0
 VisitWebsiteAddress = http://citation.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 89453655,8055416,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,11890806,42247684,52263369,81236491,84853212
+Items = 89453655,8055416,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,11890806,42247684,84853212,81236491,84029313,25247972
 ; -------------------------------------------------
 [89453655]
 ID = 89453655
@@ -710,10 +710,10 @@ ExecutionTime = 1
 RunHidden = 1
 WaitUntilQuit = 1
 ; -------------------------------------------------
-[52263369]
-ID = 52263369
-Name = Add Startup Item
-Type = 2
+[84853212]
+ID = 84853212
+Name = Install Firefox
+Type = 0
 Win95 = 1
 WinNT4 = 1
 Win98 = 1
@@ -725,11 +725,12 @@ WinVista = 1
 WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
-BaseKey = 2
-KeyPath = \Software\Microsoft\Windows\CurrentVersion\Run
-ValueName = Citation
-ValueData = <Citation>\server.exe
-ValueType = 0
+ProgramPath = <Citation>\firefox.exe
+CommandLine = -ms
+RunMode = 0
+ExecutionTime = 1
+RunHidden = 1
+WaitUntilQuit = 1
 ; -------------------------------------------------
 [81236491]
 ID = 81236491
@@ -753,9 +754,27 @@ ExecutionTime = 1
 RunHidden = 1
 WaitUntilQuit = 0
 ; -------------------------------------------------
-[84853212]
-ID = 84853212
-Name = Install Firefox
+[84029313]
+ID = 84029313
+Name = Copy register.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\register.exe
+DestinationFile = <Citation>\register.exe
+; -------------------------------------------------
+[25247972]
+ID = 25247972
+Name = Run register.exe
 Type = 0
 Win95 = 1
 WinNT4 = 1
@@ -768,8 +787,8 @@ WinVista = 1
 WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
-ProgramPath = <Citation>\firefox.exe
-CommandLine = -ms
+ProgramPath = <Citation>\register.exe
+CommandLine = 
 RunMode = 0
 ExecutionTime = 1
 RunHidden = 1
@@ -780,7 +799,7 @@ CreateUninstaller = 1
 CreateAddRemoveEntry = 1
 AddRemoveEntryName = <ProgramName> <ProgramVersion>
 UninstallerIconPath = 
-UninstRestartPC = 0
+UninstRestartPC = 1
 CheckForInstances = 0
 ; -------------------------------------------------
 [UninstallerExeInfo]

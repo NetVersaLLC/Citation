@@ -41,6 +41,7 @@ end
 puts "M: #{Time.now.iso8601}"
 
 begin
+    puts "starting #{$host}: #{$key}: #{$bid}"
     cj = ContactJob.new $host, $key, $bid
     cj.run
 rescue => detail

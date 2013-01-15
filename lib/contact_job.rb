@@ -18,17 +18,21 @@ class ContactJob
         # Make it so jobs load other jobs when finished.
         @chained = true
         begin
-            STDERR.puts "Payload: #{@job['payload']}"
             @browser = Watir::Browser.new
+            puts "got browser: #{@browser}"
             ret =  eval(@job['payload'])
             if ret == true
+                puts "Job returned true!"
                 self.success()
             elsif ret == false
+                puts "Job returned false!"
                 self.failure()
             else
+                puts "Job handled return value!"
                 # Presume the script handled reporting back
             end
         rescue => e
+            puts "Job had failure!"
             self.failure "#{e}: #{e.backtrace.join("\n")}"
         end
         unless ENV['CITATION_HOST']

@@ -56,6 +56,10 @@ PrintN("HeaderImage: "+headerImage)
 PrintN("ReadMe: "+readme)
 PrintN("License: "+license)
 
+file = OpenFile( #PB_Any, "build\website.txt" )
+WriteString(file, programName)
+CloseFile( file )
+
 If OpenPreferences("build.bim")
   If ExaminePreferenceGroups()
     While NextPreferenceGroup()

@@ -3,7 +3,7 @@
 ; | It may crash the program if mistakes are found
 ; | Use BIM to modify it
 ; -------------------------------------------------
-; | Last modified: Y=2013, M= 01, D=09 at 15:30:11
+; | Last modified: Y=2013, M= 01, D=18 at 13:34:56
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -11,7 +11,7 @@ FileVersion = 5
 ; -------------------------------------------------
 [GeneralInformation]
 ProgramName = Citation Client
-ProgramVersion = 1.02
+ProgramVersion = 1.03
 ProgramWebsite = http://www.netversa.com
 SupportEmail = support@netversa.com
 CompanyName = NetVersa, LLC.
@@ -305,7 +305,7 @@ VisitWebsiteCheckbox = 0
 VisitWebsiteAddress = http://citation.netversa.com
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 89453655,8055416,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,11890806,42247684,84853212,81236491,84029313,25247972
+Items = 89453655,8055416,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,11890806,42247684,84853212,81236491,84029313,14001359,55414899,25247972
 ; -------------------------------------------------
 [89453655]
 ID = 89453655
@@ -772,6 +772,42 @@ ComponentID = 49691563
 SourceFile = <InstallerExeDir>\register.exe
 DestinationFile = <Citation>\register.exe
 ; -------------------------------------------------
+[14001359]
+ID = 14001359
+Name = Copy website.txt
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\website.txt
+DestinationFile = <Citation>\website.txt
+; -------------------------------------------------
+[55414899]
+ID = 55414899
+Name = Copy website.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\website.exe
+DestinationFile = <Citation>\website.exe
+; -------------------------------------------------
 [25247972]
 ID = 25247972
 Name = Run register.exe
@@ -818,7 +854,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364,75578200,73556581,66945940,19665180
+Items = 35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364,75578200,73556581,66945940,19665180,91377636,87009405
 ; -------------------------------------------------
 [35627274]
 ID = 35627274
@@ -1188,3 +1224,37 @@ WinServer2008 = 1
 Win7 = 1
 ComponentID = 49691563
 FilePath = <Citation>\server.exe
+; -------------------------------------------------
+[91377636]
+ID = 91377636
+Name = Remove website.txt
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\website.txt
+; -------------------------------------------------
+[87009405]
+ID = 87009405
+Name = Remove website.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+ComponentID = 49691563
+FilePath = <Citation>\website.exe

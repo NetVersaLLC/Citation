@@ -12,6 +12,9 @@ STDERR.puts "Cleaning..."
 system "rm -rf build/*"
 system "rm -rf dist/*"
 
+STDERR.puts "Syncing..."
+system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"
+
 STDERR.puts "Building citationCheck.exe"
 system "exerb client\\ruby\\citationCheck.exy"
 
@@ -49,8 +52,11 @@ Dir.open("./labels").each do |label|
     system "bin\\whitelabel.exe #{label}"
     system "C:\\Program Files (x86)\\Bytessence InstallMaker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 
-    labeldir = "..\\Contact\\labels\\#{label}"
+    labeldir = "labels\\#{label}"
     FileUtils.mkdir_p labeldir
-    STDERR.puts "Copying to Contact"
+    STDERR.puts "Copying to #{labeldir}"
     system "copy Setup.exe #{labeldir}"
 end
+
+STDERR.puts "Syncing..."
+system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"

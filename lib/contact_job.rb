@@ -19,6 +19,11 @@ class ContactJob
         @chained = true
         begin
             @browser = Watir::Browser.new
+	    at_exit do
+		    if @browser
+			    @browser.close
+		    end
+	    end
             puts "got browser: #{@browser}"
             ret =  eval(@job['payload'])
             if ret == true
@@ -38,10 +43,12 @@ class ContactJob
         unless ENV['CITATION_HOST']
             begin
                 @browser.close
+		@browser = nil
             rescue
             end
             begin
                 browser.close
+		browser = nil
             rescue
             end
         end

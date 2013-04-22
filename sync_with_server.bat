@@ -1,5 +1,5 @@
 set OLDPATH=%PATH%
-set PATH=C:\Users\jonathan\dev\rsync\bin
+set PATH="C:\Users\jonathan\dev\rsync\bin";%PATH%
 
 cd C:\Users\jonathan\dev\Citation
 

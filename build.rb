@@ -16,6 +16,7 @@ STDERR.puts "Syncing..."
 system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"
 
 STDERR.puts "Building citationCheck.exe"
+system "mkexy client\\ruby\\citationCheck.rb onetwo 1"
 system "exerb client\\ruby\\citationCheck.exy"
 
 STDERR.puts "Copying data"
@@ -50,9 +51,10 @@ Dir.open("./labels").each do |label|
     system "cp -fv installer.bim build.bim"
     STDERR.puts "bin\\whitelabel.exe #{label}"
     system "bin\\whitelabel.exe #{label}"
+    labeldir = "labels\\#{label}"
+    system "cp -fv #{labeldir}\\website.txt build"
     system "C:\\Program Files (x86)\\Bytessence InstallMaker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 
-    labeldir = "labels\\#{label}"
     FileUtils.mkdir_p labeldir
     STDERR.puts "Copying to #{labeldir}"
     system "copy Setup.exe #{labeldir}"

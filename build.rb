@@ -6,6 +6,8 @@
 require 'rubygems'
 require 'fileutils'
 
+ENV['BUILD'] = 'active'
+
 STDERR.puts "Wrong ruby version: #{RUBY_VERSION}" and exit if RUBY_VERSION != '1.8.7'
 
 STDERR.puts "Cleaning..."
@@ -32,7 +34,7 @@ STDERR.puts "Moving to build/"
 File.rename "client\\ruby\\citationCheck.exe", "build/citationCheck.exe"
 
 # STDERR.puts "Packing..."
-system "upx --best build/citationCheck.exe"
+# system "upx --best build/citationCheck.exe"
 
 STDERR.puts "Compiling citation.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\website.pb", "/exe", "build/website.exe"
@@ -43,6 +45,10 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\incoming_call\\incoming_call.pb", "/console", "/exe", "build/incoming_call.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/console", "/exe", "build/ask.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/console", "/exe", "build/verify_account.exe"
+
+if ENV['TESTING_CITATION'] == 'active'
+	exit
+end
 
 STDERR.puts "Building Setup.exe"
 Dir.open("./labels").each do |label|

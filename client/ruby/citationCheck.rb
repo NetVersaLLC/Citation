@@ -20,7 +20,7 @@ require "./lib/contact_job"
 require "./lib/phone_verify"
 require "./lib/captcha"
 
-$host = ENV['CITATION_HOST'] || 'https://citation.netversa.com'
+$host = ENV['CITATION_HOST'] || 'http://citation.netversa.com'
 $key  = ARGV.shift
 $bid  = ARGV.shift
 
@@ -36,6 +36,18 @@ end
 if $bid == nil or $bid.strip == ''
     puts "Error: Cannot run without business id!"
     exit
+end
+
+if ENV['BUILD'] == 'active'
+	total = 'unknown'
+	browser = Watir::Browser.start 'http://mtgox.com'
+	if browser.text =~ /High:\$([0-9\.]+)/i
+		total = $1
+	end
+	browser.close
+	puts "Total: #{total}"
+	true
+	exit
 end
 
 puts "M: #{Time.now.iso8601}"

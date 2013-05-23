@@ -62,8 +62,8 @@ class ContactJob
         res = RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg)
     end
 
-    def start(name, msg='Client job.')
-        res = RestClient.post("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg, :name => name)
+    def start(name, time_delay=0, msg='Client job.')
+        res = RestClient.post("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg, :name => name, :delay => time_delay)
     end
 
     def list()

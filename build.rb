@@ -15,7 +15,7 @@ system "rm -rf build/*"
 system "rm -rf dist/*"
 
 STDERR.puts "Syncing..."
-system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"
+# system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"
 
 STDERR.puts "Building citationCheck.exe"
 system "mkexy client\\ruby\\citationCheck.rb onetwo 1"
@@ -39,7 +39,7 @@ File.rename "client\\ruby\\citationCheck.exe", "build/citationCheck.exe"
 STDERR.puts "Compiling citation.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\website.pb", "/exe", "build/website.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\register.pb", "/exe", "build/register.exe"
-system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\server.pb", "/exe", "build/server.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\citationServer.pb", "/exe", "build/citationServer.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\citation.pb", "/exe", "build/citation.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\captcha\\captcha.pb", "/console", "/exe", "build/captcha.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\incoming_call\\incoming_call.pb", "/console", "/exe", "build/incoming_call.exe"
@@ -67,4 +67,4 @@ Dir.open("./labels").each do |label|
 end
 
 STDERR.puts "Syncing..."
-system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"
+# system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"

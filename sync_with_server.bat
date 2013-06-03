@@ -1,12 +1,5 @@
-set OLDPATH=%PATH%
-set PATH="C:\Users\jonathan\dev\rsync\bin";%PATH%
-
 cd C:\Users\jonathan\dev\Citation
 
-rem rsync -avz -e ssh deploy@franklin.netversa.com:/home/deploy/contact/shared/labels .
-
-ssh deploy@franklin.netversa.com 'rm -rf /home/deploy/contact/shared/labels'
-
-rsync -avz -e ssh labels deploy@franklin.netversa.com:/home/deploy/contact/shared
-
-set PATH=%OLDPATH%
+scp -r labels deploy@franklin.netversa.com:~/contact/shared/labels.new
+ssh deploy@franklin.netversa.com 'rm -rf /home/deploy/contact/shared/labels.old'
+ssh deploy@franklin.netversa.com 'mv /home/deploy/contact/shared/labels /home/deploy/contact/shared/labels.old && mv /home/deploy/contact/shared/labels.new /home/deploy/contact/shared/labels'

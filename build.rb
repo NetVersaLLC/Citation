@@ -41,6 +41,7 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\register.pb", "/exe", "build/register.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\citationServer.pb", "/exe", "build/citationServer.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\citation.pb", "/exe", "build/citation.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\restart.pb", "/exe", "build/restart.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\captcha\\captcha.pb", "/console", "/exe", "build/captcha.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\incoming_call\\incoming_call.pb", "/console", "/exe", "build/incoming_call.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/console", "/exe", "build/ask.exe"
@@ -59,7 +60,9 @@ Dir.open("./labels").each do |label|
     system "bin\\whitelabel.exe #{label}"
     labeldir = "labels\\#{label}"
     system "cp -fv #{labeldir}\\website.txt build"
-    system "C:\\Program Files (x86)\\Bytessence InstallMaker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
+    system "rm -v Setup.exe"
+    system 'sh -c "rm -v labels/*/Setup.exe"'
+    system "C:\\Program Files (x86)\\Bytessence Install Maker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 
     FileUtils.mkdir_p labeldir
     STDERR.puts "Copying to #{labeldir}"
@@ -67,4 +70,4 @@ Dir.open("./labels").each do |label|
 end
 
 STDERR.puts "Syncing..."
-# system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"
+system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"

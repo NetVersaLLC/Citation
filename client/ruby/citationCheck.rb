@@ -15,6 +15,7 @@ MultiJson.engine = :json_gem
 
 require "open-uri"
 require "nokogiri"
+require "pstore"
 require "./lib/restclient"
 require "./lib/contact_job"
 require "./lib/phone_verify"

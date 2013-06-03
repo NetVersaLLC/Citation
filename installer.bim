@@ -1,9 +1,10 @@
 ; -------------------------------------------------
-; | Please do not modify this file by hand
-; | It may crash the program if mistakes are found
-; | Use BIM to modify it
+;  Warning! Do not modify this file by hand.
+;  If the format is not respected, the installer
+;  may misbehave when running on the user's PC.
+;  Please use BIM to make any changes.
 ; -------------------------------------------------
-; | Last modified: Y=2013, M= 05, D=22 at 18:39:09
+;  Last modified: 02/06/2013 (DMY) at 18:08:14
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -11,8 +12,10 @@ FileVersion = 5
 ; -------------------------------------------------
 [GeneralInformation]
 ProgramName = Citation Client
-ProgramVersion = 1.04
+ProgramVersion = 1.05
 ProgramWebsite = http://www.netversa.com
+WebsiteCfgShowAddress = 0
+WebsiteCfgRunForUser = 1
 SupportEmail = support@netversa.com
 CompanyName = NetVersa, LLC.
 CopyrightString = Copyright (c) 2012 NetVersa, LLC.
@@ -47,14 +50,18 @@ Win2003 = 1
 WinVista = 1
 Win2008 = 1
 Win7 = 1
+Win8 = 1
+Win2012 = 1
 InstallerType = 0
 RequireAdminRights = 1
 DotNETVersion = 0
 DotNETVisitWebpage = 0
 DotNETWebpageAddress = http://
+DotNETRunForUser = 1
 IEVersion = 10
 IEVisitWebpage = 0
 IEWebpageAddress = http://
+IERunForUser = 1
 CheckSysRequirements = 0
 CheckCPUSpeed = 0
 CPUSpeedMin = 133
@@ -86,6 +93,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ID = 21751038
 Keys = 61137617
 ; -------------------------------------------------
@@ -99,6 +108,9 @@ CreateRegistryVars = 0
 ; -------------------------------------------------
 [FileConfig]
 ReplaceStatus = 0
+DefaultInstPath = <ProgramFiles>\<ProgramName>\
+EnforceDefaultInstPath = 0
+ForceInstMode = 0
 ; -------------------------------------------------
 [Categories]
 Items = 19588577
@@ -122,8 +134,6 @@ LocalizedNameID = 49992128
 DescriptionID = 42878074
 PathVariable = <Citation>
 InstallationPath = <ProgramFiles>\<ProgramName>\
-IsPrincipal = 1
-IsPathEnforced = 0
 IsMandatory = 1
 IsMarked = 1
 ; -------------------------------------------------
@@ -147,36 +157,42 @@ Items = 15991861,74981514,35135489,25166637,9993061,41714837
 ; -------------------------------------------------
 [15991861]
 ID = 15991861
+EntryName = Local Lighthouse Client
 ProgramName = Local Lighthouse Client
 ProgramVersion = 1.0
 Remove = 1
 ; -------------------------------------------------
 [74981514]
 ID = 74981514
+EntryName = Local Lighthouse Client 1.0
 ProgramName = Local Lighthouse Client 1.0
 ProgramVersion = 1.0
 Remove = 1
 ; -------------------------------------------------
 [35135489]
 ID = 35135489
+EntryName = Local Lighthouse Client 1.0
 ProgramName = Local Lighthouse Client 1.0
 ProgramVersion = 
 Remove = 1
 ; -------------------------------------------------
 [25166637]
 ID = 25166637
+EntryName = Local Lighthouse Client 1.01
 ProgramName = Local Lighthouse Client 1.01
 ProgramVersion = 
 Remove = 1
 ; -------------------------------------------------
 [9993061]
 ID = 9993061
+EntryName = Local Lighthouse Client 1.01
 ProgramName = Local Lighthouse Client 1.01
 ProgramVersion = 1.01
 Remove = 1
 ; -------------------------------------------------
 [41714837]
 ID = 41714837
+EntryName = Local Lighthouse Client
 ProgramName = Local Lighthouse Client
 ProgramVersion = 1.01
 Remove = 1
@@ -203,7 +219,6 @@ HeaderTextShadow = 0
 HeaderTextShadowColor = 14145495
 ShowInformation = 0
 ShowLicense = 1
-ShowWebsiteLink = 1
 ShowCopyrightNotice = 1
 BKUseGradient = 1
 BKUsePicture = 0
@@ -223,27 +238,25 @@ BKShowCopyright = 0
 -1 = C:\Users\jonathan\dev\Citation\files\license.rtf
 ; -------------------------------------------------
 [Localization]
-2 = 1033
+3 = 1033
 ; -------------------------------------------------
 [InstallerSettings]
-CreateGroup = 0
+CreateGroup = 1
 CustomStartMenuGroup = <ProgramName>
-CreateUninstallShortcut = 0
+CreateUninstallShortcut = 1
 CustomStartMenuUninstall = Uninstall <ProgramName>
 CreateInternetLink = 0
 CustomStartMenuWebLink = Website
-CreateSMProgramShortcut = 0
-SMProgramOutputPath = 
-SMProgramOutputName = 
-SMProgramFilePath = 
+CreateSMProgramShortcut = 1
+SMProgramOutputName = Restart Citation Server
+SMProgramFilePath = <Citation>\restart.exe
 SMProgramIconPath = 
 SMProgramIconIndex = 0
 SMProgramCommandLine = 
-SMProgramStartIn = 
-SMProgramComment = 
-SMProgramComponentID = 0
+SMProgramStartIn = <Citation>
+SMProgramComment = Restart the citation server.
+SMProgramComponentID = 49691563
 CreateSMDocumentationShortcut = 0
-SMDocumentationOutputPath = 
 SMDocumentationOutputName = 
 SMDocumentationFilePath = 
 SMDocumentationIconPath = 
@@ -253,7 +266,6 @@ SMDocumentationStartIn =
 SMDocumentationComment = 
 SMDocumentationComponentID = 0
 CreateSMReadmeShortcut = 0
-SMReadmeOutputPath = 
 SMReadmeOutputName = 
 SMReadmeFilePath = 
 SMReadmeIconPath = 
@@ -262,8 +274,7 @@ SMReadmeCommandLine =
 SMReadmeStartIn = 
 SMReadmeComment = 
 SMReadmeComponentID = 0
-CreateSMLicenseShortcut = 0
-SMLicenseOutputPath = 
+CreateSMLicenseShortcut = 1
 SMLicenseOutputName = 
 SMLicenseFilePath = 
 SMLicenseIconPath = 
@@ -272,13 +283,14 @@ SMLicenseCommandLine =
 SMLicenseStartIn = 
 SMLicenseComment = 
 SMLicenseComponentID = 0
-ShowRestartComputerCheckbox = 1
+ShowRestartComputerCheckbox = 0
 LaunchProgramCheckbox = 0
 LaunchProgramProgramPath = 
 LaunchProgramCommandLine = 
 LaunchProgramRunMode = 0
 LaunchProgramRunHidden = 0
 LaunchProgramWaitUntilQuit = 0
+LaunchProgramRunForUser = 1
 LaunchProgramComponentID = 49691563
 ViewDocumentationCheckbox = 0
 ViewDocumentationProgramPath = 
@@ -286,6 +298,7 @@ ViewDocumentationCommandLine =
 ViewDocumentationRunMode = 1
 ViewDocumentationRunHidden = 0
 ViewDocumentationWaitUntilQuit = 0
+ViewDocumentationRunForUser = 1
 ViewDocumentationComponentID = 0
 ViewReadmeCheckbox = 0
 ViewReadmePath = 
@@ -293,6 +306,7 @@ ViewReadmeCommandLine =
 ViewReadmeRunMode = 1
 ViewReadmeRunHidden = 0
 ViewReadmeWaitUntilQuit = 0
+ViewReadmeRunForUser = 1
 ViewReadmeComponentID = 0
 ViewLicenseCheckbox = 0
 ViewLicensePath = 
@@ -300,16 +314,18 @@ ViewLicenseCommandLine =
 ViewLicenseRunMode = 1
 ViewLicenseRunHidden = 0
 ViewLicenseWaitUntilQuit = 0
+ViewLicenseRunForUser = 1
 ViewLicenseComponentID = 0
 VisitWebsiteCheckbox = 0
 VisitWebsiteAddress = http://citation.netversa.com
+VisitWebsiteRunForUser = 1
 ; -------------------------------------------------
 [InstallerTasks]
 Items = 89453655,8055416,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,11890806,42247684,84853212,81236491,84029313,14001359,55414899,25247972
 ; -------------------------------------------------
 [89453655]
 ID = 89453655
-Name = Copy citation.exe
+Name = Copy citationServer.exe
 Type = 13
 Win95 = 1
 WinNT4 = 1
@@ -321,9 +337,11 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
-SourceFile = <InstallerExeDir>\citation.exe
-DestinationFile = <Citation>\citation.exe
+SourceFile = <InstallerExeDir>\citationServer.exe
+DestinationFile = <Citation>\citationServer.exe
 ; -------------------------------------------------
 [8055416]
 ID = 8055416
@@ -339,6 +357,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\citationServer.exe
 DestinationFile = <Citation>\citationServer.exe
@@ -357,6 +377,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\citationCheck.exe
 DestinationFile = <Citation>\citationCheck.exe
@@ -375,6 +397,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\captcha.exe
 DestinationFile = <Citation>\captcha.exe
@@ -393,6 +417,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\incoming_call.exe
 DestinationFile = <Citation>\incoming_call.exe
@@ -411,6 +437,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\verify_account.exe
 DestinationFile = <Citation>\verify_account.exe
@@ -429,6 +457,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\ask.exe
 DestinationFile = <Citation>\ask.exe
@@ -447,6 +477,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\key.txt
 DestinationFile = <Citation>\key.txt
@@ -465,6 +497,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\bid.txt
 DestinationFile = <Citation>\bid.txt
@@ -483,6 +517,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 Address = <Citation>\atoms
 ; -------------------------------------------------
@@ -500,6 +536,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\fireEvent.js
 DestinationFile = <Citation>\atoms\fireEvent.js
@@ -518,6 +556,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\getAttribute.js
 DestinationFile = <Citation>\atoms\getAttribute.js
@@ -536,6 +576,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\getOuterHtml.js
 DestinationFile = <Citation>\atoms\getOuterHtml.js
@@ -554,6 +596,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\getParentElement.js
 DestinationFile = <Citation>\atoms\getParentElement.js
@@ -572,6 +616,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\selectText.js
 DestinationFile = <Citation>\atoms\selectText.js
@@ -590,6 +636,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\prefs.json
 DestinationFile = <Citation>\prefs.json
@@ -608,6 +656,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\webdriver.xpi
 DestinationFile = <Citation>\webdriver.xpi
@@ -626,6 +676,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\libeay32-0.9.8-msvcrt.dll
 DestinationFile = <Citation>\libeay32-0.9.8-msvcrt.dll
@@ -644,6 +696,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\libiconv2.dll
 DestinationFile = <Citation>\libiconv2.dll
@@ -662,6 +716,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\ssleay32-0.9.8-msvcrt.dll
 DestinationFile = <Citation>\ssleay32-0.9.8-msvcrt.dll
@@ -680,13 +736,16 @@ WinServer2003 = 0
 WinVista = 0
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = netsh
-CommandLine = advfirewall firewall add rule action=allow profile=any protocol=any enable=yes direction=out name=Citation  program=<Citation>\citationCheck.exe
+CommandLine = netsh firewall add portopening TCP 7055 web
 RunMode = 0
 ExecutionTime = 1
 RunHidden = 1
 WaitUntilQuit = 1
+RunForUser = 1
 ; -------------------------------------------------
 [42247684]
 ID = 42247684
@@ -702,13 +761,16 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 0
 Win7 = 0
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = netsh
-CommandLine = firewall add allowedprogram mode=ENABLE profile=ALL name=Citation program=<Citation>\citationCheck.exe
+CommandLine = firewall add allowedprogram " <Citation>\citationCheck.exe" Exerb ENABLE
 RunMode = 0
 ExecutionTime = 1
 RunHidden = 1
 WaitUntilQuit = 1
+RunForUser = 1
 ; -------------------------------------------------
 [84853212]
 ID = 84853212
@@ -724,6 +786,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = <Citation>\firefox.exe
 CommandLine = -ms
@@ -731,6 +795,7 @@ RunMode = 0
 ExecutionTime = 1
 RunHidden = 1
 WaitUntilQuit = 1
+RunForUser = 1
 ; -------------------------------------------------
 [81236491]
 ID = 81236491
@@ -746,13 +811,16 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
-ProgramPath = <citation>\citation.exe
+ProgramPath = <citation>\citationServer.exe
 CommandLine = 
 RunMode = 0
 ExecutionTime = 1
 RunHidden = 1
 WaitUntilQuit = 0
+RunForUser = 1
 ; -------------------------------------------------
 [84029313]
 ID = 84029313
@@ -768,6 +836,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\register.exe
 DestinationFile = <Citation>\register.exe
@@ -786,6 +856,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\website.txt
 DestinationFile = <Citation>\website.txt
@@ -804,6 +876,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 SourceFile = <InstallerExeDir>\website.exe
 DestinationFile = <Citation>\website.exe
@@ -822,6 +896,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = <Citation>\register.exe
 CommandLine = add
@@ -829,11 +905,14 @@ RunMode = 0
 ExecutionTime = 1
 RunHidden = 1
 WaitUntilQuit = 1
+RunForUser = 1
 ; -------------------------------------------------
 [UninstallerSettings]
 CreateUninstaller = 1
 CreateAddRemoveEntry = 1
 AddRemoveEntryName = <ProgramName> <ProgramVersion>
+AddRemoveProgramName = <ProgramName>
+AddRemoveProgramVersion = <ProgramVersion>
 UninstallerIconPath = 
 UninstRestartPC = 1
 CheckForInstances = 0
@@ -870,6 +949,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = taskkill
 CommandLine = /F /T /IM citationServer.exe
@@ -877,6 +958,7 @@ RunMode = 1
 ExecutionTime = 0
 RunHidden = 1
 WaitUntilQuit = 1
+RunForUser = 1
 ; -------------------------------------------------
 [37647114]
 ID = 37647114
@@ -892,6 +974,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = <Citation>\register.exe
 CommandLine = remove
@@ -899,6 +983,7 @@ RunMode = 0
 ExecutionTime = 0
 RunHidden = 1
 WaitUntilQuit = 1
+RunForUser = 1
 ; -------------------------------------------------
 [35627274]
 ID = 35627274
@@ -914,8 +999,10 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
-FilePath = <Citation>\citation.exe
+FilePath = <Citation>\citationServer.exe
 ; -------------------------------------------------
 [46405092]
 ID = 46405092
@@ -931,6 +1018,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\captcha.exe
 ; -------------------------------------------------
@@ -948,6 +1037,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\incoming_call.exe
 ; -------------------------------------------------
@@ -965,6 +1056,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\ask.exe
 ; -------------------------------------------------
@@ -982,6 +1075,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\verify_account.exe
 ; -------------------------------------------------
@@ -999,6 +1094,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\citationCheck.exe
 ; -------------------------------------------------
@@ -1016,6 +1113,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\prefs.json
 ; -------------------------------------------------
@@ -1033,6 +1132,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\webdriver.xpi
 ; -------------------------------------------------
@@ -1050,6 +1151,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\atoms\fireEvent.js
 ; -------------------------------------------------
@@ -1067,6 +1170,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\atoms\getAttribute.js
 ; -------------------------------------------------
@@ -1084,6 +1189,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\atoms\getOuterHtml.js
 ; -------------------------------------------------
@@ -1101,6 +1208,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\atoms\getParentElement.js
 ; -------------------------------------------------
@@ -1118,6 +1227,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\atoms\selectText.js
 ; -------------------------------------------------
@@ -1135,8 +1246,12 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 Address = <Citation>\atoms
+Recursive = 0
+Force = 0
 ; -------------------------------------------------
 [43232807]
 ID = 43232807
@@ -1152,6 +1267,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\ssleay32-0.9.8-msvcrt.dll
 ; -------------------------------------------------
@@ -1169,6 +1286,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\libiconv2.dll
 ; -------------------------------------------------
@@ -1186,6 +1305,8 @@ WinServer2003 = 0
 WinVista = 0
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\ssleay32-0.9.8-msvcrt.dll
 ; -------------------------------------------------
@@ -1203,13 +1324,16 @@ WinServer2003 = 0
 WinVista = 0
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = netsh
-CommandLine = advfirewall firewall delete rule profile=any name=Citation
+CommandLine = advfirewall firewall delete rule profile=any name=Exerb
 RunMode = 0
 ExecutionTime = 0
 RunHidden = 1
 WaitUntilQuit = 1
+RunForUser = 1
 ; -------------------------------------------------
 [73556581]
 ID = 73556581
@@ -1225,6 +1349,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 0
 Win7 = 0
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = netsh
 CommandLine = firewall delete allowedprogram profile=ALL program=<Citation>\citationCheck.exe
@@ -1232,6 +1358,7 @@ RunMode = 0
 ExecutionTime = 0
 RunHidden = 0
 WaitUntilQuit = 0
+RunForUser = 1
 ; -------------------------------------------------
 [66945940]
 ID = 66945940
@@ -1247,6 +1374,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 BaseKey = 2
 KeyPath = \Software\Microsoft\Windows\CurrentVersion\Run
@@ -1266,6 +1395,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\citationServer.exe
 ; -------------------------------------------------
@@ -1283,6 +1414,8 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\website.txt
 ; -------------------------------------------------
@@ -1300,5 +1433,7 @@ WinServer2003 = 1
 WinVista = 1
 WinServer2008 = 1
 Win7 = 1
+Win8 = 1
+WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\website.exe

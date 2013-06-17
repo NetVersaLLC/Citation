@@ -52,16 +52,16 @@ if ENV['TESTING_CITATION'] == 'active'
 end
 
 STDERR.puts "Building Setup.exe"
+system 'sh -c "rm -v labels/*/Setup.exe"'
 Dir.open("./labels").each do |label|
     next unless File.directory? "./labels/#{label}"
     next if label =~ /^\./
+    labeldir = "labels\\#{label}"
     system "cp -fv installer.bim build.bim"
     STDERR.puts "bin\\whitelabel.exe #{label}"
     system "bin\\whitelabel.exe #{label}"
-    labeldir = "labels\\#{label}"
     system "cp -fv #{labeldir}\\website.txt build"
     system "rm -v Setup.exe"
-    system 'sh -c "rm -v labels/*/Setup.exe"'
     system "C:\\Program Files (x86)\\Bytessence Install Maker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 
     FileUtils.mkdir_p labeldir
@@ -69,5 +69,6 @@ Dir.open("./labels").each do |label|
     system "copy Setup.exe #{labeldir}"
 end
 
-STDERR.puts "Syncing..."
-system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"
+STDERR.puts "Don't forget!"
+STDERR.puts "Sync using sync_with_serv.bat.."
+#system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"

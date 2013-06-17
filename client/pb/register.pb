@@ -39,6 +39,7 @@ status.s = ProgramParameter(0)
 
 If status = "add"
   StartWithWindows(1)
+ElseIf status = "start"
   StartServer()
 Else
   StartWithWindows(0)  

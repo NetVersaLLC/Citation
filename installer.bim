@@ -4,7 +4,7 @@
 ;  may misbehave when running on the user's PC.
 ;  Please use BIM to make any changes.
 ; -------------------------------------------------
-;  Last modified: 02/06/2013 (DMY) at 18:08:14
+;  Last modified: 02/06/2013 (DMY) at 22:15:16
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -321,7 +321,7 @@ VisitWebsiteAddress = http://citation.netversa.com
 VisitWebsiteRunForUser = 1
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 89453655,8055416,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,11890806,42247684,84853212,81236491,84029313,14001359,55414899,25247972
+Items = 89453655,8055416,9576305,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,11890806,42247684,84853212,81236491,84029313,14001359,55414899,25247972,29242352
 ; -------------------------------------------------
 [89453655]
 ID = 89453655
@@ -345,7 +345,7 @@ DestinationFile = <Citation>\citationServer.exe
 ; -------------------------------------------------
 [8055416]
 ID = 8055416
-Name = Copy citationServer.exe
+Name = Copy citation.exe
 Type = 13
 Win95 = 1
 WinNT4 = 1
@@ -360,8 +360,28 @@ Win7 = 1
 Win8 = 1
 WinServer2012 = 1
 ComponentID = 49691563
-SourceFile = <InstallerExeDir>\citationServer.exe
-DestinationFile = <Citation>\citationServer.exe
+SourceFile = <InstallerExeDir>\citation.exe
+DestinationFile = <Citation>\citation.exe
+; -------------------------------------------------
+[9576305]
+ID = 9576305
+Name = Copy restart.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExe>\restart.exe
+DestinationFile = <Citation>\restart.exe
 ; -------------------------------------------------
 [18570816]
 ID = 18570816
@@ -724,20 +744,20 @@ DestinationFile = <Citation>\ssleay32-0.9.8-msvcrt.dll
 ; -------------------------------------------------
 [11890806]
 ID = 11890806
-Name = Add Firewall Exception Windows 7
+Name = XP Add Firewall Exception
 Type = 0
 Win95 = 0
 WinNT4 = 0
 Win98 = 0
 WinMe = 0
-Win2000 = 0
-WinXP = 0
-WinServer2003 = 0
-WinVista = 0
-WinServer2008 = 1
-Win7 = 1
-Win8 = 1
-WinServer2012 = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 0
+Win7 = 0
+Win8 = 0
+WinServer2012 = 0
 ComponentID = 49691563
 ProgramPath = netsh
 CommandLine = netsh firewall add portopening TCP 7055 web
@@ -749,18 +769,18 @@ RunForUser = 1
 ; -------------------------------------------------
 [42247684]
 ID = 42247684
-Name = Add Firewall Exception Windows XP
+Name = XP Add Firewall Exception
 Type = 0
-Win95 = 1
-WinNT4 = 1
-Win98 = 1
-WinMe = 1
-Win2000 = 1
-WinXP = 1
-WinServer2003 = 1
-WinVista = 1
-WinServer2008 = 0
-Win7 = 0
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 0
+WinServer2003 = 0
+WinVista = 0
+WinServer2008 = 1
+Win7 = 1
 Win8 = 1
 WinServer2012 = 1
 ComponentID = 49691563
@@ -907,6 +927,31 @@ RunHidden = 1
 WaitUntilQuit = 1
 RunForUser = 1
 ; -------------------------------------------------
+[29242352]
+ID = 29242352
+Name = 7+ Add Firewall Exception
+Type = 0
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 0
+WinServer2003 = 0
+WinVista = 0
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+ProgramPath = netsh
+CommandLine = advfirewall firewall add rule name="Citation Service" dir=out action=allow profile=any description="Business Citation Service" program="<Citation>\citationCheck.exe"
+RunMode = 0
+ExecutionTime = 1
+RunHidden = 1
+WaitUntilQuit = 1
+RunForUser = 1
+; -------------------------------------------------
 [UninstallerSettings]
 CreateUninstaller = 1
 CreateAddRemoveEntry = 1
@@ -914,7 +959,7 @@ AddRemoveEntryName = <ProgramName> <ProgramVersion>
 AddRemoveProgramName = <ProgramName>
 AddRemoveProgramVersion = <ProgramVersion>
 UninstallerIconPath = 
-UninstRestartPC = 1
+UninstRestartPC = 0
 CheckForInstances = 0
 ; -------------------------------------------------
 [UninstallerExeInfo]
@@ -933,7 +978,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 88270883,37647114,35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364,75578200,73556581,66945940,19665180,91377636,87009405
+Items = 88270883,37647114,35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364,75578200,73556581,66945940,19665180,91377636,87009405,76828215,72186496
 ; -------------------------------------------------
 [88270883]
 ID = 88270883
@@ -1312,20 +1357,20 @@ FilePath = <Citation>\ssleay32-0.9.8-msvcrt.dll
 ; -------------------------------------------------
 [75578200]
 ID = 75578200
-Name = Remove Firewall Exception Windows 7
+Name = xP Remove Firewall Exception
 Type = 0
 Win95 = 0
 WinNT4 = 0
 Win98 = 0
 WinMe = 0
-Win2000 = 0
-WinXP = 0
-WinServer2003 = 0
-WinVista = 0
-WinServer2008 = 1
-Win7 = 1
-Win8 = 1
-WinServer2012 = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 0
+Win7 = 0
+Win8 = 0
+WinServer2012 = 0
 ComponentID = 49691563
 ProgramPath = netsh
 CommandLine = advfirewall firewall delete rule profile=any name=Exerb
@@ -1337,18 +1382,18 @@ RunForUser = 1
 ; -------------------------------------------------
 [73556581]
 ID = 73556581
-Name = Remove Firewall Exception Windows XP
+Name = XP Remove Firewall Exception
 Type = 0
-Win95 = 1
-WinNT4 = 1
-Win98 = 1
-WinMe = 1
-Win2000 = 1
-WinXP = 1
-WinServer2003 = 1
-WinVista = 1
-WinServer2008 = 0
-Win7 = 0
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 0
+WinServer2003 = 0
+WinVista = 0
+WinServer2008 = 1
+Win7 = 1
 Win8 = 1
 WinServer2012 = 1
 ComponentID = 49691563
@@ -1437,3 +1482,47 @@ Win8 = 1
 WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\website.exe
+; -------------------------------------------------
+[76828215]
+ID = 76828215
+Name = Remove restart.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\restart.exe
+; -------------------------------------------------
+[72186496]
+ID = 72186496
+Name = 7+ Remove Firewall Exception
+Type = 0
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 0
+WinServer2003 = 0
+WinVista = 0
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+ProgramPath = netsh
+CommandLine = advfirewall firewall delete rule name="Citation Service" program="<Citation>\citationCheck.exe"
+RunMode = 0
+ExecutionTime = 0
+RunHidden = 1
+WaitUntilQuit = 1
+RunForUser = 1

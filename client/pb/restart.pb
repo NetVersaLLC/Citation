@@ -22,12 +22,16 @@ Procedure.b CheckRunningExe(FileName.s)
   ProcedureReturn #False
 EndProcedure
 
-path.s = GetPathPart(ProgramFilename())
-SetCurrentDirectory(path)
-RunProgram("taskkill /F /T /IM citationServer.exe")
-RunProgram("citationServer.exe")
+Procedure StartServer()
+  path.s = GetPathPart(ProgramFilename())
+  RunProgram(path + "citationServer.exe", "", path, #PB_Program_Hide)
+EndProcedure
 
-Delay(1000)
+
+RunProgram("taskkill", "/F /T /IM citationServer.exe", "", #PB_Program_Hide)
+Delay(5000)
+StartServer()
+
 
 If CheckRunningExe("citationServer.exe") = #True
   MessageRequester("Restarted", "The server process was restarted!")
@@ -35,6 +39,6 @@ Else
   MessageRequester("Error", "The server process was not able to be started!")  
 EndIf
 ; IDE Options = PureBasic 4.61 (Windows - x86)
-; CursorPosition = 35
+; CursorPosition = 33
 ; Folding = -
 ; EnableXP

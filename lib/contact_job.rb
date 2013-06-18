@@ -83,6 +83,23 @@ class ContactJob
 			RestClient.post("#{@host}/accounts.json?auth_token=#{@key}&business_id=#{@bid}", options)
 		end
 
+    def images
+      dir = "#{ENV['USERPROFILE']}\\citation\\images"
+      Dir.entries(dir).grep(/png|jpe?g/i)
+    end
+
+    def logo
+      dir = "#{ENV['USERPROFILE']}\\citation\\"
+      if File.exists? dir
+        Dir.open(dir).each do |file|
+          if file =~ /^logo\./
+            return "#{dir}#{file}"
+          end
+        end
+      end
+      nil
+    end
+
     def booboo(msg='Something went wrong!')
         return if msg =~ /SystemExit/
         puts "Posting to: #{@host}/booboos.json?auth_token=#{@key}&business_id=#{@bid}"

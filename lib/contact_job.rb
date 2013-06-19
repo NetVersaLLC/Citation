@@ -75,13 +75,13 @@ class ContactJob
     end
 
     def save_account(model, options)
-			posting = {}
-			options.each_key do |key|
-				posting["account[#{key}]"] = options[key]
-			end
-			posting['model'] = model
-			RestClient.post("#{@host}/accounts.json?auth_token=#{@key}&business_id=#{@bid}", options)
-		end
+      posting = {}
+      options.each_key do |key|
+        posting["account[#{key}]"] = options[key]
+      end
+      posting['model'] = model
+      RestClient.post("#{@host}/accounts.json?auth_token=#{@key}&business_id=#{@bid}", options)
+    end
 
     def images
       dir = "#{ENV['USERPROFILE']}\\citation\\images"

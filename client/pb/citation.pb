@@ -200,8 +200,18 @@ CloseFile(logOut)
 CloseFile(logDriver)
 ; IDE Options = PureBasic 4.61 (Windows - x86)
 ; CursorPosition = 65
-; FirstLine = 54
 ; Folding = --
 ; EnableXP
 ; Executable = build\citation.exe
 ; CompileSourceDirectory
+; IncludeVersionInfo
+; VersionField0 = 0.1.0.1
+; VersionField1 = 0.1.0.4
+; VersionField2 = NetVersa, LLC.
+; VersionField3 = Citation Server
+; VersionField4 = 1.04
+; VersionField5 = 1.0.1
+; VersionField6 = Citation check runner.
+; VersionField7 = Citation
+; VersionField8 = citation.exe
+; VersionField9 = Copyright (C) 2013 NetVersa, LLC.

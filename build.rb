@@ -47,6 +47,15 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/console", "/exe", "build/ask.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/console", "/exe", "build/verify_account.exe"
 
+Dir.open("build").each do |file|
+	next unless file =~ /\.exe$/i
+	next if file =~ /^firefox.exe$/i
+	STDERR.puts "Adding icon: #{file}"
+	system "files\\RCEDIT.exe /i build\\#{file} files\\map.ico"
+	STDERR.puts "Signing: #{file}"
+	system "signtool.exe sign /s CitationStore /n Citation build\\#{file}"
+end
+
 if ENV['TESTING_CITATION'] == 'active'
 	exit
 end

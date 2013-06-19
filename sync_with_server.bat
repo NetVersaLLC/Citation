@@ -1,4 +1,4 @@
 cd C:\Users\jonathan\dev\Citation
 
-scp -r labels deploy@franklin.netversa.com:~/contact/shared/labels.new
-ssh deploy@franklin.netversa.com "rm -rf /home/deploy/contact/shared/labels.old && mv /home/deploy/contact/shared/labels /home/deploy/contact/shared/labels.old && mv /home/deploy/contact/shared/labels.new /home/deploy/contact/shared/labels"
+scp -i C:\Users\jonathan\Dropbox\new_keys\deploy\contact -r labels ubuntu@ec2-23-22-146-4.compute-1.amazonaws.com:~/contact/shared/labels.new
+ssh -i C:\Users\jonathan\Dropbox\new_keys\deploy\contact ubuntu@ec2-23-22-146-4.compute-1.amazonaws.com "rm -rf /home/ubuntu/contact/shared/labels.old && mv /home/ubuntu/contact/shared/labels /home/ubuntu/contact/shared/labels.old && mv /home/ubuntu/contact/shared/labels.new /home/ubuntu/contact/shared/labels"

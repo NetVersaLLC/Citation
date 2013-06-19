@@ -16,6 +16,9 @@ class PhoneVerify
 		end while retries < 25
 		raise "Phone code never entered!"
 	end
+	def self.send_code(site, code)
+    res = RestClient.post "#{$host}/codes/#{$bid}/#{site}.json?code=#{code}"
+	end
 	def self.ask_for_code()
 		code = `incoming_call.exe`
 	end

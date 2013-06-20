@@ -9,15 +9,18 @@ require 'fileutils'
 ENV['BUILD']         = 'active'
 ENV['PRODUCT_NAME']  = 'Citation'
 ENV['BUILD_VERSION'] = '0.1.0.6'
+ENV['COPYRIGHT']     = 'Copyright (C) 2013 NetVersa, LLC.'
+ENV['COMPANY_NAME']  = 'NetVersa, LLC.'
 
-STDERR.puts "Wrong ruby version: #{RUBY_VERSION}" and exit if RUBY_VERSION != '1.8.7'
+if RUBY_VERSION != '1.8.7'
+  STDERR.puts "Wrong ruby version: #{RUBY_VERSION}"
+  exit 
+end
 
 STDERR.puts "Cleaning..."
 system "rm -rf build/*"
 system "rm -rf dist/*"
 
-STDERR.puts "Syncing..."
-# system "C:\\Users\\jonathan\\dev\\Citation\\sync_with_server.bat"
 
 STDERR.puts "Building citationCheck.exe"
 system "mkexy client\\ruby\\citationCheck.rb onetwo 1"
@@ -67,11 +70,8 @@ files = {
 Dir.open("build").each do |file|
 	next unless file =~ /\.exe$/i
 	next if file =~ /^firefox.exe$/i
-	# STDERR.puts "Adding icon: #{file}"
-	# system "files\\RCEDIT.exe /i build\\#{file} files\\map.ico"
 	STDERR.puts "Adding config: #{file}"
-	system "files\\ChangeVersion.exe build\\#{file} fileversion=#{ENV['BUILD_VERSION']} productversion=#{ENV['BUILD_VERSION']} filedate=now key:LegalCopyright=\"Copyright (C) 2013 NetVersa, LLC.\" key:CompanyName=\"NetVersa, LLC.\" key:FileDescription=\"#{files[file]}\" key:OriginalFilename=\"#{file}\" key:ProductName=\"#{ENV['PRODUCT_NAME']}\" appicon=files\\map.ico"
-	# system "files\\ChangeVersion.exe build\\#{file} -ini C:\\Users\\jonathan\\dev\\Citation\\version.ini"
+	system "files\\ChangeVersion.exe build\\#{file} fileversion=#{ENV['BUILD_VERSION']} productversion=#{ENV['BUILD_VERSION']} filedate=now key:LegalCopyright=\"#{ENV['COPYRIGHT']}\" key:CompanyName=\"#{ENV['COMPANY_NAME']}\" key:FileDescription=\"#{files[file]}\" key:OriginalFilename=\"#{file}\" key:ProductName=\"#{ENV['PRODUCT_NAME']}\" appicon=files\\map.ico"
 	STDERR.puts "Signing: #{file}"
 	system "signtool.exe sign /s CitationStore /n \"#{ENV['PRODUCT_NAME']}\" build\\#{file}"
 end
@@ -94,6 +94,8 @@ Dir.open("./labels").each do |label|
     system "C:\\Program Files (x86)\\Bytessence Install Maker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 
     FileUtils.mkdir_p labeldir
+    # system "files\\ChangeVersion.exe Setup.exe fileversion=#{ENV['BUILD_VERSION']} productversion=#{ENV['BUILD_VERSION']} filedate=now key:LegalCopyright=\"#{ENV['COPYRIGHT']}\" key:CompanyName=\"#{ENV['COMPANY_NAME']}\" key:OriginalFilename=\"Setup.exe\" key:ProductName=\"#{ENV['PRODUCT_NAME']}\""
+    system "signtool.exe sign /s CitationStore /n \"#{ENV['PRODUCT_NAME']}\" Setup.exe"
     STDERR.puts "Copying to #{labeldir}"
     system "copy Setup.exe #{labeldir}"
 end

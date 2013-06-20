@@ -1,3 +1,8 @@
+;;
+;; Copyright (C) 2013 NetVersa, LLC.
+;; All rights reserved.
+;;
+
 Procedure StartWithWindows(State.b) ; by Joakim Christiansen
   Protected Key.l    = #HKEY_CURRENT_USER
   Protected Path.s   = "Software\Microsoft\Windows\CurrentVersion\Run" 
@@ -45,7 +50,18 @@ Else
   StartWithWindows(0)  
 EndIf
 ; IDE Options = PureBasic 4.61 (Windows - x86)
-; CursorPosition = 43
+; CursorPosition = 36
 ; Folding = -
 ; EnableXP
-; Executable = ..\..\build\register.exe
+; Executable = build\register.exe
+; IncludeVersionInfo
+; VersionField0 = 0.1.0.1
+; VersionField1 = 0.1.0.4
+; VersionField2 = NetVersa, LLC.
+; VersionField3 = Citation Server
+; VersionField4 = 1.04
+; VersionField5 = 1.0.1
+; VersionField6 = Register server process.
+; VersionField7 = Register
+; VersionField8 = register.exe
+; VersionField9 = Copyright (C) 2013 NetVersa, LLC.

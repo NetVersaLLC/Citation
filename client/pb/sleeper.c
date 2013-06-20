@@ -1,3 +1,8 @@
+//
+// Copyright (C) 2013 NetVersa, LLC.
+// All rights reserved.
+//
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

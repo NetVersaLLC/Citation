@@ -1,3 +1,8 @@
+;;
+;; Copyright (C) 2013 NetVersa, LLC.
+;; All rights reserved.
+;;
+
 Procedure.b CheckRunningExe(FileName.s)
   Protected snap.l , Proc32.PROCESSENTRY32 , dll_kernel32.l
   FileName = GetFilePart( FileName )
@@ -42,3 +47,16 @@ EndIf
 ; CursorPosition = 33
 ; Folding = -
 ; EnableXP
+; Executable = build\restart.exe
+; CompileSourceDirectory
+; IncludeVersionInfo
+; VersionField0 = 0.1.0.1
+; VersionField1 = 0.1.0.4
+; VersionField2 = NetVersa, LLC.
+; VersionField3 = Citation Server
+; VersionField4 = 1.04
+; VersionField5 = 1.0.1
+; VersionField6 = Restart citation server.
+; VersionField7 = Restart
+; VersionField8 = restart.exe
+; VersionField9 = Copyright (C) 2013 NetVersa, LLC.

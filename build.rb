@@ -6,7 +6,9 @@
 require 'rubygems'
 require 'fileutils'
 
-ENV['BUILD'] = 'active'
+ENV['BUILD']         = 'active'
+ENV['PRODUCT_NAME']  = 'Citation'
+ENV['BUILD_VERSION'] = '0.1.0.6'
 
 STDERR.puts "Wrong ruby version: #{RUBY_VERSION}" and exit if RUBY_VERSION != '1.8.7'
 
@@ -47,13 +49,31 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/console", "/exe", "build/ask.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/console", "/exe", "build/verify_account.exe"
 
+
+files = {
+	"website.exe" => 'Open our website.',
+	"verify_account.exe" => 'Display an account verification dialog.',
+	"citation.exe" => 'Citation process monitor.',
+	"citationServer.exe" => 'Business citation creator server process.',
+	"register.exe" => 'Register/deregister processes.',
+	"incoming_call.exe" => 'Warn about an incoming call.',
+	"ask.exe" => 'Ask to install a new software update.',
+	"captcha.exe" => 'Display a captcha solution request.',
+	"citationCheck.exe" => 'Check for new citation creation and updates.',
+	"restart.exe" => 'Restart the citation server process.'
+}
+
+
 Dir.open("build").each do |file|
 	next unless file =~ /\.exe$/i
 	next if file =~ /^firefox.exe$/i
-	STDERR.puts "Adding icon: #{file}"
-	system "files\\RCEDIT.exe /i build\\#{file} files\\map.ico"
+	# STDERR.puts "Adding icon: #{file}"
+	# system "files\\RCEDIT.exe /i build\\#{file} files\\map.ico"
+	STDERR.puts "Adding config: #{file}"
+	system "files\\ChangeVersion.exe build\\#{file} fileversion=#{ENV['BUILD_VERSION']} productversion=#{ENV['BUILD_VERSION']} filedate=now key:LegalCopyright=\"Copyright (C) 2013 NetVersa, LLC.\" key:CompanyName=\"NetVersa, LLC.\" key:FileDescription=\"#{files[file]}\" key:OriginalFilename=\"#{file}\" key:ProductName=\"#{ENV['PRODUCT_NAME']}\" appicon=files\\map.ico"
+	# system "files\\ChangeVersion.exe build\\#{file} -ini C:\\Users\\jonathan\\dev\\Citation\\version.ini"
 	STDERR.puts "Signing: #{file}"
-	system "signtool.exe sign /s CitationStore /n Citation build\\#{file}"
+	system "signtool.exe sign /s CitationStore /n \"#{ENV['PRODUCT_NAME']}\" build\\#{file}"
 end
 
 if ENV['TESTING_CITATION'] == 'active'

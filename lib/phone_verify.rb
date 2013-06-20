@@ -5,11 +5,9 @@ class PhoneVerify
 		retries = 0
 		begin 
 			res = RestClient.get "#{$host}/codes/#{$bid}/#{site}.json"
-			if res
+			if res.code == 200
 				response = JSON.parse(res)
-				if response['entered'] == 'yes'
-					return response['code']
-				end
+				return response['code']
 			end
 			retries += 1
 			sleep 10

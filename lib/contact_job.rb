@@ -84,12 +84,12 @@ class ContactJob
     end
 
     def images
-      dir = "#{ENV['USERPROFILE']}\\citation\\images"
+      dir = "#{ENV['USERPROFILE']}\\citation\\#{$bid}\\images"
       Dir.entries(dir).grep(/png|jpe?g/i)
     end
 
     def logo
-      dir = "#{ENV['USERPROFILE']}\\citation\\"
+      dir = "#{ENV['USERPROFILE']}\\citation\\#{$bid}\\"
       if File.exists? dir
         Dir.open(dir).each do |file|
           if file =~ /^logo\./

@@ -9,6 +9,8 @@ FFI::typedef(:int, :intptr_t)
 require 'time'
 require 'ipaddr'
 require "watir-webdriver"
+require "fileutils"
+require "securerandom"
 require "json"
 require "multi_json"
 MultiJson.engine = :json_gem
@@ -21,7 +23,7 @@ require "./lib/contact_job"
 require "./lib/phone_verify"
 require "./lib/captcha"
 
-$host = ENV['CITATION_HOST'] || 'http://citation.netversa.com'
+$host = ENV['CITATION_HOST'] || 'https://citation.netversa.com'
 $key  = ARGV.shift
 $bid  = ARGV.shift
 
@@ -51,10 +53,8 @@ if ENV['BUILD'] == 'active'
 	exit
 end
 
-puts "M: #{Time.now.iso8601}"
-
 begin
-    puts "starting #{$host}: #{$key}: #{$bid}"
+    puts "#{Time.now.iso8601}: starting #{$host}: #{$key}: #{$bid}"
     cj = ContactJob.new $host, $key, $bid
     cj.run
 rescue => detail

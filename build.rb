@@ -8,9 +8,9 @@ require 'fileutils'
 
 ENV['BUILD']         = 'active'
 ENV['PRODUCT_NAME']  = 'Citation'
-ENV['BUILD_VERSION'] = '0.1.0.6'
+ENV['BUILD_VERSION'] = '0.1.0.7'
 ENV['COPYRIGHT']     = 'Copyright (C) 2013 NetVersa, LLC.'
-ENV['COMPANY_NAME']  = 'NetVersa, LLC.'
+ENV['COMPANY_NAME']  = 'Net Versa, LLC.'
 
 if RUBY_VERSION != '1.8.7'
   STDERR.puts "Wrong ruby version: #{RUBY_VERSION}"
@@ -37,6 +37,7 @@ system "cp files\\libiconv2.dll build"
 
 STDERR.puts "Moving to build/"
 File.rename "client\\ruby\\citationCheck.exe", "build/citationCheck.exe"
+
 
 # STDERR.puts "Packing..."
 # system "upx --best build/citationCheck.exe"
@@ -73,7 +74,7 @@ Dir.open("build").each do |file|
 	STDERR.puts "Adding config: #{file}"
 	system "files\\ChangeVersion.exe build\\#{file} fileversion=#{ENV['BUILD_VERSION']} productversion=#{ENV['BUILD_VERSION']} filedate=now key:LegalCopyright=\"#{ENV['COPYRIGHT']}\" key:CompanyName=\"#{ENV['COMPANY_NAME']}\" key:FileDescription=\"#{files[file]}\" key:OriginalFilename=\"#{file}\" key:ProductName=\"#{ENV['PRODUCT_NAME']}\" appicon=files\\map.ico"
 	STDERR.puts "Signing: #{file}"
-	system "signtool.exe sign /s CitationStore /n \"#{ENV['PRODUCT_NAME']}\" build\\#{file}"
+	system "signtool sign /f certs\\netversa.pfx /p FWq31i1GSl /t http://timestamp.comodoca.com/authenticode build\\#{file}"
 end
 
 if ENV['TESTING_CITATION'] == 'active'
@@ -94,8 +95,8 @@ Dir.open("./labels").each do |label|
     system "C:\\Program Files (x86)\\Bytessence Install Maker\\BInstallMaker.exe", "-compile", "C:\\Users\\jonathan\\dev\\Citation\\build.bim", "C:\\Users\\jonathan\\dev\\Citation\\installer.log"
 
     FileUtils.mkdir_p labeldir
-    # system "files\\ChangeVersion.exe Setup.exe fileversion=#{ENV['BUILD_VERSION']} productversion=#{ENV['BUILD_VERSION']} filedate=now key:LegalCopyright=\"#{ENV['COPYRIGHT']}\" key:CompanyName=\"#{ENV['COMPANY_NAME']}\" key:OriginalFilename=\"Setup.exe\" key:ProductName=\"#{ENV['PRODUCT_NAME']}\""
-    system "signtool.exe sign /s CitationStore /n \"#{ENV['PRODUCT_NAME']}\" Setup.exe"
+    # This is signed after the bid and key have been injected on the server.
+    # system "signtool sign /f certs\\netversa.pfx /p FWq31i1GSl /t http://timestamp.comodoca.com/authenticode Setup.exe"
     STDERR.puts "Copying to #{labeldir}"
     system "copy Setup.exe #{labeldir}"
 end

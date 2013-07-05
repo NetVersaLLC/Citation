@@ -57,8 +57,10 @@ class ContactJob
 
 	def failure(msg='Job failed.', screenshot=nil)
 		if screenshot and File.exists? screenshot
+			STDERR.puts "screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
 			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg, :screenshot => File.open(screenshot, 'r'))
 		else
+			STDERR.puts "no screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
 			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg)
 		end
 	end
@@ -81,7 +83,7 @@ class ContactJob
 			posting["account[#{key}]"] = options[key]
 		end
 		posting['model'] = model
-		RestClient.post("#{@host}/accounts.json?auth_token=#{@key}&business_id=#{@bid}", options)
+		RestClient.post("#{@host}/accounts.json?auth_token=#{@key}&business_id=#{@bid}", posting)
 	end
 
 	def images

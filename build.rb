@@ -8,7 +8,7 @@ require 'fileutils'
 
 ENV['BUILD']         = 'active'
 ENV['PRODUCT_NAME']  = 'Citation'
-ENV['BUILD_VERSION'] = '0.1.0.7'
+ENV['BUILD_VERSION'] = '0.1.0.8'
 ENV['COPYRIGHT']     = 'Copyright (C) 2013 NetVersa, LLC.'
 ENV['COMPANY_NAME']  = 'Net Versa, LLC.'
 

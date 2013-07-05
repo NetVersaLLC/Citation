@@ -3,15 +3,19 @@
 class PhoneVerify
 	def self.retrieve_code(site)
 		retries = 0
-		begin 
-			res = RestClient.get "#{$host}/codes/#{$bid}/#{site}.json"
-			if res.code == 200
-				response = JSON.parse(res)
-				return response['code']
+		while retries < 25
+			begin
+				res = RestClient.get "#{$host}/codes/#{$bid}/#{site}.json?auth_token=#{$key}"
+				if res.code == 200
+					response = JSON.parse(res)
+					return response['code']
+				end
+			rescue RestClient::ResourceNotFound
+			rescue Exception => e
 			end
 			retries += 1
 			sleep 10
-		end while retries < 25
+		end
 		raise "Phone code never entered!"
 	end
 	def self.send_code(site, code)

@@ -4,7 +4,7 @@
 ;  may misbehave when running on the user's PC.
 ;  Please use BIM to make any changes.
 ; -------------------------------------------------
-;  Last modified: 02/06/2013 (DMY) at 22:15:16
+;  Last modified: 08/07/2013 (DMY) at 10:31:40
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -321,7 +321,7 @@ VisitWebsiteAddress = http://citation.netversa.com
 VisitWebsiteRunForUser = 1
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 89453655,8055416,9576305,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,11890806,42247684,84853212,81236491,84029313,14001359,55414899,25247972,29242352
+Items = 89453655,8055416,9576305,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,31607165,87391968,31931762,81836380,1065234,35616427,31611701,89790270,11890806,42247684,84853212,81236491,84029313,14001359,55414899,25247972,29242352
 ; -------------------------------------------------
 [89453655]
 ID = 89453655
@@ -742,6 +742,166 @@ ComponentID = 49691563
 SourceFile = <InstallerExeDir>\ssleay32-0.9.8-msvcrt.dll
 DestinationFile = <Citation>\ssleay32-0.9.8-msvcrt.dll
 ; -------------------------------------------------
+[31607165]
+ID = 31607165
+Name = Copy php_bcompiler.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\php_bcompiler.dll
+DestinationFile = <Citation>\php_bcompiler.dll
+; -------------------------------------------------
+[87391968]
+ID = 87391968
+Name = Copy php_curl.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\php_curl.dll
+DestinationFile = <Citation>\php_curl.dll
+; -------------------------------------------------
+[31931762]
+ID = 31931762
+Name = Copy php_win32std.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\php_win32std.dll
+DestinationFile = <Citation>\php_win32std.dll
+; -------------------------------------------------
+[81836380]
+ID = 81836380
+Name = Copy php_winbinder.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\php_winbinder.dll
+DestinationFile = <Citation>\php_winbinder.dll
+; -------------------------------------------------
+[1065234]
+ID = 1065234
+Name = Copy php5ts.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\php5ts.dll
+DestinationFile = <Citation>\php5ts.dll
+; -------------------------------------------------
+[35616427]
+ID = 35616427
+Name = Copy php-embed.ini
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\php-embed.ini
+DestinationFile = <Citation>\php-embed.ini
+; -------------------------------------------------
+[31611701]
+ID = 31611701
+Name = Copy gusto.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\gusto.exe
+DestinationFile = <Citation>\gusto.exe
+; -------------------------------------------------
+[89790270]
+ID = 89790270
+Name = Copy ca-bundle.crt
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\ca-bundle.crt
+DestinationFile = <Citation>\ca-bundle.crt
+; -------------------------------------------------
 [11890806]
 ID = 11890806
 Name = XP Add Firewall Exception
@@ -978,7 +1138,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 88270883,37647114,35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364,75578200,73556581,66945940,19665180,91377636,87009405,76828215,72186496
+Items = 88270883,37647114,35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364,75578200,73556581,66945940,19665180,91377636,87009405,76828215,80651537,99584246,52792261,28168665,32216293,72634243,31006693,88251839,72186496
 ; -------------------------------------------------
 [88270883]
 ID = 88270883
@@ -1501,6 +1661,158 @@ Win8 = 1
 WinServer2012 = 1
 ComponentID = 49691563
 FilePath = <Citation>\restart.exe
+; -------------------------------------------------
+[80651537]
+ID = 80651537
+Name = Remove php_curl.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\php_curl.dll
+; -------------------------------------------------
+[99584246]
+ID = 99584246
+Name = Remove php_win32std.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\php_win32std.dll
+; -------------------------------------------------
+[52792261]
+ID = 52792261
+Name = Remove php_winbinder.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\php_winbinder.dll
+; -------------------------------------------------
+[28168665]
+ID = 28168665
+Name = Remove php5ts.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\php5ts.dll
+; -------------------------------------------------
+[32216293]
+ID = 32216293
+Name = Remove php_bcompiler.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\php_bcompiler.dll
+; -------------------------------------------------
+[72634243]
+ID = 72634243
+Name = Remove php-embed.ini
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\php-embed.ini
+; -------------------------------------------------
+[31006693]
+ID = 31006693
+Name = Remove ca-bundle.crt
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\ca-bundle.crt
+; -------------------------------------------------
+[88251839]
+ID = 88251839
+Name = Remove gusto.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\gusto.exe
 ; -------------------------------------------------
 [72186496]
 ID = 72186496

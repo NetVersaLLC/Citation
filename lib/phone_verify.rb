@@ -18,8 +18,11 @@ class PhoneVerify
 		end
 		raise "Phone code never entered!"
 	end
+	def self.wrong_code(site)
+    res = RestClient.delete "#{$host}/codes/#{$bid}/#{site}.json?auth_token=#{$key}"
+	end
 	def self.send_code(site, code)
-    res = RestClient.post "#{$host}/codes/#{$bid}/#{site}.json?code=#{code}"
+    res = RestClient.post "#{$host}/codes/#{$bid}/#{site}.json?code=#{code}&auth_token=#{$key}"
 	end
 	def self.ask_for_code()
 		code = `incoming_call.exe`

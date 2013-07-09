@@ -8,7 +8,7 @@ require 'fileutils'
 
 ENV['BUILD']         = 'active'
 ENV['PRODUCT_NAME']  = 'Citation'
-ENV['BUILD_VERSION'] = '0.1.0.8'
+ENV['BUILD_VERSION'] = '0.1.1.0'
 ENV['COPYRIGHT']     = 'Copyright (C) 2013 NetVersa, LLC.'
 ENV['COMPANY_NAME']  = 'Net Versa, LLC.'
 
@@ -34,6 +34,14 @@ system "cp files\\firefox.exe build"
 system "cp files\\ssleay32-0.9.8-msvcrt.dll build"
 system "cp files\\libeay32-0.9.8-msvcrt.dll build"
 system "cp files\\libiconv2.dll build"
+system "cp files\\php_bcompiler.dll build"
+system "cp files\\php_curl.dll build"
+system "cp files\\php_win32std.dll build"
+system "cp files\\php_winbinder.dll build"
+system "cp files\\php5ts.dll build"
+system "cp files\\php-embed.ini build"
+system "cp files\\ca-bundle.crt build"
+system "cp files\\gusto.exe build"
 
 STDERR.puts "Moving to build/"
 File.rename "client\\ruby\\citationCheck.exe", "build/citationCheck.exe"
@@ -64,7 +72,8 @@ files = {
 	"ask.exe" => 'Ask to install a new software update.',
 	"captcha.exe" => 'Display a captcha solution request.',
 	"citationCheck.exe" => 'Check for new citation creation and updates.',
-	"restart.exe" => 'Restart the citation server process.'
+	"restart.exe" => 'Restart the citation server process.',
+	"gusto.exe" => 'Perform updates and syncs.'
 }
 
 

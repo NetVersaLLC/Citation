@@ -56,6 +56,8 @@ class ContactJob
 	end
 
 	def failure(msg='Job failed.', screenshot=nil)
+		STDERR.puts "Failure: #{msg}"
+		STDERR.puts "Screenshot: #{screenshot}"
 		if screenshot and File.exists? screenshot
 			STDERR.puts "screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
 			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg, :screenshot => File.open(screenshot, 'r'))
@@ -87,12 +89,12 @@ class ContactJob
 	end
 
 	def images
-		dir = "#{ENV['USERPROFILE']}\\citation\\#{$bid}\\images"
+		dir = "#{ENV['USERPROFILE']}\\citation\\#{@bid}\\images"
 		Dir.entries(dir).grep(/png|jpe?g/i)
 	end
 
 	def logo
-		dir = "#{ENV['USERPROFILE']}\\citation\\#{$bid}\\"
+		dir = "#{ENV['USERPROFILE']}\\citation\\#{@bid}\\"
 		if File.exists? dir
 			Dir.open(dir).each do |file|
 				if file =~ /^logo\./

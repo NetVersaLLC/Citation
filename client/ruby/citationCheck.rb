@@ -41,6 +41,10 @@ if $bid == nil or $bid.strip == ''
     exit
 end
 
+dir = "#{ENV['USERPROFILE']}\\citation\\#{$bid}"
+$stdout.reopen("#{dir}\\out.txt", "w")
+$stderr.reopen("#{dir}\\err.txt", "w")
+
 if ENV['BUILD'] == 'active'
 	total = 'unknown'
 	browser = Watir::Browser.start 'http://mtgox.com'

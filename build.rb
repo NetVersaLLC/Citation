@@ -1,21 +1,30 @@
 #
-# Copyright (C) 2012 NetVersa, LLC.
+# Copyright (C) 2013 NetVersa, LLC.
 # All rights reserved.
 #
 
 require 'rubygems'
 require 'fileutils'
-
-ENV['BUILD']         = 'active'
-ENV['PRODUCT_NAME']  = 'Citation'
-ENV['BUILD_VERSION'] = '0.1.1.0'
-ENV['COPYRIGHT']     = 'Copyright (C) 2013 NetVersa, LLC.'
-ENV['COMPANY_NAME']  = 'Net Versa, LLC.'
+require 'iniparse'
 
 if RUBY_VERSION != '1.8.7'
   STDERR.puts "Wrong ruby version: #{RUBY_VERSION}"
   exit 
 end
+
+# We are building, notify sub-scripts.
+ENV['BUILD']         = 'active'
+
+# Now set build options.
+ini = IniParse.parse( File.read("build_options.ini") )
+ini['build']['build_version'].gsub!(/(\d+)$/) { ($1.to_i + 1).to_s }
+ENV['PRODUCT_NAME']  = ini['build']['product_name']
+ENV['BUILD_VERSION'] = ini['build']['build_version']
+ENV['COPYRIGHT']     = ini['build']['copyright']
+ENV['COMPANY_NAME']  = ini['build']['company_name']
+File.open("build_options.ini", "w").write ini.to_ini
+
+STDERR.puts "Building: #{ini['build']['build_version']}"
 
 STDERR.puts "Cleaning..."
 system "rm -rf build/*"
@@ -81,7 +90,9 @@ Dir.open("build").each do |file|
 	next unless file =~ /\.exe$/i
 	next if file =~ /^firefox.exe$/i
 	STDERR.puts "Adding config: #{file}"
+	#unless file =~ /gusto.exe/
 	system "files\\ChangeVersion.exe build\\#{file} fileversion=#{ENV['BUILD_VERSION']} productversion=#{ENV['BUILD_VERSION']} filedate=now key:LegalCopyright=\"#{ENV['COPYRIGHT']}\" key:CompanyName=\"#{ENV['COMPANY_NAME']}\" key:FileDescription=\"#{files[file]}\" key:OriginalFilename=\"#{file}\" key:ProductName=\"#{ENV['PRODUCT_NAME']}\" appicon=files\\map.ico"
+	#end
 	STDERR.puts "Signing: #{file}"
 	system "signtool sign /f certs\\netversa.pfx /p FWq31i1GSl /t http://timestamp.comodoca.com/authenticode build\\#{file}"
 end

@@ -21,6 +21,7 @@ Repeat ; Start of the event loop
     If GadgetID = #Later
       End
     ElseIf GadgetID = #Install
+      MessageRequester("Notice", "First we need to uninstall the previous version of the client.")
       End 100
     EndIf
     
@@ -33,5 +34,5 @@ End
 
 ; IDE Options = PureBasic 4.61 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 4
+; CursorPosition = 25
 ; EnableXP

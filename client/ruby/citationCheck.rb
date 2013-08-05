@@ -19,6 +19,7 @@ require "open-uri"
 require "nokogiri"
 require "pstore"
 require "./lib/restclient"
+require "./lib/rautomation"
 require "./lib/contact_job"
 require "./lib/phone_verify"
 require "./lib/captcha"
@@ -41,9 +42,9 @@ if $bid == nil or $bid.strip == ''
     exit
 end
 
-dir = "#{ENV['USERPROFILE']}\\citation\\#{$bid}"
-$stdout.reopen("#{dir}\\out.txt", "w")
-$stderr.reopen("#{dir}\\err.txt", "w")
+#dir = "#{ENV['USERPROFILE']}\\citation\\#{$bid}"
+#$stdout.reopen("#{dir}\\out.txt", "w")
+#$stderr.reopen("#{dir}\\err.txt", "w")
 
 if ENV['BUILD'] == 'active'
 	total = 'unknown'

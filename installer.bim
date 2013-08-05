@@ -4,7 +4,7 @@
 ;  may misbehave when running on the user's PC.
 ;  Please use BIM to make any changes.
 ; -------------------------------------------------
-;  Last modified: 08/07/2013 (DMY) at 10:31:40
+;  Last modified: 02/08/2013 (DMY) at 00:39:38
 ; -------------------------------------------------
 [Header]
 FileID = Bytessence Install Maker
@@ -321,7 +321,7 @@ VisitWebsiteAddress = http://citation.netversa.com
 VisitWebsiteRunForUser = 1
 ; -------------------------------------------------
 [InstallerTasks]
-Items = 89453655,8055416,9576305,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,31607165,87391968,31931762,81836380,1065234,35616427,31611701,89790270,11890806,42247684,84853212,81236491,84029313,14001359,55414899,25247972,29242352
+Items = 89453655,8055416,9576305,18570816,71074726,956399,32440427,93459741,14319016,6237863,97679389,29729341,54303778,50073238,83302021,71535112,92211375,84697209,87574049,94756409,59864007,31607165,87391968,31931762,81836380,1065234,35616427,31611701,89790270,3190976,9269791,11890806,29242352,42247684,67483475,57483757,84853212,81236491,84029313,14001359,55414899,25247972,25424494,65078858,31854558
 ; -------------------------------------------------
 [89453655]
 ID = 89453655
@@ -902,9 +902,49 @@ ComponentID = 49691563
 SourceFile = <InstallerExeDir>\ca-bundle.crt
 DestinationFile = <Citation>\ca-bundle.crt
 ; -------------------------------------------------
+[3190976]
+ID = 3190976
+Name = Copy libeay32.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\libeay32.dll
+DestinationFile = <Citation>\libeay32.dll
+; -------------------------------------------------
+[9269791]
+ID = 9269791
+Name = Copy ssleay32.dll
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\ssleay32.dll
+DestinationFile = <Citation>\ssleay32.dll
+; -------------------------------------------------
 [11890806]
 ID = 11890806
-Name = XP Add Firewall Exception
+Name = 7+ Add Firewall Exception
 Type = 0
 Win95 = 0
 WinNT4 = 0
@@ -927,9 +967,34 @@ RunHidden = 1
 WaitUntilQuit = 1
 RunForUser = 1
 ; -------------------------------------------------
+[29242352]
+ID = 29242352
+Name = citation - 7+ Add Firewall Exception
+Type = 0
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 0
+WinServer2003 = 0
+WinVista = 0
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+ProgramPath = netsh
+CommandLine = advfirewall firewall add rule name="Citation Service" dir=out action=allow profile=any description="Business Citation Service" program="<Citation>\citationCheck.exe"
+RunMode = 0
+ExecutionTime = 1
+RunHidden = 1
+WaitUntilQuit = 1
+RunForUser = 1
+; -------------------------------------------------
 [42247684]
 ID = 42247684
-Name = XP Add Firewall Exception
+Name = citation -XP Add Firewall Exception
 Type = 0
 Win95 = 0
 WinNT4 = 0
@@ -946,6 +1011,56 @@ WinServer2012 = 1
 ComponentID = 49691563
 ProgramPath = netsh
 CommandLine = firewall add allowedprogram " <Citation>\citationCheck.exe" Exerb ENABLE
+RunMode = 0
+ExecutionTime = 1
+RunHidden = 1
+WaitUntilQuit = 1
+RunForUser = 1
+; -------------------------------------------------
+[67483475]
+ID = 67483475
+Name = gusto -XP Add Firewall Exception
+Type = 0
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 0
+WinServer2003 = 0
+WinVista = 0
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+ProgramPath = netsh
+CommandLine = firewall add allowedprogram " <Citation>\gusto.exe" Gusto ENABLE
+RunMode = 0
+ExecutionTime = 1
+RunHidden = 1
+WaitUntilQuit = 1
+RunForUser = 1
+; -------------------------------------------------
+[57483757]
+ID = 57483757
+Name = gusto - 7+ Add Firewall Exception
+Type = 0
+Win95 = 0
+WinNT4 = 0
+Win98 = 0
+WinMe = 0
+Win2000 = 0
+WinXP = 0
+WinServer2003 = 0
+WinVista = 0
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+ProgramPath = netsh
+CommandLine = advfirewall firewall add rule name="Citation Service Gusto" dir=out action=allow profile=any description="Business Citation Service" program="<Citation>\gusto.exe"
 RunMode = 0
 ExecutionTime = 1
 RunHidden = 1
@@ -1087,30 +1202,65 @@ RunHidden = 1
 WaitUntilQuit = 1
 RunForUser = 1
 ; -------------------------------------------------
-[29242352]
-ID = 29242352
-Name = 7+ Add Firewall Exception
-Type = 0
-Win95 = 0
-WinNT4 = 0
-Win98 = 0
-WinMe = 0
-Win2000 = 0
-WinXP = 0
-WinServer2003 = 0
-WinVista = 0
+[25424494]
+ID = 25424494
+Name = Copy switcher.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
 WinServer2008 = 1
 Win7 = 1
 Win8 = 1
 WinServer2012 = 1
 ComponentID = 49691563
-ProgramPath = netsh
-CommandLine = advfirewall firewall add rule name="Citation Service" dir=out action=allow profile=any description="Business Citation Service" program="<Citation>\citationCheck.exe"
-RunMode = 0
-ExecutionTime = 1
-RunHidden = 1
-WaitUntilQuit = 1
-RunForUser = 1
+SourceFile = <InstallerExeDir>\switcher.exe
+DestinationFile = <Citation>\switcher.exe
+; -------------------------------------------------
+[65078858]
+ID = 65078858
+Name = Copy glogin.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\glogin.exe
+DestinationFile = <Citation>\glogin.exe
+; -------------------------------------------------
+[31854558]
+ID = 31854558
+Name = Copy uninstall.exe
+Type = 13
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+SourceFile = <InstallerExeDir>\uninstall.exe
+DestinationFile = <Citation>\uninstall.exe
 ; -------------------------------------------------
 [UninstallerSettings]
 CreateUninstaller = 1
@@ -1138,7 +1288,7 @@ MinorLow = 0
 [SkipUninstallFiles]
 ; -------------------------------------------------
 [UninstallerTasks]
-Items = 88270883,37647114,35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364,75578200,73556581,66945940,19665180,91377636,87009405,76828215,80651537,99584246,52792261,28168665,32216293,72634243,31006693,88251839,72186496
+Items = 88270883,37647114,35627274,46405092,86556251,45586610,79640839,15139959,30631698,91965188,68217543,86637782,29978902,84386414,23876964,24026631,43232807,3291363,78491364,75578200,73556581,66945940,19665180,91377636,87009405,76828215,80651537,99584246,52792261,28168665,32216293,72634243,31006693,88251839,72186496,57607847,86272997,6528770,26264954,20461108
 ; -------------------------------------------------
 [88270883]
 ID = 88270883
@@ -1838,3 +1988,98 @@ ExecutionTime = 0
 RunHidden = 1
 WaitUntilQuit = 1
 RunForUser = 1
+; -------------------------------------------------
+[57607847]
+ID = 57607847
+Name = Remove libeay32.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\libeay32.dll
+; -------------------------------------------------
+[86272997]
+ID = 86272997
+Name = Remove ssleay32.dll
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\ssleay32.dll
+; -------------------------------------------------
+[6528770]
+ID = 6528770
+Name = Remove glogin.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\glogin.exe
+; -------------------------------------------------
+[26264954]
+ID = 26264954
+Name = Remove switcher.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\switcher.exe
+; -------------------------------------------------
+[20461108]
+ID = 20461108
+Name = Reove uninstall.exe
+Type = 4
+Win95 = 1
+WinNT4 = 1
+Win98 = 1
+WinMe = 1
+Win2000 = 1
+WinXP = 1
+WinServer2003 = 1
+WinVista = 1
+WinServer2008 = 1
+Win7 = 1
+Win8 = 1
+WinServer2012 = 1
+ComponentID = 49691563
+FilePath = <Citation>\uninstall.exe

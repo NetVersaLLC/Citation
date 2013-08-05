@@ -60,16 +60,18 @@ File.rename "client\\ruby\\citationCheck.exe", "build/citationCheck.exe"
 # system "upx --best build/citationCheck.exe"
 
 STDERR.puts "Compiling citation.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\switcher.pb", "/exe", "build/switcher.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\uninst.pb", "/exe", "build/uninstall.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\glogin.pb", "/xp", "/console", "/exe", "build/glogin.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\website.pb", "/exe", "build/website.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\register.pb", "/exe", "build/register.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\citationServer.pb", "/exe", "build/citationServer.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\citation.pb", "/exe", "build/citation.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\restart.pb", "/exe", "build/restart.exe"
-system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\captcha\\captcha.pb", "/console", "/exe", "build/captcha.exe"
-system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\incoming_call\\incoming_call.pb", "/console", "/exe", "build/incoming_call.exe"
-system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/console", "/exe", "build/ask.exe"
-system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/console", "/exe", "build/verify_account.exe"
-
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\captcha\\captcha.pb", "/xp",  "/console", "/exe", "build/captcha.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\incoming_call\\incoming_call.pb", "/xp", "/console", "/exe", "build/incoming_call.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/xp", "/console", "/exe", "build/ask.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/xp", "/console", "/exe", "build/verify_account.exe"
 
 files = {
 	"website.exe" => 'Open our website.',
@@ -82,6 +84,9 @@ files = {
 	"captcha.exe" => 'Display a captcha solution request.',
 	"citationCheck.exe" => 'Check for new citation creation and updates.',
 	"restart.exe" => 'Restart the citation server process.',
+	"switcher.exe" => 'Switch to alternate desktop.',
+	"uninstall.exe" => 'Uninstall the client software.',
+	"glogin.exe" => 'Get account information for the G site.',
 	"gusto.exe" => 'Perform updates and syncs.'
 }
 

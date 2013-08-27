@@ -18,6 +18,7 @@ MultiJson.engine = :json_gem
 require "open-uri"
 require "nokogiri"
 require "pstore"
+require "timeout"
 require "./lib/restclient"
 require "./lib/rautomation"
 require "./lib/contact_job"
@@ -60,8 +61,10 @@ end
 
 begin
     puts "#{Time.now.iso8601}: starting #{$host}: #{$key}: #{$bid}"
-    cj = ContactJob.new $host, $key, $bid
-    cj.run
+    status = Timeout::timeout(600) do
+      cj = ContactJob.new $host, $key, $bid
+      cj.run
+    end
 rescue => detail
     puts detail.message + "\n" + detail.backtrace.join("\n")
     ContactJob.booboo(detail.backtrace.join("\n"), $key, $bid)

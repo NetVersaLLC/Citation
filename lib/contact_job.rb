@@ -90,7 +90,11 @@ class ContactJob
 
 	def images
 		dir = "#{ENV['USERPROFILE']}\\citation\\#{@bid}\\images"
-		Dir.entries(dir).grep(/png|jpe?g/i)
+		images = []
+		Dir.entries(dir).grep(/png|jpe?g/i).each do |image|
+			images.push "#{dir}\\#{image}"
+		end
+		images
 	end
 
 	def logo

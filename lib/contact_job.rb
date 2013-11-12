@@ -5,21 +5,44 @@ class ContactJob
 		@bid  = bid.strip
 	end
 
+	def send_json(message, status='error')
+		msg = {
+			:status => status,
+			:message => message
+		}
+		puts msg.to_json
+	end
+
 	def run
+		STDERR.puts "Getting: #{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}"
 		resp = RestClient.get("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}")
 		@job = JSON.parse(resp)
-		data = @job['payload_data']
-		if @job['status'] == 'wait'
-			puts "wait"
+		if self.signature_valid(@job) == false
+			send_json("Signature is invalid, ignoring...", "invalid")
+			exit
+		elsif @job['status'] == 'default'
+			send_json("default", "default")
+			exit
+		elsif @job['status'] == 'no_categories'
+			send_json("No categories selected for business.", "no_categories")
+			exit
+		elsif @job['status'] == 'paused'
+			send_json("Sync is paused for business.", "paused")
+			exit
+		elsif @job['status'] == 'wait'
+			send_json("Waiting on job.", "wait")
 			exit
 		elsif @job['status'] == 'inactive'
-			puts "inactive account"
+			send_json("Subscription is not active for business.", "inactive")
 			exit
 		end
+
+		send_json("Job is running.", "success")
 
 		# Make it so jobs load other jobs when finished.
 		@chained = true
 		begin
+			data = @job['payload_data']
 			ret =  eval(@job['payload'])
 			if ret == true
 				self.success()
@@ -32,9 +55,9 @@ class ContactJob
 				FileUtils.mkdir_p dir
 				file = "#{dir}\\#{SecureRandom.hex}.png"
 				@browser.screenshot.save file
-				self.failure "#{e}: #{e.backtrace.join("\n")}", file
+				self.failure e || 'nil', e.backtrace.join("\n"), file
 			else
-				self.failure "#{e}: #{e.backtrace.join("\n")}"
+				self.failure e || 'nil', e.backtrace.join("\n")
 			end
 		end
 		unless ENV['CITATION_HOST']
@@ -55,15 +78,15 @@ class ContactJob
 		RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'success', :message => msg)
 	end
 
-	def failure(msg='Job failed.', screenshot=nil)
+	def failure(msg='Job failed.', backtrace=nil, screenshot=nil)
 		STDERR.puts "Failure: #{msg}"
 		STDERR.puts "Screenshot: #{screenshot}"
 		if screenshot and File.exists? screenshot
 			STDERR.puts "screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
-			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg, :screenshot => File.open(screenshot, 'r'))
+			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg, :backtrace => backtrace, :screenshot => File.open(screenshot, 'rb'))
 		else
 			STDERR.puts "no screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
-			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg)
+			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :backtrace => backtrace, :message => msg)
 		end
 	end
 
@@ -90,11 +113,7 @@ class ContactJob
 
 	def images
 		dir = "#{ENV['USERPROFILE']}\\citation\\#{@bid}\\images"
-		images = []
-		Dir.entries(dir).grep(/png|jpe?g/i).each do |image|
-			images.push "#{dir}\\#{image}"
-		end
-		images
+		Dir.entries(dir).grep(/png|jpe?g/i)
 	end
 
 	def logo

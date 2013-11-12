@@ -5,7 +5,7 @@ require 'rubygems'
 Dir.chdir 'C:\Users\jonathan\dev\Citation'
 
 if ARGV[0] == 'production'
-	servers = %w/ec2-174-129-121-33.compute-1.amazonaws.com ec2-23-22-146-4.compute-1.amazonaws.com staging.netversa.com/
+	servers = %w/web1.netversa.com web2.netversa.com staging.netversa.com/
 else
 	servers = %w/staging.netversa.com/
 end

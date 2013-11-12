@@ -25,8 +25,6 @@ require "./lib/phone_verify"
 require "./lib/captcha"
 
 $host = ENV['CITATION_HOST'] || 'https://citation.netversa.com'
-$key  = ARGV.shift
-$bid  = ARGV.shift
 
 if ENV['CITATION_HOST']
     STDERR.puts "Connecting to: #{$host}"
@@ -62,10 +60,7 @@ if ENV['BUILD'] == 'active'
 	exit
 end
 
-begin
-    cj = ContactJob.new $host, $key, $bid
-    cj.run
-rescue => detail
-    send_json(detail.message + "\n" + detail.backtrace.join("\n"))
-    ContactJob.booboo(detail.backtrace.join("\n"), $key, $bid)
-end
+$key  = 'inactive'
+$bid  = '0'
+data = eval File.read(ARGV.shift)
+client_script = eval File.read(ARGV.shift)

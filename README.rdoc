@@ -39,6 +39,10 @@ The following removes openssl requirement for gem installation that MS Windows s
 After installing the latest Ruby 1.8.7 you should replace the contents of:
 C:\Ruby187 with the contents of the ruby187 repo.
 
+== Check QNA
+
+Check out the QNA file in the Contact repo to get all your questions answered. Please update this with new ones! Also please notify me (Jonathan) of the question. Thanks.
+
 == Workflow
 
 You need to setup the Contact application somewhere to run the Citation client against it. You start up the local or dev rails app and go to http://localhost:3000/. Now click sign in then click sign up then fill out fake business info. Next get the authentication id for the user from the table.

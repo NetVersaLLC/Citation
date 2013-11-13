@@ -1,0 +1,101 @@
+== Welcome to Contact
+
+NOTE: This introduction is not complete. Please make notes about issues you have with it and push your changes. Thanks!
+
+Contact is a collection of software designed to execute automation scripts. It is composed of a client program, a command and control server and a series of automation scripts called payloads.
+
+A single action that is performed is a "payload". When a payload is assigned to actually run for a user then it is called a "job". A "job" is a payload that needs to be executed. A job has an outcome, a payload does not. A good analogy might be a class versus an instance. A class is never executed directly, instead you deal with instances. Clients do not execute payloads, they execute jobs which keep track of the success or failure of their "payload".
+
+This codebase is the client software called Citation specifically citationCheck.rb and lib/contact_job.rb and lib/captcha.rb. These are the only significant files.
+
+```
+./citationCheck.rb <auth token> <business id>
+```
+
+This makes a request to the server for /jobs.json which returns a job and a data hash. It then runs eval(job['payload']) which runs the job. If the payload returns true then the job is assumed to be a success and this result is automatically reported back to the server. If the payload returns false then the job is automatically reported as a failure to the server. Otherwise it is assumed that the payload has reported status to the server.
+
+Exceptions can be thrown at any point in the code and they will be automatically caught and reported back to the server. However, exceptions are for unrecoverable errors only. They are not to be used for normal process control. If the job is unable to complete it is best to call ContactJob.failure(job, "Message"). This will notify the server of the failure.
+
+== Getting Started
+
+So you want to set up the Citation system? Whether you are writing payloads or running jobs this is easy. You can test the payloads locally. Here is the process:
+= Windows
+
+Install the 1.8.7 and latest 1.9.X from:
+http://rubyinstaller.org/downloads/
+
+It's a good idea to install pik:
+https://github.com/vertiginous/pik
+
+    gem install pik
+    ruby\bin\pik_install c:\windows\system32
+
+Install devkit.  Make sure to install in both ruby root directories.
+http://rubyinstaller.org/downloads/
+
+The following removes openssl requirement for gem installation that MS Windows simply won't do.
+    gem update --system
+
+After installing the latest Ruby 1.8.7 you should replace the contents of:
+C:\Ruby187 with the contents of the ruby187 repo.
+
+== Workflow
+
+You need to setup the Contact application somewhere to run the Citation client against it. You start up the local or dev rails app and go to http://localhost:3000/. Now click sign in then click sign up then fill out fake business info. Next get the authentication id for the user from the table.
+
+To do this you can run 'rails console' then call User.first.authentication_token to get the authentication token. Next you need the business id, you can get this with 'Business.first.id'. It will be "1" if you have just installed a new system.
+
+If youre server has a dump of production then you'll likely want to use Business id 203. This is already filled out and is used for testing.
+
+Take these two values now you can cd to Citation and run:
+
+```
+./citationCheck.rb <authentication token> <business id>
+```
+
+NOTE: This has changed in v2, need to update this flow:
+
+This will then check for jobs and it should print "None". Now go to the admin interface to create a Payload. Admin interface http://localhost:3000/admin. The default username is 'admin@example.com' and the password is 'password'. First create some PayloadCategories from the menu at the top and next you can create a Payload using the menu at the top. This is the code that gets executed on the client side. Ok, now that the payload has been created you can assign a job so you go to the "Business" menu and find the business. Click on the business name to load the interface for managing jobs. Select a payload category from the list on the right.  Assign payloads by clicking the name in the list.
+
+You should be able to re-run the command:
+
+```
+./citationCheck.rb <authentication token> <business id>
+```
+
+This time it should execute the job. You can create a payload that has the content "puts 'it is working'" and assign it as a job to test it. Now you can start running, debugging and testing jobs.
+
+== Other repos to view
+
+Grinder: This contains the source code for jobs.exe and the GUI app called Grinder. It makes the development process more user-friendly.
+siteS: Here's the latest versions of the payloads.
+Contact: The contact repo contains the code for the Rails app.
+watir-webdriver: Modified watir implementation.
+selenium: modified selenium.
+Ruby187: Repo for the modified client.
+# Building Citation Client
+
+## Setting up the build environment
+
+First you need the ruby in NetVersaLLC/ruby187 installed in C:\Ruby187. Then select this ruby via pik.
+
+A build is completed by changing into the Citation directory. Most scripts have thsi hard-coded as C:\Users\jonathan\dev\Citation. This is the repo at NetVersaLLC/Citation.
+
+You will also need NetVersaLLC/watir-webdriver and NetVersaLLC/selenium cloned into C:\Users\jonathan\dev. First cd to each of these and do:
+
+git pull origin master
+and
+git pull origin upstream
+
+This will integrate the latest code from each of the githubs of the public projects.
+
+Next you need to run "selenium\copy_gem_to_ruby187.rb_"
+This will copy the correct files to the Citation repo, and C:\Ruby187.
+
+## Building the Software
+
+Change into the Citation directory. Now run build.rb to build the client. Installers go into labels and are automatically synced. You will need:
+
+SignTool from Microsoft installed
+Byteessense Installermaker
+PureBasic

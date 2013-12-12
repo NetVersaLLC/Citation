@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem "nokogiri"
+gem "watir-webdriver"
+gem 'mechanize'
+gem "rest_client"

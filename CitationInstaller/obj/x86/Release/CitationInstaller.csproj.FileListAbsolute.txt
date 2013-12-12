@@ -1,0 +1,12 @@
+C:\Users\jonathan\dev\Citation\CitationInstaller\bin\Release\Setup.exe
+C:\Users\jonathan\dev\Citation\CitationInstaller\bin\Release\Setup.pdb
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\CitationInstaller.csprojResolveAssemblyReference.cache
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\CitationInstaller.FrmMain.resources
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\CitationInstaller.Properties.Resources.resources
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\CitationInstaller.SetupPages.PgCompleted.resources
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\CitationInstaller.SetupPages.PgInstallProgress.resources
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\CitationInstaller.SetupPages.PgLicense.resources
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\CitationInstaller.SetupPages.PgWelcome.resources
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\CitationInstaller.csproj.GenerateResource.Cache
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\Setup.exe
+C:\Users\jonathan\dev\Citation\CitationInstaller\obj\x86\Release\Setup.pdb

@@ -1,0 +1,62 @@
+;;
+;; Copyright (C) 2013 NetVersa, LLC.
+;; All rights reserved.
+;;
+
+Procedure.b CheckRunningExe(FileName.s)
+  Protected snap.l , Proc32.PROCESSENTRY32 , dll_kernel32.l
+  FileName = GetFilePart( FileName )
+  dll_kernel32 = OpenLibrary (#PB_Any, "kernel32.dll")
+  If dll_kernel32
+    snap = CallFunction (dll_kernel32, "CreateToolhelp32Snapshot",$2, 0)
+    If snap
+      Proc32\dwSize = SizeOf (PROCESSENTRY32)
+      If CallFunction (dll_kernel32, "Process32First", snap, @Proc32) 
+        While CallFunction (dll_kernel32, "Process32Next", snap, @Proc32)
+          If PeekS (@Proc32\szExeFile)=FileName
+            CloseHandle_ (snap)
+            CloseLibrary (dll_kernel32)
+            ProcedureReturn #True
+          EndIf
+        Wend
+      EndIf   
+      CloseHandle_ (snap)
+    EndIf
+    CloseLibrary (dll_kernel32)
+  EndIf
+  ProcedureReturn #False
+EndProcedure
+
+Procedure StartServer()
+  path.s = GetPathPart(ProgramFilename())
+  RunProgram(path + "citationServer.exe", "", path, #PB_Program_Hide)
+EndProcedure
+
+
+RunProgram("taskkill", "/F /T /IM citationServer.exe", "", #PB_Program_Hide)
+Delay(5000)
+StartServer()
+
+
+If CheckRunningExe("citationServer.exe") = #True
+  MessageRequester("Restarted", "The server process was restarted!")
+Else
+  MessageRequester("Error", "The server process was not able to be started!")  
+EndIf
+; IDE Options = PureBasic 4.61 (Windows - x86)
+; CursorPosition = 33
+; Folding = -
+; EnableXP
+; Executable = build\restart.exe
+; CompileSourceDirectory
+; IncludeVersionInfo
+; VersionField0 = 0.1.0.1
+; VersionField1 = 0.1.0.4
+; VersionField2 = NetVersa, LLC.
+; VersionField3 = Citation Server
+; VersionField4 = 1.04
+; VersionField5 = 1.0.1
+; VersionField6 = Restart citation server.
+; VersionField7 = Restart
+; VersionField8 = restart.exe
+; VersionField9 = Copyright (C) 2013 NetVersa, LLC.

@@ -4,3 +4,5 @@ Setup.exe
 build.bim
 labels/
 certs/
+**/*.swp
+**/*~

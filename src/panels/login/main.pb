@@ -796,50 +796,74 @@ CompilerEndIf
 ;
 Enumeration
   #Window
+  #SuccessWindow
 EndEnumeration
 
 ;- Gadget Constants
 ;
 Enumeration
-  #Image
+  #KeyIcon
   #EmailFrame
   #Email
   #PasswordFrame
   #Password
   #Login
+  #SuccessImage
+  #OkButton
+  #SuccessImg
+  #KeyIconImg
 EndEnumeration
 
 ;- Fonts
 Global Calibri14
 Calibri14 = LoadFont(1, "Calibri", 14)
+Global Calibri22
+Calibri22 = LoadFont(1, "Calibri", 22)
+
 ;- Image Plugins
+UsePNGImageDecoder()
 
 ;- Image Globals
-Global Image0
-
-;- Catch Images
-Image0 = CatchImage(0, ?Image0)
+Global KeyIcon
+Global SuccessImage
 
 ;- Images
 DataSection
-Image0:
-  IncludeBinary "C:\Users\jonathan\Downloads\Pixelmixer-Basic-Key.ico"
+SuccessImage:
+  IncludeBinary "C:\Users\jonathan\dev\Citation\src\files\login_success.png"
+KeyIcon:
+  IncludeBinary "C:\Users\jonathan\dev\Citation\src\files\Pixelmixer-Basic-Key.ico"
 EndDataSection
+
+;- Catch Images
+KeyIcon = CatchImage(#SuccessImage, ?KeyIcon)
+SuccessImage = CatchImage(#KeyIconImg, ?SuccessImage)
+Global brush
+
+Procedure Open_SuccessWindow()
+  If OpenWindow(#SuccessWindow, 552, 170, 500, 250, "Success!",  #PB_Window_SystemMenu | #PB_Window_SizeGadget | #PB_Window_TitleBar )
+    brush = CreatePatternBrush_(SuccessImage) 
+    SetClassLong_(WindowID(#SuccessWindow),#GCL_HBRBACKGROUND,brush)
+    ButtonGadget(#OkButton, 250, 170, 130, 50, "Ok")
+    SetGadgetFont(#OkButton, Calibri22)
+  EndIf
+EndProcedure
+
 
 Procedure Open_Window()
   If OpenWindow(#Window, 525, 280, 478, 148, "Login",  #PB_Window_SystemMenu | #PB_Window_TitleBar | #PB_Window_ScreenCentered )
-      ImageGadget(#Image, 380, 20, 64, 64, Image0)
-      FrameGadget(#EmailFrame, 10, 10, 340, 60, "Email")
-      StringGadget(#Email, 20, 30, 320, 30, "")
-      GadgetToolTip(#Email, "Please enter your email address.")
-      SetGadgetFont(#Email, Calibri14)
-      FrameGadget(#PasswordFrame, 10, 80, 340, 60, "Password")
-      StringGadget(#Password, 20, 100, 320, 30, "", #PB_String_Password)
-      GadgetToolTip(#Password, "Enter your password here.")
-      SetGadgetFont(#Password, Calibri14)
-      ButtonGadget(#Login, 360, 100, 100, 30, "Login")
-      GadgetToolTip(#Login, "Click here to login.")
-      SetGadgetFont(#Login, Calibri14)
+    ImageGadget(#KeyIcon, 380, 20, 64, 64, KeyIcon)
+    FrameGadget(#EmailFrame, 10, 10, 340, 60, "Email")
+    StringGadget(#Email, 20, 30, 320, 30, "")
+    GadgetToolTip(#Email, "Please enter your email address.")
+    SetGadgetFont(#Email, Calibri14)
+    FrameGadget(#PasswordFrame, 10, 80, 340, 60, "Password")
+    StringGadget(#Password, 20, 100, 320, 30, "", #PB_String_Password)
+    GadgetToolTip(#Password, "Enter your password here.")
+    SetGadgetFont(#Password, Calibri14)
+    ButtonGadget(#Login, 360, 100, 100, 30, "Login")
+    GadgetToolTip(#Login, "Click here to login.")
+    SetGadgetFont(#Login, Calibri14)
   EndIf
 EndProcedure
 
@@ -850,19 +874,48 @@ EndProcedure
 #INTERNET_SERVICE_HTTP = 3
 ;#INTERNET_DEFAULT_HTTP_PORT = 443  
 
-Procedure.s get_auth(email.s, password.s, host.s)
+Procedure.s get_auth(email.s, password.s)
   Define port.l = 443
-  Define get_url.s = "/accounts.json"
+  Define protocol.l = 0
+  Define url.s = "https://citation.netversa.com"
+  If GetEnvironmentVariable("CITATION_HOST") <> ""
+    url = GetEnvironmentVariable("CITATION_HOST")
+  EndIf
+  Define host.s = GetURLPart(url, #PB_URL_Site)
+  If GetURLPart(url, #PB_URL_Protocol) = "http"
+    port = 80
+    If GetURLPart(url, #PB_URL_Port) <> ""
+      port = Val(GetURLPart(url, #PB_URL_Port))
+    EndIf
+  ElseIf GetURLPart(url, #PB_URL_Protocol) = "https"
+    port = 443
+    If GetURLPart(url, #PB_URL_Port) <> ""
+      port = Val(GetURLPart(url, #PB_URL_Port))
+    EndIf
+    protocol = #INTERNET_FLAG_SECURE
+  EndIf
+  
+
+  Define get_url.s = "/accounts.json?email="+URLEncoder(email)+"&password="+URLEncoder(password)
   Define result.s = ""
   Define open_handle = InternetOpen_("Citation/1.1",#INTERNET_OPEN_TYPE_DIRECT,"","",0)
   Define connect_handle = InternetConnect_(open_handle,host,port,"","",#INTERNET_SERVICE_HTTP,0,0)
+  Debug "open_handle: "+Str(open_handle)+" connect_handle: "+Str(connect_handle)
+  If open_handle = 0 Or connect_handle = 0
+    ProcedureReturn ""
+  EndIf
   ; request_handle = HttpOpenRequest_(connect_handle,"POST",get_url,"","",0,#INTERNET_FLAG_SECURE,0)
-  Define request_handle = HttpOpenRequest_(connect_handle,"POST",get_url,"","",0,0,0)
+  Define request_handle = HttpOpenRequest_(connect_handle,"GET",get_url,"","",0,protocol,0)
+  If request_handle = 0
+    ProcedureReturn ""
+  EndIf
   Define headers.s = "Content-Type: application/x-www-form-urlencoded" +Chr(13)+Chr(10)  
   HttpAddRequestHeaders_(request_handle,headers,Len(headers), #HTTP_ADDREQ_FLAG_REPLACE | #HTTP_ADDREQ_FLAG_ADD)
-  Define post_data.s = "email="+URLEncoder(email)+"&password="+URLEncoder(password)
-  Define post_data_len = Len(post_data)
-  Define send_handle = HttpSendRequest_(request_handle,"",0,post_data,post_data_len)
+
+  Define send_handle = HttpSendRequest_(request_handle,"",0,0,0)
+  If send_handle = #False
+    ProcedureReturn ""
+  EndIf
   Define buffer.s = Space(1024) 
   Define bytes_read.l
   Define total_read.l = 0
@@ -871,16 +924,18 @@ Procedure.s get_auth(email.s, password.s, host.s)
     result + Left(buffer,bytes_read)
     buffer = Space(1024)
   Until bytes_read=0
+  Debug result
   Define *jsonObj.jsonObj = JSON_decode(result)
   InternetCloseHandle_(open_handle)
   If *jsonObj\o("success")\type = #JSON_Type_True
-    ProcedureReturn *jsonObj\o("auth_token")\s
+    ProcedureReturn *jsonObj\o("auth_token")\s + " " + *jsonObj\o("business_id")\s
   Else
     ProcedureReturn ""
   EndIf
 EndProcedure
 
 Open_Window()
+
 
 Repeat
   Define Event = WaitWindowEvent()
@@ -889,12 +944,25 @@ Repeat
   Define EventType = EventType()
 
   If Event = #PB_Event_Gadget
-    If GadgetID = #Image
-    ElseIf GadgetID = #Email
-    ElseIf GadgetID = #Password
+    If GadgetID = #OkButton
+      DeleteObject_(brush)
+      End
     ElseIf GadgetID = #Login
-      Define auth_token.s = get_auth(GetGadgetText(#Email), GetGadgetText(#Password), "localhost")
-      MessageRequester("Title", auth_token)
+      Define auth_token.s = get_auth(GetGadgetText(#Email), GetGadgetText(#Password))
+      Define key.s = StringField(auth_token, 1, " ")
+      Define bid.s = StringField(auth_token, 2, " ")
+      If key = "" Or bid = ""
+        MessageRequester("Error", "Login failed, please try again.")
+      Else
+        Define fd = OpenFile(#PB_Any, "key.txt")
+        WriteString(fd, key)
+        CloseFile(fd)
+        Define fd = OpenFile(#PB_Any, "bid.txt")
+        WriteString(fd, bid)
+        CloseFile(fd)
+        CloseWindow(#Window)
+        Open_SuccessWindow()
+      EndIf
     EndIf
     
   EndIf
@@ -905,7 +973,8 @@ End
 ;
 
 ; IDE Options = PureBasic 5.20 LTS (Windows - x86)
-; CursorPosition = 853
-; FirstLine = 842
+; CursorPosition = 916
+; FirstLine = 903
 ; Folding = ----
 ; EnableXP
+; Executable = C:\Users\jonathan\dev\login\login.exe

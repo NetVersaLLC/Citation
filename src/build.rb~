@@ -55,10 +55,6 @@ system "cp files\\gusto.exe build"
 STDERR.puts "Moving to build/"
 File.rename "client\\ruby\\citationCheck.exe", "build/citationCheck.exe"
 
-
-# STDERR.puts "Packing..."
-# system "upx --best build/citationCheck.exe"
-
 STDERR.puts "Compiling citation.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\switcher.pb", "/exe", "build/switcher.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "client\\pb\\uninst.pb", "/exe", "build/uninstall.exe"
@@ -72,6 +68,7 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\incoming_call\\incoming_call.pb", "/xp", "/console", "/exe", "build/incoming_call.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/xp", "/console", "/exe", "build/ask.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/xp", "/console", "/exe", "build/verify_account.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\login\\main.pb", "/xp", "/console", "/exe", "build/login.exe"
 
 files = {
 	"website.exe" => 'Open our website.',
@@ -87,6 +84,7 @@ files = {
 	"switcher.exe" => 'Switch to alternate desktop.',
 	"uninstall.exe" => 'Uninstall the client software.',
 	"glogin.exe" => 'Get account information for the G site.',
+	"login.exe" => 'Login to the system.',
 	"gusto.exe" => 'Perform updates and syncs.'
 }
 
@@ -102,6 +100,7 @@ Dir.open("build").each do |file|
 	system "signtool sign /f certs\\netversa.pfx /p FWq31i1GSl /t http://timestamp.comodoca.com/authenticode build\\#{file}"
 end
 
+__END__
 if ENV['TESTING_CITATION'] == 'active'
 	exit
 end

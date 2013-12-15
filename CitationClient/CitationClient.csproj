@@ -96,6 +96,33 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Files\ask.exe" />
+    <Content Include="Files\atoms\fireEvent.js" />
+    <Content Include="Files\atoms\getAttribute.js" />
+    <Content Include="Files\atoms\getOuterHtml.js" />
+    <Content Include="Files\atoms\getParentElement.js" />
+    <Content Include="Files\atoms\selectText.js" />
+    <Content Include="Files\captcha.exe" />
+    <Content Include="Files\citation.exe" />
+    <Content Include="Files\citationCheck.exe" />
+    <Content Include="Files\citationServer.exe" />
+    <Content Include="Files\firefox.exe" />
+    <Content Include="Files\glogin.exe" />
+    <Content Include="Files\gusto.exe" />
+    <Content Include="Files\incoming_call.exe" />
+    <Content Include="Files\libeay32-0.9.8-msvcrt.dll" />
+    <Content Include="Files\libiconv2.dll" />
+    <Content Include="Files\php5ts.dll" />
+    <Content Include="Files\php_bcompiler.dll" />
+    <Content Include="Files\php_curl.dll" />
+    <Content Include="Files\php_win32std.dll" />
+    <Content Include="Files\php_winbinder.dll" />
+    <Content Include="Files\restart.exe" />
+    <Content Include="Files\ssleay32-0.9.8-msvcrt.dll" />
+    <Content Include="Files\switcher.exe" />
+    <Content Include="Files\uninstall.exe" />
+    <Content Include="Files\verify_account.exe" />
+    <Content Include="Files\website.exe" />
     <Content Include="trev.txt" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,28 +134,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Content Include="..\src\build\atoms\README">
-      <Link>Files\atoms\README</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\ca-bundle.crt">
-      <Link>Files\ca-bundle.crt</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php-embed.ini">
-      <Link>Files\php-embed.ini</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\prefs.json">
-      <Link>Files\prefs.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\webdriver.xpi">
-      <Link>Files\webdriver.xpi</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="app.config" />
     <None Include="CitationClientLauncher_TemporaryKey.pfx" />
+    <None Include="Files\atoms\README" />
+    <None Include="Files\ca-bundle.crt" />
+    <None Include="Files\php-embed.ini" />
+    <None Include="Files\prefs.json" />
+    <None Include="Files\webdriver.xpi" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -156,116 +168,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\src\build\ask.exe">
-      <Link>Files\ask.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\fireEvent.js">
-      <Link>Files\atoms\fireEvent.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\getAttribute.js">
-      <Link>Files\atoms\getAttribute.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\getOuterHtml.js">
-      <Link>Files\atoms\getOuterHtml.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\getParentElement.js">
-      <Link>Files\atoms\getParentElement.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\selectText.js">
-      <Link>Files\atoms\selectText.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\captcha.exe">
-      <Link>Files\captcha.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\citation.exe">
-      <Link>Files\citation.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\citationCheck.exe">
-      <Link>Files\citationCheck.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\citationServer.exe">
-      <Link>Files\citationServer.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\firefox.exe">
-      <Link>Files\firefox.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\glogin.exe">
-      <Link>Files\glogin.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\gusto.exe">
-      <Link>Files\gusto.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\incoming_call.exe">
-      <Link>Files\incoming_call.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\libeay32-0.9.8-msvcrt.dll">
-      <Link>Files\libeay32-0.9.8-msvcrt.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\libiconv2.dll">
-      <Link>Files\libiconv2.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php5ts.dll">
-      <Link>Files\php5ts.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php_bcompiler.dll">
-      <Link>Files\php_bcompiler.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php_curl.dll">
-      <Link>Files\php_curl.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php_win32std.dll">
-      <Link>Files\php_win32std.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php_winbinder.dll">
-      <Link>Files\php_winbinder.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\restart.exe">
-      <Link>Files\restart.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\ssleay32-0.9.8-msvcrt.dll">
-      <Link>Files\ssleay32-0.9.8-msvcrt.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\switcher.exe">
-      <Link>Files\switcher.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\uninstall.exe">
-      <Link>Files\uninstall.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\verify_account.exe">
-      <Link>Files\verify_account.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\website.exe">
-      <Link>Files\website.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

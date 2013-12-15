@@ -42,7 +42,7 @@ namespace CitationInstaller.SetupPages
             _installer.DownloadApplicationCompleted += installer_DownloadApplicationCompleted;
             _installer.ErrorHandled += new EventHandler(_installer_ErrorHandled);
 #if DEBUG
-            _installer.InstallApplication(Settings.Default.PublishUrlTest);
+            //_installer.InstallApplication(Settings.Default.PublishUrlTest);  // it doesnt like Settings for me.
 #else
             var assembly = Assembly.GetExecutingAssembly();
             var attribs = assembly.GetCustomAttributes(false);

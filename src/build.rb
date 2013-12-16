@@ -51,6 +51,7 @@ system "cp files\\php5ts.dll build"
 system "cp files\\php-embed.ini build"
 system "cp files\\ca-bundle.crt build"
 system "cp files\\gusto.exe build"
+system "cp files\\citationMaker.exe build"
 
 STDERR.puts "Moving to build/"
 File.rename "client\\ruby\\citationCheck.exe", "build/citationCheck.exe"

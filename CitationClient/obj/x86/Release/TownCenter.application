@@ -8,17 +8,17 @@
         <beforeApplicationStartup />
       </update>
     </subscription>
-    <deploymentProvider codebase="http://netversa.com/installers/TownCenter/TownCenter.application" />
+    <deploymentProvider codebase="https://secureinstall.us/TownCenter/TownCenter.application" />
   </deployment>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="TownCenter.exe.manifest" size="17164">
+    <dependentAssembly dependencyType="install" codebase="TownCenter.exe.manifest" size="17530">
       <assemblyIdentity name="TownCenter.exe" version="1.0.5.1" publicKeyToken="0000000000000000" language="en" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>7B6kyL+mY+VEdOkPBlK2VLS8Dgw=</dsig:DigestValue>
+        <dsig:DigestValue>Ox2tN9bxX+xC1pdizlqyZOK5Tw8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

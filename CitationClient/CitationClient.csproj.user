@@ -1,14 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectView>ShowAllFiles</ProjectView>
-    <PublishUrlHistory>publish\</PublishUrlHistory>
-    <InstallUrlHistory>http://netversa.com/installers/ListingApe/|http://www.felixsoft.com/tests/CitationClient/|http://www.netversa.com/CitationClient/</InstallUrlHistory>
+    <ProjectView>ProjectFiles</ProjectView>
+    <PublishUrlHistory>F:\publish\|publish\</PublishUrlHistory>
+    <InstallUrlHistory>http://sameer-hpc/citation/|http://www.felixsoft.com/tests/CitationClient/|http://netversa.com/installers/ListingApe/|http://www.netversa.com/CitationClient/</InstallUrlHistory>
     <SupportUrlHistory>http://www.netversa.com</SupportUrlHistory>
     <UpdateUrlHistory>http://www.netversa.com/CitationClient/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory>http://www.netversa.com</ErrorReportUrlHistory>
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <StartArguments>
+    </StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <StartArguments>/update</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DebugSecurityZoneURL>http://www.felixsoft.com/tests/CitationClient/CitationClient.application</DebugSecurityZoneURL>
   </PropertyGroup>
 </Project>

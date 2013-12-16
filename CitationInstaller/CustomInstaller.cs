@@ -79,7 +79,7 @@ namespace CitationInstaller
             }
 
             // bool isFullTrust = CheckForFullTrust(e.ApplicationManifest); 
-
+            
             // Verify this application can be installed. 
             try
             {

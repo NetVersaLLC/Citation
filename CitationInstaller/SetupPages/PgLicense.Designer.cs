@@ -38,18 +38,18 @@
             this.rtLicense.Location = new System.Drawing.Point(5, 5);
             this.rtLicense.Margin = new System.Windows.Forms.Padding(5);
             this.rtLicense.Name = "rtLicense";
-            this.rtLicense.Size = new System.Drawing.Size(390, 233);
+            this.rtLicense.Size = new System.Drawing.Size(390, 252);
             this.rtLicense.TabIndex = 0;
             this.rtLicense.Text = "";
             // 
             // chkAccept
             // 
             this.chkAccept.AutoSize = true;
-            this.chkAccept.Location = new System.Drawing.Point(327, 246);
+            this.chkAccept.Location = new System.Drawing.Point(327, 265);
             this.chkAccept.Name = "chkAccept";
-            this.chkAccept.Size = new System.Drawing.Size(65, 17);
+            this.chkAccept.Size = new System.Drawing.Size(59, 17);
             this.chkAccept.TabIndex = 1;
-            this.chkAccept.Text = "I accept";
+            this.chkAccept.Text = "I agree";
             this.chkAccept.UseVisualStyleBackColor = true;
             this.chkAccept.CheckedChanged += new System.EventHandler(this.chkAccept_CheckedChanged);
             // 

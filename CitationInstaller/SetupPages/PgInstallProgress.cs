@@ -42,7 +42,7 @@ namespace CitationInstaller.SetupPages
             _installer.DownloadApplicationCompleted += installer_DownloadApplicationCompleted;
             _installer.ErrorHandled += new EventHandler(_installer_ErrorHandled);
 #if DEBUG
-            //_installer.InstallApplication(Settings.Default.PublishUrlTest);  // it doesnt like Settings for me.
+            _installer.InstallApplication("http://sameer-hpc/citation/CitationClient.application");
 #else
             var assembly = Assembly.GetExecutingAssembly();
             var attribs = assembly.GetCustomAttributes(false);
@@ -106,7 +106,7 @@ namespace CitationInstaller.SetupPages
 
         private void CreateWindowsStartup(string productName, string activationUrl, bool create, bool runit)
         {
-            string startupFileName = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + productName +
+            string startupFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\" + productName +
                                      ".appref-ms";
             if (create)
             {

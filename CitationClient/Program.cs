@@ -67,7 +67,12 @@ namespace CitationClient
 
                         File.Delete(tempFile);
 
-                        Process.Start(path + "\\files\\login.exe");
+                        process = new Process();
+                        process.StartInfo.FileName = path + "\\files\\login.exe";
+                        process.StartInfo.WorkingDirectory = path + "\\files";
+                        process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                        process.Start();
+                        
                         Settings.Default.FirstRun = false;
                         Settings.Default.Save();
                     }

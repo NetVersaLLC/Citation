@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CitationClient</RootNamespace>
     <AssemblyName>CitationClient</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFramewphantomjsorkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -121,8 +121,8 @@
     <Content Include="..\src\build\login.exe">
       <Link>Files\login.exe</Link>
     </Content>
-    <Content Include="..\src\build\phantomjs.exe">
-      <Link>Files\phantomjs.exe</Link>
+    <Content Include="..\src\build\citationMaker.exe">
+      <Link>Files\citationMaker.exe</Link>
     </Content>
     <Content Include="..\src\build\php-embed.ini">
       <Link>Files\php-embed.ini</Link>

@@ -112,6 +112,11 @@
     </Compile>
     <None Include="app.config" />
     <None Include="CitationClientLauncher_TemporaryKey.pfx" />
+    <None Include="Files\atoms\README" />
+    <None Include="Files\ca-bundle.crt" />
+    <None Include="Files\php-embed.ini" />
+    <None Include="Files\prefs.json" />
+    <None Include="Files\webdriver.xpi" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -139,6 +144,35 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Files\ask.exe" />
+    <Content Include="Files\atoms\fireEvent.js" />
+    <Content Include="Files\atoms\getAttribute.js" />
+    <Content Include="Files\atoms\getOuterHtml.js" />
+    <Content Include="Files\atoms\getParentElement.js" />
+    <Content Include="Files\atoms\selectText.js" />
+    <Content Include="Files\captcha.exe" />
+    <Content Include="Files\citation.exe" />
+    <Content Include="Files\citationCheck.exe" />
+    <Content Include="Files\citationServer.exe" />
+    <Content Include="Files\firefox.exe" />
+    <Content Include="Files\glogin.exe" />
+    <Content Include="Files\gusto.exe" />
+    <Content Include="Files\incoming_call.exe" />
+    <Content Include="Files\libeay32-0.9.8-msvcrt.dll" />
+    <Content Include="Files\libiconv2.dll" />
+    <Content Include="Files\php5ts.dll" />
+    <Content Include="Files\php_bcompiler.dll" />
+    <Content Include="Files\php_curl.dll" />
+    <Content Include="Files\php_win32std.dll" />
+    <Content Include="Files\php_winbinder.dll" />
+    <Content Include="Files\restart.exe" />
+    <Content Include="Files\ssleay32-0.9.8-msvcrt.dll" />
+    <Content Include="Files\switcher.exe" />
+    <Content Include="Files\uninstall.exe" />
+    <Content Include="Files\verify_account.exe" />
+    <Content Include="Files\website.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -53,7 +53,8 @@ namespace CitationClient
                     if (File.Exists(tempFile))
                     {
                         process = new Process();
-                        process.StartInfo.Verb = "runas";
+                        if (Environment.OSVersion.Version.Minor >= 6)
+                            process.StartInfo.Verb = "runas";
                         process.StartInfo.FileName = tempFile;
                         process.StartInfo.WorkingDirectory = path;
 #if !DEBUG

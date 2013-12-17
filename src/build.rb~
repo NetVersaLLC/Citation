@@ -23,6 +23,7 @@ ENV['BUILD_VERSION'] = ini['build']['build_version']
 ENV['COPYRIGHT']     = ini['build']['copyright']
 ENV['COMPANY_NAME']  = ini['build']['company_name']
 File.open("build_options.ini", "w").write ini.to_ini
+File.open("lib/version.rb", "w").write "$version = '#{ENV['BUILD_VERSION']}'"
 
 STDERR.puts "Building: #{ini['build']['build_version']}"
 
@@ -69,7 +70,7 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\incoming_call\\incoming_call.pb", "/xp", "/console", "/exe", "build/incoming_call.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/xp", "/console", "/exe", "build/ask.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/xp", "/console", "/exe", "build/verify_account.exe"
-system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\login\\main.pb", "/xp", "/console", "/exe", "build/login.exe"
+system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\login\\main.pb", "/xp", "/exe", "build/login.exe"
 
 files = {
 	"website.exe" => 'Open our website.',
@@ -100,6 +101,10 @@ Dir.open("build").each do |file|
 	STDERR.puts "Signing: #{file}"
 	system "signtool sign /f certs\\netversa.pfx /p FWq31i1GSl /t http://timestamp.comodoca.com/authenticode build\\#{file}"
 end
+
+Dir.chdir('..')
+STDERR.puts "buildAll #{ENV['ENVIRONMENT']} #{ENV['BUILD_VERSION']}"
+system("buildAll #{ENV['ENVIRONMENT']} #{ENV['BUILD_VERSION']}")
 
 __END__
 if ENV['TESTING_CITATION'] == 'active'

@@ -43,15 +43,3 @@ C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\TownCenter.exe.man
 C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\TownCenter.application
 C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\TownCenter.exe
 C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\TownCenter.pdb
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\AllSearch52.TrustInfo.xml
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\AllSearch52.exe.manifest
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\AllSearch52.exe
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\AllSearch52.pdb
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\Fastrank.TrustInfo.xml
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\Fastrank.exe.manifest
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\Fastrank.exe
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\Fastrank.pdb
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\ListingApe.TrustInfo.xml
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\ListingApe.exe.manifest
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\ListingApe.exe
-C:\Users\jonathan\dev\Citation\CitationClient\obj\x86\Release\ListingApe.pdb

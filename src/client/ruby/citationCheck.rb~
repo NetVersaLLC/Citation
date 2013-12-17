@@ -24,6 +24,7 @@ require "./lib/restclient"
 require "./lib/contact_job"
 require "./lib/phone_verify"
 require "./lib/captcha"
+require "./lib/version"
 
 $host = ENV['CITATION_HOST'] || 'https://citation.netversa.com'
 $key  = ARGV.shift
@@ -36,7 +37,8 @@ end
 def send_json(message, status='error')
   msg = {
 	  :status => status,
-	  :message => message
+	  :message => message,
+	  :version => $version
   }
   puts msg.to_json
 end
@@ -68,7 +70,7 @@ if ENV['BUILD'] == 'active'
 end
 
 begin
-    cj = ContactJob.new $host, $key, $bid
+    cj = ContactJob.new $host, $key, $bid, $version
     cj.run
 rescue => detail
     send_json(detail.message + "\n" + detail.backtrace.join("\n"))

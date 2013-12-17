@@ -1,21 +1,23 @@
 class ContactJob
-	def initialize(host, key, bid)
-		@host = host
-		@key  = key.strip
-		@bid  = bid.strip
+	def initialize(host, key, bid, version)
+		@host     = host
+		@key      = key.strip
+		@bid      = bid.strip
+		@version  = version
 	end
 
 	def send_json(message, status='error')
 		msg = {
 			:status => status,
-			:message => message
+			:message => message,
+			:version => @version
 		}
 		puts msg.to_json
 	end
 
 	def run
 		STDERR.puts "Getting: #{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}"
-		resp = RestClient.get("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}")
+		resp = RestClient.get("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}&version=#{@version}")
 		@job = JSON.parse(resp)
 		if self.signature_valid(@job) == false
 			send_json("Signature is invalid, ignoring...", "invalid")
@@ -75,7 +77,7 @@ class ContactJob
 	end
 
 	def success(msg='Job completed successfully.')
-		RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'success', :message => msg)
+		RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'success', :message => msg, :version => @version)
 	end
 
 	def failure(msg='Job failed.', backtrace=nil, screenshot=nil)
@@ -83,23 +85,23 @@ class ContactJob
 		STDERR.puts "Screenshot: #{screenshot}"
 		if screenshot and File.exists? screenshot
 			STDERR.puts "screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
-			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg, :backtrace => backtrace, :screenshot => File.open(screenshot, 'rb'))
+			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg, :backtrace => backtrace, :screenshot => File.open(screenshot, 'rb'), :version => @version)
 		else
 			STDERR.puts "no screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
-			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :backtrace => backtrace, :message => msg)
+			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :backtrace => backtrace, :message => msg, :version => @version)
 		end
 	end
 
 	def start(name, time_delay=0, msg='Client job.')
-		RestClient.post("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg, :name => name, :delay => time_delay)
+		RestClient.post("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg, :name => name, :delay => time_delay, :version => @version)
 	end
 
 	def list()
-		RestClient.get("#{@host}/jobs/list.json?auth_token=#{@key}&business_id=#{@bid}")
+		RestClient.get("#{@host}/jobs/list.json?auth_token=#{@key}&business_id=#{@bid}", :version => @version)
 	end
 
 	def remove(job_id)
-		RestClient.delete("#{@host}/jobs/#{job_id}.json?auth_token=#{@key}&business_id=#{@bid}")
+		RestClient.delete("#{@host}/jobs/#{job_id}.json?auth_token=#{@key}&business_id=#{@bid}&version=#{@version}")
 	end
 
 	def save_account(model, options)
@@ -108,7 +110,7 @@ class ContactJob
 			posting["account[#{key}]"] = options[key]
 		end
 		posting['model'] = model
-		RestClient.post("#{@host}/accounts.json?auth_token=#{@key}&business_id=#{@bid}", posting)
+		RestClient.post("#{@host}/accounts.json?auth_token=#{@key}&business_id=#{@bid}&version=#{@version}", posting)
 	end
 
 	def images
@@ -135,11 +137,11 @@ class ContactJob
 
 	def booboo(msg='Something went wrong!')
 		return if msg =~ /SystemExit/
-		RestClient.post("#{@host}/booboos.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg)
+		RestClient.post("#{@host}/booboos.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg, :version => @version)
 	end
 
 	def self.booboo(msg='Something went wrong!', key='',bid='')
 		return if msg =~ /SystemExit/
-		RestClient.post("#{$host}/booboos.json?auth_token=#{key}&business_id=#{bid}", :message => msg)
+		RestClient.post("#{$host}/booboos.json?auth_token=#{key}&business_id=#{bid}&version=#{$version}", :message => msg)
 	end
 end

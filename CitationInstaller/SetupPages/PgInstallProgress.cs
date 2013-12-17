@@ -42,8 +42,7 @@ namespace CitationInstaller.SetupPages
             _installer.DownloadApplicationCompleted += installer_DownloadApplicationCompleted;
             _installer.ErrorHandled += new EventHandler(_installer_ErrorHandled);
 #if DEBUG
-            //_installer.InstallApplication("http://sameer-hpc/citation/CitationClient.application");
-            _installer.InstallApplication("http://citation.azurewebsites.net/CitationClient.application");  // added my external test site
+            _installer.InstallApplication("http://ibbd-fasthosts.co.uk/citation/client/CitationClient.application");  // added my external test site
 #else
             var assembly = Assembly.GetExecutingAssembly();
             var attribs = assembly.GetCustomAttributes(false);

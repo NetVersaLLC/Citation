@@ -19,17 +19,17 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>ftp://waws-prod-db3-001.ftp.azurewebsites.windows.net/site/wwwroot/</PublishUrl>
+    <PublishUrl>ftp://ftp.ibbd-fasthosts.co.uk/htdocs/citation/client/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://citation.azurewebsites.net/</InstallUrl>
+    <InstallUrl>http://ibbd-fasthosts.co.uk/citation/client/</InstallUrl>
     <SupportUrl>http://www.netversa.com</SupportUrl>
     <ErrorReportUrl>http://www.netversa.com</ErrorReportUrl>
     <TargetCulture>en</TargetCulture>
@@ -162,6 +162,7 @@
     <Content Include="Files\incoming_call.exe" />
     <Content Include="Files\libeay32-0.9.8-msvcrt.dll" />
     <Content Include="Files\libiconv2.dll" />
+    <Content Include="Files\login.exe" />
     <Content Include="Files\php5ts.dll" />
     <Content Include="Files\php_bcompiler.dll" />
     <Content Include="Files\php_curl.dll" />

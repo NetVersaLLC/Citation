@@ -19,7 +19,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>F:\publish\</PublishUrl>
+    <PublishUrl>ftp://waws-prod-db3-001.ftp.azurewebsites.windows.net/site/wwwroot/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -29,7 +29,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://sameer-hpc/citation/</InstallUrl>
+    <InstallUrl>http://citation.azurewebsites.net/</InstallUrl>
     <SupportUrl>http://www.netversa.com</SupportUrl>
     <ErrorReportUrl>http://www.netversa.com</ErrorReportUrl>
     <TargetCulture>en</TargetCulture>
@@ -110,32 +110,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Content Include="..\src\build\atoms\README">
-      <Link>Files\atoms\README</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\ca-bundle.crt">
-      <Link>Files\ca-bundle.crt</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\login.exe">
-      <Link>Files\login.exe</Link>
-    </Content>
-    <Content Include="..\src\build\citationMaker.exe">
-      <Link>Files\citationMaker.exe</Link>
-    </Content>
-    <Content Include="..\src\build\php-embed.ini">
-      <Link>Files\php-embed.ini</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\prefs.json">
-      <Link>Files\prefs.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\webdriver.xpi">
-      <Link>Files\webdriver.xpi</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="app.config" />
     <None Include="CitationClientLauncher_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
@@ -165,116 +139,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\src\build\ask.exe">
-      <Link>Files\ask.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\fireEvent.js">
-      <Link>Files\atoms\fireEvent.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\getAttribute.js">
-      <Link>Files\atoms\getAttribute.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\getOuterHtml.js">
-      <Link>Files\atoms\getOuterHtml.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\getParentElement.js">
-      <Link>Files\atoms\getParentElement.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\atoms\selectText.js">
-      <Link>Files\atoms\selectText.js</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\captcha.exe">
-      <Link>Files\captcha.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\citation.exe">
-      <Link>Files\citation.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\citationCheck.exe">
-      <Link>Files\citationCheck.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\citationServer.exe">
-      <Link>Files\citationServer.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\firefox.exe">
-      <Link>Files\firefox.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\glogin.exe">
-      <Link>Files\glogin.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\gusto.exe">
-      <Link>Files\gusto.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\incoming_call.exe">
-      <Link>Files\incoming_call.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\libeay32-0.9.8-msvcrt.dll">
-      <Link>Files\libeay32-0.9.8-msvcrt.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\libiconv2.dll">
-      <Link>Files\libiconv2.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php5ts.dll">
-      <Link>Files\php5ts.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php_bcompiler.dll">
-      <Link>Files\php_bcompiler.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php_curl.dll">
-      <Link>Files\php_curl.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php_win32std.dll">
-      <Link>Files\php_win32std.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\php_winbinder.dll">
-      <Link>Files\php_winbinder.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\restart.exe">
-      <Link>Files\restart.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\ssleay32-0.9.8-msvcrt.dll">
-      <Link>Files\ssleay32-0.9.8-msvcrt.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\switcher.exe">
-      <Link>Files\switcher.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\uninstall.exe">
-      <Link>Files\uninstall.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\verify_account.exe">
-      <Link>Files\verify_account.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\website.exe">
-      <Link>Files\website.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

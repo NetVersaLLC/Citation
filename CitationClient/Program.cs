@@ -84,7 +84,8 @@ namespace CitationClient
             {
                 var updater = new CustomInstaller();
 #if DEBUG
-                updater.CheckForUpdate("http://sameer-hpc/citation/CitationClient.application");
+                //updater.CheckForUpdate("http://sameer-hpc/citation/CitationClient.application");
+                updater.CheckForUpdate("http://citation.azurewebsites.net/CitationClient.application");  // added my external test site
 #else
                 var assembly = Assembly.GetExecutingAssembly();
                 var attribs = assembly.GetCustomAttributes(false);

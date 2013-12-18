@@ -47,7 +47,7 @@ namespace CitationClient
                 if (Settings.Default.FirstRun)
                 {
 
-                    // here i need to test the software and only run when it is windows 8
+                    // here i need to test the operating system and only run when it is windows 8
 
                     //Version win8version = new Version(6, 2, 9200, 0);
 

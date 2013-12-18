@@ -896,7 +896,7 @@ Procedure.s get_auth(email.s, password.s)
   EndIf
   
 
-  Define get_url.s = "/accounts.json?email="+URLEncoder(email)+"&password="+URLEncoder(password)
+  Define get_url.s = "/users/token.json?email="+URLEncoder(email)+"&password="+URLEncoder(password)
   Define result.s = ""
   Define open_handle = InternetOpen_("Citation/1.1",#INTERNET_OPEN_TYPE_DIRECT,"","",0)
   Define connect_handle = InternetConnect_(open_handle,host,port,"","",#INTERNET_SERVICE_HTTP,0,0)
@@ -927,8 +927,9 @@ Procedure.s get_auth(email.s, password.s)
   Debug result
   Define *jsonObj.jsonObj = JSON_decode(result)
   InternetCloseHandle_(open_handle)
+  Debug Str(*jsonObj\o("success")\type)
   If *jsonObj\o("success")\type = #JSON_Type_True
-    ProcedureReturn *jsonObj\o("auth_token")\s + " " + *jsonObj\o("business_id")\s
+    ProcedureReturn *jsonObj\o("auth_token")\s + " " + Str(*jsonObj\o("business_id")\i)    
   Else
     ProcedureReturn ""
   EndIf
@@ -949,6 +950,7 @@ Repeat
       End
     ElseIf GadgetID = #Login
       Define auth_token.s = get_auth(GetGadgetText(#Email), GetGadgetText(#Password))
+      Debug "Got back: "+auth_token
       Define key.s = StringField(auth_token, 1, " ")
       Define bid.s = StringField(auth_token, 2, " ")
       If key = "" Or bid = ""
@@ -973,8 +975,9 @@ End
 ;
 
 ; IDE Options = PureBasic 5.20 LTS (Windows - x86)
-; CursorPosition = 916
-; FirstLine = 903
+; CursorPosition = 932
+; FirstLine = 912
 ; Folding = ----
 ; EnableXP
 ; Executable = C:\Users\jonathan\dev\login\login.exe
+; Compiler = PureBasic 5.20 LTS (Windows - x86)

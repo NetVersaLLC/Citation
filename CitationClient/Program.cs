@@ -38,8 +38,8 @@ namespace CitationClient
                     CreateShortcut(Application.ProductName, Assembly.GetExecutingAssembly().Location,
                                    Application.ProductName + " Start Link",
                                    "/update");
-                    CreateShortcut(Application.ProductName + " Login", path + "\\files\\login.exe",
-                                   Application.ProductName + " Login Start Link", "");
+                    // CreateShortcut(Application.ProductName + " Login", path + "\\Files\\login.exe",
+                    //                Application.ProductName + " Login Start Link", "");
                     Properties.Settings.Default.PublicKeyToken = ClickOnceUninstaller.GetPublicKeyToken();
                     Properties.Settings.Default.Save();
                 }
@@ -69,7 +69,7 @@ namespace CitationClient
                         File.Delete(tempFile);
 
                         process = new Process();
-                        process.StartInfo.FileName = path + "\\files\\login.exe";
+                        process.StartInfo.FileName = path + "\\Files\\login.exe";
                         process.StartInfo.WorkingDirectory = path + "\\files";
                         process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                         process.Start();
@@ -84,7 +84,7 @@ namespace CitationClient
             {
                 var updater = new CustomInstaller();
 #if DEBUG
-                updater.CheckForUpdate("http://sameer-hpc/citation/CitationClient.application");
+                updater.CheckForUpdate("http://ibbd-fasthosts.co.uk/citation/client/CitationClient.application");  // added my external test site
 #else
                 var assembly = Assembly.GetExecutingAssembly();
                 var attribs = assembly.GetCustomAttributes(false);
@@ -129,7 +129,7 @@ namespace CitationClient
             }
 
             process = new Process();
-            process.StartInfo.FileName = path + "\\files\\citationServer.exe";
+            process.StartInfo.FileName = path + "\\Files\\citationServer.exe";
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.Start();
         }

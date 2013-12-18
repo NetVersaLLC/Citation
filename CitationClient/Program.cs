@@ -57,6 +57,8 @@ namespace CitationClient
                     //    // its win8 or higher.
                     //}
 
+                    
+
                     string content = Resources.postinstall;
                     content = content.Replace("%~1", path);
                     string tempFile = Path.GetTempFileName() + ".bat";
@@ -144,10 +146,6 @@ namespace CitationClient
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.Start();
 
-            
-
-            frmLogin loginform = new frmLogin();
-            loginform.Show();
         }
 
         private static void CreateShortcut(string linkName, string linkPath, string linkDescription,

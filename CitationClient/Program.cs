@@ -38,8 +38,8 @@ namespace CitationClient
                     CreateShortcut(Application.ProductName, Assembly.GetExecutingAssembly().Location,
                                    Application.ProductName + " Start Link",
                                    "/update");
-                    CreateShortcut(Application.ProductName + " Login", path + "\\Files\\login.exe",
-                                   Application.ProductName + " Login Start Link", "");
+                    // CreateShortcut(Application.ProductName + " Login", path + "\\Files\\login.exe",
+                    //                Application.ProductName + " Login Start Link", "");
                     Properties.Settings.Default.PublicKeyToken = ClickOnceUninstaller.GetPublicKeyToken();
                     Properties.Settings.Default.Save();
                 }

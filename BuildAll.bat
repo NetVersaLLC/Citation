@@ -4,13 +4,13 @@ IF NOT "%1"=="" GOTO :Continue
 echo .
 echo .
 echo .
-echo usage:    BuildAll [Mode]
+echo usage:    BuildAll [Mode] [Version]
 goto :eof
 
 :Continue
 
-set version=1.0.5.1
 set mode=%1
+set version=%2
 set pubfolder=.\deploy\
 
 echo ******************Building AllSearch52 Started******************

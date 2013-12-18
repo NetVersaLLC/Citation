@@ -46,6 +46,17 @@ namespace CitationClient
 
                 if (Settings.Default.FirstRun)
                 {
+
+                    // here i need to test the software and only run when it is windows 8
+
+                    //Version win8version = new Version(6, 2, 9200, 0);
+
+                    //if (OSVersion.Platform == PlatformID.Win32NT &&
+                    //    Environment.OSVersion.Version >= win8version)
+                    //{
+                    //    // its win8 or higher.
+                    //}
+
                     string content = Resources.postinstall;
                     content = content.Replace("%~1", path);
                     string tempFile = Path.GetTempFileName() + ".bat";
@@ -132,6 +143,11 @@ namespace CitationClient
             process.StartInfo.FileName = path + "\\Files\\citationServer.exe";
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.Start();
+
+            
+
+            frmLogin loginform = new frmLogin();
+            loginform.Show();
         }
 
         private static void CreateShortcut(string linkName, string linkPath, string linkDescription,

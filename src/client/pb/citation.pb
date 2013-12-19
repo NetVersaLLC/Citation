@@ -15,13 +15,11 @@ Global bid$, key$, booboosUrl$
 #KEY_LENGTH  = 64
 sep.s        = "\"
 program      = 0
-copyright$   = "Copyright (C) 2012 NetVersa, LLC."
+copyright$   = "Copyright (C) 2013 NetVersa, LLC."
 productName$ = "Citation v1.0"
 contactName$ = "Jonathan Jeffus <jonathan.jeffus@netversa.com>"
 booboosUrl$  = "https://citation.netversa.com/booboos.json"
 programName$ = GetPathPart(ProgramFilename()) + "citationCheck.exe"
-keyFile$     = GetPathPart(ProgramFilename()) + "key.txt"
-bidFile$     = GetPathPart(ProgramFilename()) + "bid.txt"
 key$         = Space(#KEY_LENGTH + 1)
 bid$         = Space(#KEY_LENGTH + 1)
 
@@ -29,16 +27,8 @@ If ProgramParameter(1) <> ""
   key$ = ProgramParameter(0)
   bid$ = ProgramParameter(1)
 Else
-  If ReadKeyfile(@key$, keyFile$)
-    Debug "Can't open keyfile: "+keyFile$
-    ReportBooboo("Can't open keyfile: "+keyFile$)
-    End 9
-  EndIf
-  If ReadKeyfile(@bid$, bidFile$)
-    Debug "Can't open bidfile: "+bidFile$
-    ReportBooboo("Can't open bidfile: "+bidFile$)
-    End
-  EndIf
+    bid$ = Reg_GetValue("HKEY_CURRENT_USER\Software\Citation\API", "business_id")
+    key$ = Reg_GetValue("HKEY_CURRENT_USER\Software\Citation\API", "auth_token")
 EndIf
 
 
@@ -206,8 +196,7 @@ CloseFile(logErr)
 CloseFile(logOut)
 CloseFile(logDriver)
 ; IDE Options = PureBasic 5.20 LTS (Windows - x86)
-; CursorPosition = 137
-; FirstLine = 127
+; CursorPosition = 22
 ; Folding = --
 ; EnableXP
 ; Executable = build\citation.exe

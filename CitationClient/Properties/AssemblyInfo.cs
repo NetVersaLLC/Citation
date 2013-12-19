@@ -9,7 +9,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Citation Client")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NetVersa, LLC.")]
-[assembly: AssemblyProduct("Citation Client")]
 [assembly: AssemblyCopyright("Copyright (c) 2013 NetVersa, LLC.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

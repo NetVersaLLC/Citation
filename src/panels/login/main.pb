@@ -975,8 +975,8 @@ End
 ;
 
 ; IDE Options = PureBasic 5.20 LTS (Windows - x86)
-; CursorPosition = 932
-; FirstLine = 912
+; CursorPosition = 965
+; FirstLine = 942
 ; Folding = ----
 ; EnableXP
 ; Executable = C:\Users\jonathan\dev\login\login.exe

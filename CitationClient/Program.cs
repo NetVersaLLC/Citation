@@ -22,135 +22,58 @@ namespace CitationClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-#if DEBUG
-            MessageBox.Show("Version " + Assembly.GetExecutingAssembly().GetName().Version);
-#endif
+            LauncherJobs.KeyName = "Software\\" + Application.ProductName;
 
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            Process process;
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             if (ApplicationDeployment.IsNetworkDeployed)
             {
-                ApplicationDeployment application =
-                    ApplicationDeployment.CurrentDeployment;
-
-                if (application.IsFirstRun)
+                // This will run first time the application started even after update.
+                if (ApplicationDeployment.CurrentDeployment.IsFirstRun)
                 {
-                    CreateShortcut(Application.ProductName, Assembly.GetExecutingAssembly().Location,
-                                   Application.ProductName + " Start Link",
-                                   "/update");
-                    // CreateShortcut(Application.ProductName + " Login", path + "\\Files\\login.exe",
-                    //                Application.ProductName + " Login Start Link", "");
-                    Properties.Settings.Default.PublicKeyToken = ClickOnceUninstaller.GetPublicKeyToken();
-                    Properties.Settings.Default.Save();
+                    LauncherJobs.CreateShortcuts(); // Create shortcuts
+                    LauncherJobs.CopyOldFiles(path); // Copy old files after update.
+                    // Save the Public Ket Token of the program, Uninstall string - this will be used in the Uninstaller process
+                    LauncherJobs.SaveInformation();
                 }
+                // *********************************
 
-                if (Settings.Default.FirstRun)
+                // This will run early first time the application started after the installation.
+                if (LauncherJobs.IsFirstRun())
                 {
-                    string content = Resources.postinstall;
-                    content = content.Replace("%~1", path);
-                    string tempFile = Path.GetTempFileName() + ".bat";
-                    File.WriteAllText(tempFile, content);
-                    if (File.Exists(tempFile))
+                    if (LauncherJobs.PostSetupJobs())
                     {
-                        process = new Process();
-                        if (Environment.OSVersion.Version.Minor >= 6)
-                            process.StartInfo.Verb = "runas";
-                        process.StartInfo.FileName = tempFile;
-                        process.StartInfo.WorkingDirectory = path;
-#if !DEBUG
-                    process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-#else
-                        process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-#endif
-                        process.Start();
-
-                        process.WaitForExit();
-
-                        File.Delete(tempFile);
-
-                        process = new Process();
-                        process.StartInfo.FileName = path + "\\Files\\login.exe";
-                        process.StartInfo.WorkingDirectory = path + "\\files";
-                        process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                        process.Start();
-                        
-                        Settings.Default.FirstRun = false;
-                        Settings.Default.Save();
+                        LauncherJobs.SetFirstRun(false);
                     }
+                    // ********************************
                 }
             }
 
-            if (args.Length > 0 && args[0].ToLower() == "/update")
+            if (args.Length > 0)
             {
-                var updater = new CustomInstaller();
-#if DEBUG
-                updater.CheckForUpdate("http://ibbd-fasthosts.co.uk/citation/client/CitationClient.application");  // added my external test site
-#else
-                var assembly = Assembly.GetExecutingAssembly();
-                var attribs = assembly.GetCustomAttributes(false);
-                var attrib = attribs.FirstOrDefault(a => a.ToString() == "CitationClient.AssemblyPublishUrlAttribute");
-                if (attrib != null)
+                if (args[0].ToLower() == "/update")
                 {
-                    var att = attrib as AssemblyPublishUrlAttribute;
-                    updater.CheckForUpdate(att.PublishUrl);
+                    LauncherJobs.Update(); // Run update process
                 }
-#endif
-                while (updater.NoError && updater.Working)
+                else if (args[0].ToLower() == "/uninstall")
                 {
-                    Application.DoEvents();
-                    Thread.Sleep(100);
+                    LauncherJobs.Uninstall();
                 }
-
-                if (!updater.Working)
-                {
-                    if (updater.Version > Assembly.GetExecutingAssembly().GetName().Version)
-                    {
-                        // check for citationServer.exe if running 
-                        Process[] serverInstances = Process.GetProcessesByName("citationServer");
-                        foreach (Process serverInstance in serverInstances)
-                        {
-                            serverInstance.Kill();
-                        }
-                        // *****
-                        bool updated = updater.Update();
-                        while (updater.NoError && updater.Working)
-                        {
-                            Application.DoEvents();
-                            Thread.Sleep(100);
-                        }
-                        // Uninstalling and re-installing the application will request to run the batch file again so I've commented it.
-                        //ClickOnceUninstaller.Uninstall(Properties.Settings.Default.PublicKeyToken);
-#if DEBUG
-                    MessageBox.Show("Updated " + updater.Version.ToString());
-#endif
-                        return;
-                    }
-                }
+                return;
             }
 
-            process = new Process();
-            process.StartInfo.FileName = path + "\\Files\\citationServer.exe";
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+            // Finaly launch citationServer
+            LauncherJobs.KillServerProcess();
+            var process = new Process
+                {
+                    StartInfo =
+                        {
+                            FileName = path + "\\files\\citationServer.exe",
+                            WindowStyle = ProcessWindowStyle.Hidden
+                        }
+                };
             process.Start();
-        }
-
-        private static void CreateShortcut(string linkName, string linkPath, string linkDescription,
-                                           string linkArguments)
-        {
-            var link = (IShellLink) new ShellLink();
-
-            // setup shortcut information
-            link.SetDescription(linkDescription);
-            link.SetPath(linkPath);
-            link.SetArguments(linkArguments);
-
-            // save it
-            var file = (IPersistFile) link;
-            string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-            string shortcut = Path.Combine(startupPath, linkName + ".lnk");
-            if (File.Exists(shortcut))
-                File.Delete(shortcut);
-            file.Save(shortcut, false);
+            // ************************
         }
     }
 }

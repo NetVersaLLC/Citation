@@ -1,5 +1,5 @@
 mkdir %~4\%~5\%~1\
-msbuild .\CitationClient\CitationClient.csproj /t:clean;rebuild;publish /p:Configuration=Release /p:ProductName="%~1" /p:AssemblyName="%~1" /p:InstallUrl="%~2" /p:PublishDir="..\\%~4\\%~5\\%~1\\" /p:ApplicationVersion="%~3" /p:AsmPublishUrl="%~2%~1.application" /p:AsmVersion=%~3 /p:AsmFileVersion=%~3
+msbuild .\CitationClient\CitationClient.csproj /t:clean;rebuild;publish /p:Configuration=Release /p:ProductName="%~1" /p:AssemblyName="%~1" /p:InstallUrl="%~2" /p:PublishDir="..\\%~4\\%~5\\%~1\\" /p:PublisherName="%~1" /p:ApplicationVersion="%~3" /p:AsmPublishUrl="%~2%~1.application" /p:AsmVersion=%~3 /p:AsmFileVersion=%~3 /p:AsmProduct="%~1 Client"
 
 
 copy .\src\labels\%~1\license.rtf .\CitationInstaller\

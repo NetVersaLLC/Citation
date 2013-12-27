@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitationInstaller", "Citati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitationClient", "CitationClient\CitationClient.csproj", "{D75B53F6-0022-4174-8613-788B0A0C66DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitationLogin", "..\..\..\Documents\Visual Studio 2013\Projects\CitationLogin\CitationLogin\CitationLogin.csproj", "{9EB9E050-2960-4B83-94D7-415AFB975163}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitationLoginLocal", "..\..\..\Documents\Visual Studio 2013\Projects\CitationLogin\CitationLogin\CitationLoginLocal.csproj", "{9EB9E050-2960-4B83-94D7-415AFB975163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitationLogin", "CitationLogin\CitationLogin.csproj", "{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,16 @@ Global
 		{9EB9E050-2960-4B83-94D7-415AFB975163}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9EB9E050-2960-4B83-94D7-415AFB975163}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9EB9E050-2960-4B83-94D7-415AFB975163}.Release|x86.ActiveCfg = Release|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{61AD1D21-B5DE-41D2-B4D7-0E733EDA1415}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

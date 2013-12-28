@@ -15,65 +15,69 @@ namespace CitationLogin
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            btnLogin.Enabled = false;
-            btnExit.Enabled = false;
-            lblstatus.Text = "Status: Logging In.";
-            lblstatus.Refresh();
-
             // Call the json service with the username and password
             // sales@thebathroomsupply.com/crowdGr1p
 
-            try
+            if (txtLogin.Text == "" || txtPassword.Text == "")
             {
-                //
-                string baseURL = Environment.GetEnvironmentVariable("CITATION_HOST", EnvironmentVariableTarget.Machine);
-
-                if (baseURL == null) { baseURL = "https://citation.netversa.com"; }
-                
-                var json = new WebClient().DownloadString(baseURL + "/users/token.json?email=" + txtLogin.Text.ToString() + "&password=" + txtPassword.Text.ToString());
-                apiResponse loginResponse = JsonConvert.DeserializeObject<apiResponse>(json);
-
-                // if the api responds successfully.
-                if (loginResponse.success == true)
+                lblstatus.Text = "Status: Please enter an email/password.";
+            }
+            else
+            {
+                btnLogin.Enabled = false;
+                btnExit.Enabled = false;
+                lblstatus.Text = "Status: Logging In.";
+                lblstatus.Refresh();
+                try
                 {
-                    // write the information to the registry
-                    RegistryKey key = Registry.CurrentUser.OpenSubKey("Software", true);
+                    //
+                    string baseURL = Environment.GetEnvironmentVariable("CITATION_HOST", EnvironmentVariableTarget.Machine);
 
-                    key.CreateSubKey("Citation");
-                    key = key.OpenSubKey("Citation", true);
+                    if (baseURL == null) { baseURL = "https://citation.netversa.com"; }
 
-                    key.CreateSubKey("API");
-                    key = key.OpenSubKey("API", true);
+                    var json = new WebClient().DownloadString(baseURL + "/users/token.json?email=" + txtLogin.Text.ToString() + "&password=" + txtPassword.Text.ToString());
+                    apiResponse loginResponse = JsonConvert.DeserializeObject<apiResponse>(json);
 
-                    key.SetValue("auth_token", loginResponse.auth_token.ToString());
-                    key.SetValue("business_id", loginResponse.business_id.ToString());
+                    // if the api responds successfully.
+                    if (loginResponse.success == true)
+                    {
+                        // write the information to the registry
+                        RegistryKey key = Registry.CurrentUser.OpenSubKey("Software", true);
 
-                    // it all worked correctly
-                    //lblstatus.Text = "Status: Successful Login. You may now exit the software.";
-                    this.Hide();
-                    frm_Success frmSuccess = new frm_Success();
-                    frmSuccess.ShowDialog();
+                        key.CreateSubKey("Citation");
+                        key = key.OpenSubKey("Citation", true);
+
+                        key.CreateSubKey("API");
+                        key = key.OpenSubKey("API", true);
+
+                        key.SetValue("auth_token", loginResponse.auth_token.ToString());
+                        key.SetValue("business_id", loginResponse.business_id.ToString());
+
+                        this.Hide();
+                        frm_Success frmSuccess = new frm_Success();
+                        frmSuccess.ShowDialog();
+                    }
+                    else
+                    {
+                        // the api responded but the success flag was false
+                        lblstatus.Text = "Status: There was a problem logging in.";
+                    }
+
                 }
-                else
+                catch
                 {
-                    // the api responded but the success flag was false
+                    // there was a problem talking to the api
                     lblstatus.Text = "Status: There was a problem logging in.";
                 }
 
+                btnLogin.Enabled = true;
+                btnExit.Enabled = true;
             }
-            catch
-            {
-                // there was a problem talking to the api
-                lblstatus.Text = "Status: There was a problem logging in.";
-            }
-
-            btnLogin.Enabled = true;
-            btnExit.Enabled = true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit(); // everything worked - close the application
+            Application.Exit(); // close the application
         }
 
         class apiResponse

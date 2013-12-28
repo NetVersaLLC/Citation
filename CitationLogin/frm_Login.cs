@@ -49,7 +49,10 @@ namespace CitationLogin
                     key.SetValue("business_id", loginResponse.business_id.ToString());
 
                     // it all worked correctly
-                    lblstatus.Text = "Status: Successful Login. You may now exit the software.";
+                    //lblstatus.Text = "Status: Successful Login. You may now exit the software.";
+                    this.Hide();
+                    frm_Success frmSuccess = new frm_Success();
+                    frmSuccess.ShowDialog();
                 }
                 else
                 {

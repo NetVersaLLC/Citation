@@ -17,20 +17,25 @@ ENV['BUILD']         = 'active'
 
 # Now set build options.
 ini = IniParse.parse( File.read("build_options.ini") )
+old = ini['build']['build_version']
 ini['build']['build_version'].gsub!(/(\d+)$/) { ($1.to_i + 1).to_s }
 ENV['PRODUCT_NAME']  = ini['build']['product_name']
 ENV['BUILD_VERSION'] = ini['build']['build_version']
 ENV['COPYRIGHT']     = ini['build']['copyright']
 ENV['COMPANY_NAME']  = ini['build']['company_name']
 File.open("build_options.ini", "w").write ini.to_ini
-File.open("lib/version.rb", "w").write "$version = '#{ENV['BUILD_VERSION']}'"
+
+script = File.read("client/ruby/citationCheck.rb")
+script.gsub!(/\d+\.\d+\.\d+\.\d+/, ini['build']['build_version'])
+f = File.open("client/ruby/citationCheck.rb", "w")
+f.write script
+f.close
 
 STDERR.puts "Building: #{ini['build']['build_version']}"
 
 STDERR.puts "Cleaning..."
 system "rm -rf build/*"
 system "rm -rf dist/*"
-
 
 STDERR.puts "Building citationCheck.exe"
 system "mkexy client\\ruby\\citationCheck.rb onetwo 1"
@@ -51,6 +56,8 @@ system "cp files\\php_winbinder.dll build"
 system "cp files\\php5ts.dll build"
 system "cp files\\php-embed.ini build"
 system "cp files\\ca-bundle.crt build"
+system "cp files\\Newtonsoft.Json.dll build"
+system "cp files\\login.exe build"
 system "cp files\\gusto.exe build"
 system "cp files\\citationMaker.exe build"
 
@@ -70,7 +77,7 @@ system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\incoming_call\\incoming_call.pb", "/xp", "/console", "/exe", "build/incoming_call.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\update\\update.pb", "/xp", "/console", "/exe", "build/ask.exe"
 system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\verify_account\\verify_account.pb", "/xp", "/console", "/exe", "build/verify_account.exe"
-system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\login\\main.pb", "/xp", "/exe", "build/login.exe"
+# system "C:\\Program Files (x86)\\PureBasic\\Compilers\\pbcompiler.exe", "panels\\login\\main.pb", "/xp", "/exe", "build/login.exe"
 
 files = {
 	"website.exe" => 'Open our website.',

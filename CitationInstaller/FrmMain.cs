@@ -6,25 +6,47 @@ namespace CitationInstaller
 {
     public partial class FrmMain : Form
     {
+        #region Private Fields
+
         private readonly ISetupPage[] _pages = new ISetupPage[]
-            {new PgWelcome(), new PgLicense(), new PgInstallProgress(), new PgCompleted()};
+            {new PgPrerequirements(), new PgWelcome(), new PgLicense(), new PgInstallProgress(), new PgCompleted()};
 
         private int _currentPage;
+
+        #endregion
+
+        #region Constructor/Destructor
 
         public FrmMain()
         {
             InitializeComponent();
-            
+
             _currentPage = 0;
             btnCancel.Tag = "0";
-            foreach (var page in _pages)
+            foreach (ISetupPage page in _pages)
             {
                 page.MoveToNextPage += page_MoveToNextPage;
+                page.MoveToPreviousPage += page_MoveToPreviousPage;
+                page.ExitSetup += page_ExitSetup;
             }
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void page_ExitSetup(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void page_MoveToPreviousPage(object sender, EventArgs e)
+        {
+            _currentPage--;
             SetCurrentPage();
         }
 
-        void page_MoveToNextPage(object sender, EventArgs e)
+        private void page_MoveToNextPage(object sender, EventArgs e)
         {
             _currentPage++;
             SetCurrentPage();
@@ -68,5 +90,16 @@ namespace CitationInstaller
             _currentPage--;
             SetCurrentPage();
         }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            SetCurrentPage();
+        }
+
+        #endregion
     }
 }

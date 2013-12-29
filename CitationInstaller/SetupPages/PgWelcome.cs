@@ -5,10 +5,15 @@ namespace CitationInstaller.SetupPages
 {
     public partial class PgWelcome : UserControl, ISetupPage
     {
+        #region Private Fields
+
         private Button _backButton;
         private Button _cancelButton;
         private Button _nextButton;
 
+        #endregion
+
+        #region Constructor/Destructor
 
         public PgWelcome()
         {
@@ -16,18 +21,9 @@ namespace CitationInstaller.SetupPages
             UpdateApplicationName();
         }
 
-        public void Initialize(Button cancelButton, Button nextButton, Button backButton)
-        {
-            _cancelButton = cancelButton;
-            _nextButton = nextButton;
-            _backButton = backButton;
-        }
+        #endregion
 
-        public void DoAction()
-        {
-        }
-
-        public event EventHandler MoveToNextPage;
+        #region Methods
 
         private void UpdateApplicationName()
         {
@@ -40,5 +36,26 @@ namespace CitationInstaller.SetupPages
                 }
             }
         }
+
+        #endregion
+
+        #region ISetupPage Members
+
+        public event EventHandler ExitSetup;
+        public event EventHandler MoveToNextPage;
+        public event EventHandler MoveToPreviousPage;
+
+        public void Initialize(Button cancelButton, Button nextButton, Button backButton)
+        {
+            _cancelButton = cancelButton;
+            _nextButton = nextButton;
+            _backButton = backButton;
+        }
+
+        public void DoAction()
+        {
+        }
+
+        #endregion
     }
 }

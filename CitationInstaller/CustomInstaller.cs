@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Deployment.Application;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace CitationInstaller
 {
     public class CustomInstaller
     {
+        #region Properties
+
         public InPlaceHostingManager InPlaceHostingManager { get; set; }
         public string ProductName { get; set; }
 
-        public event EventHandler<DownloadProgressChangedEventArgs> DownloadProgressChanged;
-        public event EventHandler<DownloadApplicationCompletedEventArgs> DownloadApplicationCompleted;
-        public event EventHandler ErrorHandled;
+        #endregion
+
+        #region Methods
 
         protected virtual void OnErrorHandled()
         {
@@ -79,7 +85,7 @@ namespace CitationInstaller
             }
 
             // bool isFullTrust = CheckForFullTrust(e.ApplicationManifest); 
-            
+
             // Verify this application can be installed. 
             try
             {
@@ -141,21 +147,82 @@ namespace CitationInstaller
         {
             OnDownloadProgressChanged(e);
         }
+
+        public bool CheckOldVersion()
+        {
+            RegistryKey citationKey =
+                Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+
+            if (citationKey != null)
+            {
+                object val = citationKey.GetValue("Citation");
+                if (val != null && File.Exists(val.ToString().Replace("\"", "")))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void UninstallOldVersion()
+        {
+            RegistryKey citationKey =
+                Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+
+            if (citationKey != null)
+            {
+                object val = citationKey.GetValue("Citation");
+                if (val != null)
+                {
+                    if (File.Exists(val.ToString().Replace("\"", "")))
+                    {
+                        string oldPath = Path.GetDirectoryName(val.ToString().Replace("\"", ""));
+                        var process = new Process
+                            {
+                                StartInfo =
+                                    {
+                                        FileName = oldPath + "\\uninstall.exe",
+                                        WorkingDirectory = oldPath,
+                                        WindowStyle = ProcessWindowStyle.Normal
+                                    }
+                            };
+                        if (Environment.OSVersion.Version.Major >= 6)
+                            process.StartInfo.Verb = "runas"; // This through exception on XP so we check the OS
+                        process.Start();
+
+                        while (!process.HasExited)
+                        {
+                            Application.DoEvents();
+                            Thread.Sleep(100);
+                        }
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        public event EventHandler<DownloadProgressChangedEventArgs> DownloadProgressChanged;
+        public event EventHandler<DownloadApplicationCompletedEventArgs> DownloadApplicationCompleted;
+        public event EventHandler ErrorHandled;
     }
 
     [AttributeUsage(AttributeTargets.Assembly)]
     public class AssemblyPublishUrlAttribute : Attribute
     {
-        private string _publishUrl;
+        #region Constructor/Destructor
+
         public AssemblyPublishUrlAttribute(string url)
         {
             PublishUrl = url;
         }
 
-        public string PublishUrl
-        {
-            get { return _publishUrl; }
-            set { _publishUrl = value; }
-        }
+        #endregion
+
+        #region Properties
+
+        public string PublishUrl { get; set; }
+
+        #endregion
     }
 }

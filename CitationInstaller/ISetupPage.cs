@@ -5,8 +5,15 @@ namespace CitationInstaller
 {
     public interface ISetupPage
     {
-        event EventHandler MoveToNextPage;
+        #region Methods
+
         void Initialize(Button cancelButton, Button nextButton, Button backButton);
         void DoAction();
+
+        #endregion
+
+        event EventHandler MoveToNextPage;
+        event EventHandler MoveToPreviousPage;
+        event EventHandler ExitSetup;
     }
 }

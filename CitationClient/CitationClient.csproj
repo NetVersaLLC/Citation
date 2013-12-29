@@ -121,9 +121,15 @@
     </Content>
     <Content Include="..\src\build\citationMaker.exe">
       <Link>Files\citationMaker.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\src\build\login.exe">
       <Link>Files\login.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\src\build\Newtonsoft.Json.dll">
+      <Link>Files\Newtonsoft.Json.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\src\build\php-embed.ini">
       <Link>Files\php-embed.ini</Link>
@@ -138,6 +144,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="CitationClientLauncher_TemporaryKey.pfx" />
+    <None Include="postinstall.bat" />
+    <None Include="postuninstall.bat" />
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>

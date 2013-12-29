@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
@@ -17,14 +15,20 @@ namespace CitationClient
 {
     public static class LauncherJobs
     {
+        #region Static Fields
+
         public static string KeyName;
+
+        #endregion
+
+        #region Methods
 
         public static bool IsFirstRun()
         {
-            var appKey = Registry.CurrentUser.OpenSubKey(KeyName) ??
+            RegistryKey appKey = Registry.CurrentUser.OpenSubKey(KeyName) ??
                                  Registry.CurrentUser.CreateSubKey(KeyName);
 
-            var val = appKey.GetValue("FirstRun");
+            object val = appKey.GetValue("FirstRun");
             appKey.Close();
             if (val != null && val.ToString() == "0")
                 return false;
@@ -34,7 +38,7 @@ namespace CitationClient
 
         public static void SetFirstRun(bool firstRun)
         {
-            var appKey = Registry.CurrentUser.OpenSubKey(KeyName,true) ??
+            RegistryKey appKey = Registry.CurrentUser.OpenSubKey(KeyName, true) ??
                                  Registry.CurrentUser.CreateSubKey(KeyName);
             appKey.SetValue("FirstRun", firstRun ? 1 : 0, RegistryValueKind.DWord);
             appKey.Close();
@@ -42,7 +46,7 @@ namespace CitationClient
 
         public static void SaveStringSetting(string keyName, string value)
         {
-            var appKey = Registry.CurrentUser.OpenSubKey(KeyName, true) ??
+            RegistryKey appKey = Registry.CurrentUser.OpenSubKey(KeyName, true) ??
                                  Registry.CurrentUser.CreateSubKey(KeyName);
             appKey.SetValue(keyName, value);
             appKey.Close();
@@ -50,22 +54,22 @@ namespace CitationClient
 
         public static string GetStringSetting(string keyName)
         {
-            var appKey = Registry.CurrentUser.OpenSubKey(KeyName) ??
+            RegistryKey appKey = Registry.CurrentUser.OpenSubKey(KeyName) ??
                                  Registry.CurrentUser.CreateSubKey(KeyName);
-            var val = appKey.GetValue(keyName);
+            object val = appKey.GetValue(keyName);
             appKey.Close();
             return val != null ? val.ToString() : "";
         }
 
         public static void CreateShortcuts()
         {
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             CreateShortcut(Application.ProductName, Assembly.GetExecutingAssembly().Location,
-               Application.ProductName + " Start Link",
-               "/update", Environment.GetFolderPath(Environment.SpecialFolder.Startup));
+                           Application.ProductName + " Start Link",
+                           "/update", Environment.GetFolderPath(Environment.SpecialFolder.Startup));
 
-            var programFolder = Environment.GetFolderPath(Environment.SpecialFolder.Programs) + "\\" +
-                                GetPublisher();
+            string programFolder = Environment.GetFolderPath(Environment.SpecialFolder.Programs) + "\\" +
+                                   GetPublisher();
 
             CreateShortcut("Login", path + "\\files\\login.exe",
                            Application.ProductName + " Login Start Link", "", programFolder);
@@ -77,35 +81,52 @@ namespace CitationClient
         public static string GetPublisher()
         {
             XDocument xDocument;
-            using (var memoryStream = new MemoryStream(AppDomain.CurrentDomain.ActivationContext.DeploymentManifestBytes))
+            using (
+                var memoryStream = new MemoryStream(AppDomain.CurrentDomain.ActivationContext.DeploymentManifestBytes))
             using (var xmlTextReader = new XmlTextReader(memoryStream))
             {
                 xDocument = XDocument.Load(xmlTextReader);
             }
-            var description = xDocument.Root.Elements().First(e => e.Name.LocalName == "description");
-            var publisher = description.Attributes().First(a => a.Name.LocalName == "publisher");
+            XElement description = xDocument.Root.Elements().First(e => e.Name.LocalName == "description");
+            XAttribute publisher = description.Attributes().First(a => a.Name.LocalName == "publisher");
             return publisher.Value;
         }
 
         public static bool PostSetupJobs()
         {
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var content = Resources.postinstall;
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string content = Resources.postinstall;
             content = content.Replace("%~1", path);
-            var tempFile = Path.GetTempFileName() + ".bat";
+            string tempFile = Path.GetTempFileName() + ".bat";
             File.WriteAllText(tempFile, content);
             if (File.Exists(tempFile))
             {
                 var process = new Process();
-                if (Environment.OSVersion.Version.Minor >= 6) 
+                if (Environment.OSVersion.Version.Major >= 6)
                     process.StartInfo.Verb = "runas"; // This through exception on XP so we check the OS
                 process.StartInfo.FileName = tempFile;
                 process.StartInfo.WorkingDirectory = path;
                 process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
-                process.Start();
+                try
+                {
+                    process.Start();
+                    process.WaitForExit();
+                }
+                catch (Exception e) // usually will trigger the catch if the user response with NO in the UAC message
+                {
+                    if (MessageBox.Show("You should press Yes to proceed with this installation, try again?",
+                                        "Attention",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        return PostSetupJobs();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
 
-                process.WaitForExit();
 
                 File.Delete(tempFile);
 
@@ -131,9 +152,9 @@ namespace CitationClient
 #if DEBUG
                 updater.CheckForUpdate("http://sameer-hpc/citation/CitationClient.application");
 #else
-            var assembly = Assembly.GetExecutingAssembly();
-            var attribs = assembly.GetCustomAttributes(false);
-            var attrib = attribs.FirstOrDefault(a => a.ToString() == "CitationClient.AssemblyPublishUrlAttribute");
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            object[] attribs = assembly.GetCustomAttributes(false);
+            object attrib = attribs.FirstOrDefault(a => a.ToString() == "CitationClient.AssemblyPublishUrlAttribute");
             if (attrib != null)
             {
                 var att = attrib as AssemblyPublishUrlAttribute;
@@ -170,10 +191,10 @@ namespace CitationClient
 
         public static void SaveInformation()
         {
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var token = CustomUninstaller.GetPublicKeyToken();
-            var keyPath = "";
-            var uninstallString = CustomUninstaller.GetUninstallString(token, out keyPath);
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string token = CustomUninstaller.GetPublicKeyToken();
+            string keyPath = "";
+            string uninstallString = CustomUninstaller.GetUninstallString(token, out keyPath);
             SaveStringSetting("PublicKeyToken", token);
             SaveStringSetting("UninstallString", uninstallString);
             SaveStringSetting("KeyPath", keyPath);
@@ -184,7 +205,7 @@ namespace CitationClient
 
         public static void ChangeUninstallKey(string keyPath, string path)
         {
-            var uninstallKey =
+            RegistryKey uninstallKey =
                 Registry.CurrentUser.OpenSubKey(keyPath, true);
 
             if (uninstallKey != null)
@@ -196,23 +217,63 @@ namespace CitationClient
 
         public static void Uninstall()
         {
-            var uninstallString = GetStringSetting("UninstallString");
+            string uninstallString = GetStringSetting("UninstallString");
 
             KillServerProcess();
             CustomUninstaller.Uninstall(uninstallString);
 
-            var link = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" +
-                Application.ProductName + ".lnk";
+            string link = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" +
+                          Application.ProductName + ".lnk";
 
             if (File.Exists(link))
                 File.Delete(link);
 
 
-            var programFolder = Environment.GetFolderPath(Environment.SpecialFolder.Programs) + "\\" +
-                                GetStringSetting("Publisher");
+            string programFolder = Environment.GetFolderPath(Environment.SpecialFolder.Programs) + "\\" +
+                                   GetStringSetting("Publisher");
 
             if (Directory.Exists(programFolder))
                 Directory.Delete(programFolder, true);
+            var key = Registry.CurrentUser.OpenSubKey(KeyName);
+            if (key != null)
+            {
+                key.Close();
+                Registry.CurrentUser.DeleteSubKeyTree(KeyName);
+            }
+            key = Registry.CurrentUser.OpenSubKey(@"Software\Citation\API");
+            if (key != null)
+            {
+                key.Close();
+                Registry.CurrentUser.DeleteSubKeyTree(@"Software\Citation\API");
+            }
+            PostUninstallJobs();
+        }
+
+        public static void PostUninstallJobs()
+        {
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string content = Resources.postuninstall;
+            content = content.Replace("%~1", path);
+            string tempFile = Path.GetTempFileName() + ".bat";
+            File.WriteAllText(tempFile, content);
+            if (File.Exists(tempFile))
+            {
+                var process = new Process();
+                if (Environment.OSVersion.Version.Major >= 6)
+                    process.StartInfo.Verb = "runas"; // This through exception on XP so we check the OS
+                process.StartInfo.FileName = tempFile;
+                process.StartInfo.WorkingDirectory = path;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+                try
+                {
+                    process.Start();
+                    process.WaitForExit();
+                }
+                catch (Exception e) // usually will trigger the catch if the user response with NO in the UAC message
+                {
+                }
+            }
         }
 
         public static void KillServerProcess()
@@ -226,9 +287,47 @@ namespace CitationClient
             // *****
         }
 
+        public static bool InstallFireFox()
+        {
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Process[] serverInstances = Process.GetProcessesByName("firefox");
+            foreach (Process serverInstance in serverInstances)
+            {
+                serverInstance.Kill();
+            }
+
+            var process = new Process();
+            if (Environment.OSVersion.Version.Major >= 6)
+                process.StartInfo.Verb = "runas"; // This through exception on XP so we check the OS
+            process.StartInfo.FileName = path + "\\files\\firefox.exe";
+            process.StartInfo.Arguments = "-ms";
+            process.StartInfo.WorkingDirectory = path;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+            try
+            {
+                process.Start();
+                process.WaitForExit();
+            }
+            catch (Exception e) // usually will trigger the catch if the user response with NO in the UAC message
+            {
+                if (MessageBox.Show("You should press Yes to proceed with this installation, try again?", "Attention",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    return InstallFireFox();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public static void CopyOldFiles(string newprogramLocation)
         {
-            var path = GetStringSetting("Path");
+            string path = GetStringSetting("Path");
             if (path != "")
             {
                 if (File.Exists(path + "\\key.txt"))
@@ -240,9 +339,9 @@ namespace CitationClient
         }
 
         private static void CreateShortcut(string linkName, string linkPath, string linkDescription,
-                                   string linkArguments, string shorcutLocation)
+                                           string linkArguments, string shorcutLocation)
         {
-            var link = (IShellLink)new ShellLink();
+            var link = (IShellLink) new ShellLink();
 
             // setup shortcut information
             link.SetDescription(linkDescription);
@@ -250,7 +349,7 @@ namespace CitationClient
             link.SetArguments(linkArguments);
 
             // save it
-            var file = (IPersistFile)link;
+            var file = (IPersistFile) link;
             string startupPath = shorcutLocation;
             string shortcut = Path.Combine(startupPath, linkName + ".lnk");
             if (File.Exists(shortcut))
@@ -264,5 +363,7 @@ namespace CitationClient
             var attribute = (T) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof (T));
             return value.Invoke(attribute);
         }
+
+        #endregion
     }
 }

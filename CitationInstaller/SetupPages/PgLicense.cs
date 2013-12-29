@@ -6,10 +6,15 @@ namespace CitationInstaller.SetupPages
 {
     public partial class PgLicense : UserControl, ISetupPage
     {
+        #region Private Fields
+
         private Button _backButton;
         private Button _cancelButton;
         private Button _nextButton;
 
+        #endregion
+
+        #region Constructor/Destructor
 
         public PgLicense()
         {
@@ -20,20 +25,9 @@ namespace CitationInstaller.SetupPages
             rtLicense.Rtf = rtf;
         }
 
-        public void Initialize(Button cancelButton, Button nextButton, Button backButton)
-        {
-            _cancelButton = cancelButton;
-            _nextButton = nextButton;
-            _backButton = backButton;
+        #endregion
 
-            _nextButton.Enabled = false;
-        }
-
-        public void DoAction()
-        {
-        }
-
-        public event EventHandler MoveToNextPage;
+        #region Methods
 
         private void UpdateApplicationName()
         {
@@ -51,5 +45,28 @@ namespace CitationInstaller.SetupPages
         {
             _nextButton.Enabled = chkAccept.Checked;
         }
+
+        #endregion
+
+        #region ISetupPage Members
+
+        public event EventHandler ExitSetup;
+        public event EventHandler MoveToNextPage;
+        public event EventHandler MoveToPreviousPage;
+
+        public void Initialize(Button cancelButton, Button nextButton, Button backButton)
+        {
+            _cancelButton = cancelButton;
+            _nextButton = nextButton;
+            _backButton = backButton;
+
+            _nextButton.Enabled = false;
+        }
+
+        public void DoAction()
+        {
+        }
+
+        #endregion
     }
 }

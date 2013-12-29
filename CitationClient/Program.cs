@@ -3,16 +3,14 @@ using System.Deployment.Application;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading;
 using System.Windows.Forms;
-using CitationClient.Properties;
-using System.Linq;
 
 namespace CitationClient
 {
     internal static class Program
     {
+        #region Methods
+
         /// <summary>
         ///     The main entry point for the application.
         /// </summary>
@@ -24,7 +22,7 @@ namespace CitationClient
 
             LauncherJobs.KeyName = "Software\\" + Application.ProductName;
 
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             if (ApplicationDeployment.IsNetworkDeployed)
             {
                 // This will run first time the application started even after update.
@@ -40,9 +38,14 @@ namespace CitationClient
                 // This will run early first time the application started after the installation.
                 if (LauncherJobs.IsFirstRun())
                 {
-                    if (LauncherJobs.PostSetupJobs())
+                    if (LauncherJobs.InstallFireFox() && LauncherJobs.PostSetupJobs())
                     {
                         LauncherJobs.SetFirstRun(false);
+                    }
+                    else
+                    {
+                        // Not respond to UAC with Yes so Rollback the installation
+                        LauncherJobs.Uninstall();
                     }
                     // ********************************
                 }
@@ -75,5 +78,7 @@ namespace CitationClient
             process.Start();
             // ************************
         }
+
+        #endregion
     }
 }

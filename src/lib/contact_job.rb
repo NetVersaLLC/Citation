@@ -12,6 +12,7 @@ class ContactJob
 			:message => message,
 			:version => @version
 		}
+		STDERR.puts "STDERR: "+msg.to_json
 		puts msg.to_json
 	end
 
@@ -30,6 +31,9 @@ class ContactJob
 			exit
 		elsif @job['status'] == 'paused'
 			send_json("Sync is paused for business.", "paused")
+			exit
+		elsif @job['status'] == 'error'
+			send_json("Internal server error", "error")
 			exit
 		elsif @job['status'] == 'wait'
 			send_json("Waiting on job.", "wait")
@@ -77,22 +81,25 @@ class ContactJob
 	end
 
 	def success(msg='Job completed successfully.')
+		puts "ReportJobSuccess"
 		RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'success', :message => msg, :version => @version)
 	end
 
 	def failure(msg='Job failed.', backtrace=nil, screenshot=nil)
-		STDERR.puts "Failure: #{msg}"
-		STDERR.puts "Screenshot: #{screenshot}"
+		puts "Failure: #{msg}"
+		puts "Backtrace: #{backtrace}"
+		puts "ReportJobFailure"
 		if screenshot and File.exists? screenshot
-			STDERR.puts "screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
+			puts "screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
 			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :message => msg, :backtrace => backtrace, :screenshot => File.open(screenshot, 'rb'), :version => @version)
 		else
-			STDERR.puts "no screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
+			puts "no screenshot: #{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}"
 			RestClient.put("#{@host}/jobs/#{@job['id']}.json?auth_token=#{@key}&business_id=#{@bid}", :status => 'failure', :backtrace => backtrace, :message => msg, :version => @version)
 		end
 	end
 
 	def start(name, time_delay=0, msg='Client job.')
+		puts "Staring: #{name} next"
 		RestClient.post("#{@host}/jobs.json?auth_token=#{@key}&business_id=#{@bid}", :message => msg, :name => name, :delay => time_delay, :version => @version)
 	end
 
@@ -105,6 +112,7 @@ class ContactJob
 	end
 
 	def save_account(model, options)
+		puts "Saving: #{model}: #{options.to_json}"
 		posting = {}
 		options.each_key do |key|
 			posting["account[#{key}]"] = options[key]

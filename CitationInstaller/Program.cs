@@ -5,6 +5,8 @@ namespace CitationInstaller
 {
     internal static class Program
     {
+        #region Methods
+
         /// <summary>
         ///     The main entry point for the application.
         /// </summary>
@@ -19,5 +21,7 @@ namespace CitationInstaller
 
             Application.Run(frm);
         }
+
+        #endregion
     }
 }

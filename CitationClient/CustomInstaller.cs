@@ -9,15 +9,17 @@ namespace CitationClient
 {
     public class CustomInstaller
     {
+        #region Properties
+
         public InPlaceHostingManager InPlaceHostingManager { get; set; }
         public string ProductName { get; set; }
         public bool NoError { get; set; }
         public bool Working { get; set; }
         public Version Version { get; set; }
 
-        public event EventHandler<DownloadProgressChangedEventArgs> DownloadProgressChanged;
-        public event EventHandler<DownloadApplicationCompletedEventArgs> DownloadApplicationCompleted;
-        public event EventHandler ErrorHandled;
+        #endregion
+
+        #region Methods
 
         protected virtual void OnErrorHandled()
         {
@@ -91,7 +93,7 @@ namespace CitationClient
             }
 
             // bool isFullTrust = CheckForFullTrust(e.ApplicationManifest); 
-            
+
             // Verify this application can be installed. 
             try
             {
@@ -135,7 +137,7 @@ namespace CitationClient
                 // Usually this shouldn't throw an exception unless AssertApplicationRequirements() failed,  
                 // or you did not call that method before calling this one.
                 Version = e.Version;
-                Working = false; 
+                Working = false;
             }
             catch (Exception downloadEx)
             {
@@ -175,7 +177,8 @@ namespace CitationClient
 
         private void CreateWindowsStartup(string productName, string activationUrl, bool create, bool runit)
         {
-            string startupFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\" + productName +
+            string startupFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\" +
+                                     productName +
                                      ".appref-ms";
             if (create)
             {
@@ -209,21 +212,30 @@ namespace CitationClient
                 }
             }
         }
+
+        #endregion
+
+        public event EventHandler<DownloadProgressChangedEventArgs> DownloadProgressChanged;
+        public event EventHandler<DownloadApplicationCompletedEventArgs> DownloadApplicationCompleted;
+        public event EventHandler ErrorHandled;
     }
 
     [AttributeUsage(AttributeTargets.Assembly)]
     public class AssemblyPublishUrlAttribute : Attribute
     {
-        private string _publishUrl;
+        #region Constructor/Destructor
+
         public AssemblyPublishUrlAttribute(string url)
         {
             PublishUrl = url;
         }
 
-        public string PublishUrl
-        {
-            get { return _publishUrl; }
-            set { _publishUrl = value; }
-        }
+        #endregion
+
+        #region Properties
+
+        public string PublishUrl { get; set; }
+
+        #endregion
     }
 }

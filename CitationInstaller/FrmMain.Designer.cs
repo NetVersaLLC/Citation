@@ -30,21 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlPagesContainer = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnlPagesContainer = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -62,6 +62,46 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(562, 302);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // pnlPagesContainer
+            // 
+            this.pnlPagesContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlPagesContainer.Location = new System.Drawing.Point(153, 3);
+            this.pnlPagesContainer.Name = "pnlPagesContainer";
+            this.pnlPagesContainer.Size = new System.Drawing.Size(406, 296);
+            this.pnlPagesContainer.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(150, 302);
+            this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Location = new System.Drawing.Point(148, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(2, 302);
+            this.label2.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::CitationInstaller.Properties.Resources.Setup;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 302);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // tableLayoutPanel2
             // 
@@ -129,46 +169,6 @@
             this.label1.Size = new System.Drawing.Size(556, 2);
             this.label1.TabIndex = 0;
             // 
-            // pnlPagesContainer
-            // 
-            this.pnlPagesContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPagesContainer.Location = new System.Drawing.Point(153, 3);
-            this.pnlPagesContainer.Name = "pnlPagesContainer";
-            this.pnlPagesContainer.Size = new System.Drawing.Size(406, 296);
-            this.pnlPagesContainer.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::CitationInstaller.Properties.Resources.Setup;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 302);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(150, 302);
-            this.panel2.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Location = new System.Drawing.Point(148, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(2, 302);
-            this.label2.TabIndex = 1;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,11 +183,13 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Installer";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -1,6 +1,6 @@
 ECHO OFF
 CLS
-IF NOT "%2"=="" GOTO :Continue
+IF NOT "%1"=="" GOTO :Continue
 echo .
 echo .
 echo .
@@ -9,8 +9,8 @@ goto :eof
 
 :Continue
 
-set version=%1
-set mode=%2
+set version=%2
+set mode=%1
 set pubfolder=.\deploy\
 
 echo ******************Building AllSearch52 Started******************

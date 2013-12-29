@@ -7,7 +7,7 @@ XIncludeFile "registry.pb"
 
 Declare.l OpenLog(logFile$)
 Declare.l ReadKeyfile(*key, keyFile$)
-Declare   ReportBooboo(msg.s)
+; Declare   ReportBooboo(msg.s)
 
 Global logDriver, logErr, logOut
 Global bid$, key$, booboosUrl$
@@ -27,21 +27,21 @@ If ProgramParameter(1) <> ""
   key$ = ProgramParameter(0)
   bid$ = ProgramParameter(1)
 Else
-    bid$ = Reg_GetValue("HKEY_CURRENT_USER\Software\Citation\API", "business_id")
-    key$ = Reg_GetValue("HKEY_CURRENT_USER\Software\Citation\API", "auth_token")
+    bid$ = Registry::ReadValue(#HKEY_CURRENT_USER, "\Software\Citation\API", "business_id")
+    key$ = Registry::ReadValue(#HKEY_CURRENT_USER, "\Software\Citation\API", "auth_token")
 EndIf
 
 
 logDir$      = GetHomeDirectory() + "citation"
 If FileSize(logDir$) <> -2
   If CreateDirectory(logDir$) = 0
-    ReportBooboo(bid$+": Could not create log directory: "+logDir$)
+    ;ReportBooboo(bid$+": Could not create log directory: "+logDir$)
    End
   EndIf
 EndIf
 If FileSize(logDir$ + sep + bid$) <> -2
   If CreateDirectory(logDir$ + sep + bid$) = 0
-    ReportBooboo(bid$+": Could not create log directory: "+logDir$+sep+bid$)
+    ;ReportBooboo(bid$+": Could not create log directory: "+logDir$+sep+bid$)
     End
   EndIf
 EndIf
@@ -114,13 +114,13 @@ Procedure.s do_post(url.s, post_data.s)
   ProcedureReturn result
 EndProcedure
 
-Procedure ReportBooboo(msg.s)
-  Debug "Posting: "+msg
-  Debug "UUUUUURL: "+booboosUrl$
-  os$ = WindowsVersion()
-  browser$ = Reg_GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Version Vector", "IE")
-  do_post(booboosUrl$, "auth_token="+key$+"&business_id="+bid$+"&osversion="+os$+"&browser="+browser$+"&message="+msg)
-EndProcedure
+; Procedure ReportBooboo(msg.s)
+;   Debug "Posting: "+msg
+;   Debug "UUUUUURL: "+booboosUrl$
+;   os$ = WindowsVersion()
+;   browser$ = Reg_GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Version Vector", "IE")
+;   do_post(booboosUrl$, "auth_token="+key$+"&business_id="+bid$+"&osversion="+os$+"&browser="+browser$+"&message="+msg)
+; EndProcedure
 
 Procedure WriteToLog(fd, line.s)
   FileSeek(fd, Lof(fd))
@@ -130,14 +130,14 @@ EndProcedure
 
 Procedure FatalError(err.l, msg$)
   WriteToLog(logDriver, msg$)
-  ReportBooboo(msg$)
+  ;ReportBooboo(msg$)
   End err
 EndProcedure
 
 Procedure.l OpenLog(logFile$)
   fd = OpenFile(#PB_Any, logFile$)
   If fd = 0
-    ReportBooboo("Can't open log file: "+logFile$)
+    ;ReportBooboo("Can't open log file: "+logFile$)
   EndIf
   ProcedureReturn fd
 EndProcedure
@@ -196,7 +196,8 @@ CloseFile(logErr)
 CloseFile(logOut)
 CloseFile(logDriver)
 ; IDE Options = PureBasic 5.20 LTS (Windows - x86)
-; CursorPosition = 22
+; CursorPosition = 139
+; FirstLine = 130
 ; Folding = --
 ; EnableXP
 ; Executable = build\citation.exe

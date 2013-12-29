@@ -18,31 +18,46 @@ namespace CitationClient
         public uint dwTimeout;
     }
 
-    class DeploymentUtilsWin32
+    internal class DeploymentUtilsWin32
     {
+        #region Static Fields
+
+        private const int BM_CLICK = 0x00F5;
+        public const uint FLASHW_ALL = 3;
+        public const uint FLASHW_CAPTION = 1;
+        public const uint FLASHW_STOP = 0;
+        public const uint FLASHW_TIMER = 4;
+        public const uint FLASHW_TIMERNOFG = 12;
+        public const uint FLASHW_TRAY = 2;
+
+        #endregion
+
+        #region Methods
+
         [DllImport("user32.Dll")]
         private static extern int EnumWindows(EnumWindowsCallbackDelegate callback, IntPtr lParam);
+
         [DllImport("User32.Dll")]
         private static extern void GetWindowText(int h, StringBuilder s, int nMaxCount);
+
         [DllImport("User32.Dll")]
         private static extern void GetClassName(int h, StringBuilder s, int nMaxCount);
+
         [DllImport("User32.Dll")]
-        private static extern bool EnumChildWindows(IntPtr hwndParent, EnumWindowsCallbackDelegate lpEnumFunc, IntPtr lParam);
+        private static extern bool EnumChildWindows(IntPtr hwndParent, EnumWindowsCallbackDelegate lpEnumFunc,
+                                                    IntPtr lParam);
+
         [DllImport("User32.Dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-        private delegate bool EnumWindowsCallbackDelegate(IntPtr hwnd, IntPtr lParam);
-
-        private const int BM_CLICK = 0x00F5;
-
         public IntPtr SearchForTopLevelWindow(string WindowTitle)
         {
-            ArrayList windowHandles = new ArrayList();
+            var windowHandles = new ArrayList();
             /* Create a GCHandle for the ArrayList */
             GCHandle gch = GCHandle.Alloc(windowHandles);
             try
             {
-                EnumWindows(new EnumWindowsCallbackDelegate(EnumProc), (IntPtr)gch);
+                EnumWindows(EnumProc, (IntPtr) gch);
                 /* the windowHandles array list contains all of the
                     window handles that were passed to EnumProc.  */
             }
@@ -55,8 +70,8 @@ namespace CitationClient
             /* Iterate through the list and get the handle thats the best match */
             foreach (IntPtr handle in windowHandles)
             {
-                StringBuilder sb = new StringBuilder(1024);
-                GetWindowText((int)handle, sb, sb.Capacity);
+                var sb = new StringBuilder(1024);
+                GetWindowText((int) handle, sb, sb.Capacity);
                 if (sb.Length > 0)
                 {
                     if (sb.ToString().StartsWith(WindowTitle))
@@ -71,12 +86,12 @@ namespace CitationClient
 
         public IntPtr SearchForChildWindow(IntPtr ParentHandle, string Caption)
         {
-            ArrayList windowHandles = new ArrayList();
+            var windowHandles = new ArrayList();
             /* Create a GCHandle for the ArrayList */
             GCHandle gch = GCHandle.Alloc(windowHandles);
             try
             {
-                EnumChildWindows(ParentHandle, new EnumWindowsCallbackDelegate(EnumProc), (IntPtr)gch);
+                EnumChildWindows(ParentHandle, EnumProc, (IntPtr) gch);
                 /* the windowHandles array list contains all of the
                     window handles that were passed to EnumProc.  */
             }
@@ -89,8 +104,8 @@ namespace CitationClient
             /* Iterate through the list and get the handle thats the best match */
             foreach (IntPtr handle in windowHandles)
             {
-                StringBuilder sb = new StringBuilder(1024);
-                GetWindowText((int)handle, sb, sb.Capacity);
+                var sb = new StringBuilder(1024);
+                GetWindowText((int) handle, sb, sb.Capacity);
                 if (sb.Length > 0)
                 {
                     if (sb.ToString().StartsWith(Caption))
@@ -101,14 +116,13 @@ namespace CitationClient
             }
 
             return IntPtr.Zero;
-
         }
 
-        static bool EnumProc(IntPtr hWnd, IntPtr lParam)
+        private static bool EnumProc(IntPtr hWnd, IntPtr lParam)
         {
             /* get a reference to the ArrayList */
-            GCHandle gch = (GCHandle)lParam;
-            ArrayList list = (ArrayList)(gch.Target);
+            var gch = (GCHandle) lParam;
+            var list = (ArrayList) (gch.Target);
             /* and add this window handle */
             list.Add(hWnd);
             return true;
@@ -122,26 +136,26 @@ namespace CitationClient
 
         public static bool FlashWindowAPI(IntPtr handleToWindow)
         {
-            FLASHWINFO flashwinfo1 = new FLASHWINFO();
-            flashwinfo1.cbSize = (uint)Marshal.SizeOf(flashwinfo1);
+            var flashwinfo1 = new FLASHWINFO();
+            flashwinfo1.cbSize = (uint) Marshal.SizeOf(flashwinfo1);
             flashwinfo1.hwnd = handleToWindow;
             flashwinfo1.dwFlags = 15;
             flashwinfo1.uCount = uint.MaxValue;
             flashwinfo1.dwTimeout = 0;
-            return (DeploymentUtilsWin32.FlashWindowEx(ref flashwinfo1) == 0);
+            return (FlashWindowEx(ref flashwinfo1) == 0);
         }
 
         [DllImport("user32.dll")]
         private static extern short FlashWindowEx(ref FLASHWINFO pwfi);
 
+        #endregion
+
+        #region Nested type: EnumWindowsCallbackDelegate
+
+        private delegate bool EnumWindowsCallbackDelegate(IntPtr hwnd, IntPtr lParam);
+
+        #endregion
 
         // Fields
-        public const uint FLASHW_ALL = 3;
-        public const uint FLASHW_CAPTION = 1;
-        public const uint FLASHW_STOP = 0;
-        public const uint FLASHW_TIMER = 4;
-        public const uint FLASHW_TIMERNOFG = 12;
-        public const uint FLASHW_TRAY = 2;
-
     }
 }

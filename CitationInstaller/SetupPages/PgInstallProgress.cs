@@ -2,21 +2,27 @@
 using System.Deployment.Application;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.Linq;
 
 namespace CitationInstaller.SetupPages
 {
     public partial class PgInstallProgress : UserControl, ISetupPage
     {
+        #region Private Fields
+
         private Button _backButton;
         private Button _cancelButton;
 
         private CustomInstaller _installer;
         private Button _nextButton;
+
+        #endregion
+
+        #region Constructor/Destructor
 
         public PgInstallProgress()
         {
@@ -24,44 +30,14 @@ namespace CitationInstaller.SetupPages
             UpdateApplicationName();
         }
 
-        public void Initialize(Button cancelButton, Button nextButton, Button backButton)
-        {
-            _cancelButton = cancelButton;
-            _nextButton = nextButton;
-            _backButton = backButton;
-        }
+        #endregion
 
+        #region Methods
 
-        public void DoAction()
-        {
-            _nextButton.Enabled = false;
-            _backButton.Enabled = false;
-
-            _installer = new CustomInstaller();
-            _installer.DownloadProgressChanged += installer_DownloadProgressChanged;
-            _installer.DownloadApplicationCompleted += installer_DownloadApplicationCompleted;
-            _installer.ErrorHandled += new EventHandler(_installer_ErrorHandled);
-#if DEBUG
-            _installer.InstallApplication("http://sameer-hpc/citation/CitationClient.application");
-#else
-            var assembly = Assembly.GetExecutingAssembly();
-            var attribs = assembly.GetCustomAttributes(false);
-            var attrib = attribs.FirstOrDefault(a => a.ToString() == "CitationInstaller.AssemblyPublishUrlAttribute");
-            if (attrib != null)
-            {
-                var att = attrib as AssemblyPublishUrlAttribute;
-                _installer.InstallApplication(att.PublishUrl);
-            }
-#endif
-            lblProgressText.Text = "Preparing to download files from the server ...";
-        }
-
-        void _installer_ErrorHandled(object sender, EventArgs e)
+        private void _installer_ErrorHandled(object sender, EventArgs e)
         {
             lblProgressText.Text = "Downloading process was canceled";
         }
-
-        public event EventHandler MoveToNextPage;
 
         private void installer_DownloadApplicationCompleted(object sender, DownloadApplicationCompletedEventArgs e)
         {
@@ -86,9 +62,10 @@ namespace CitationInstaller.SetupPages
 
         private void installer_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            lblProgressText.Text = string.Format("Downloading installation files {2}%\nDownloaded {0:0.00}KB of {1:0.00}KB",
-                                                 e.BytesDownloaded/1024.0,
-                                                 e.TotalBytesToDownload/1024.0, e.ProgressPercentage);
+            lblProgressText.Text =
+                string.Format("Downloading installation files {2}%\nDownloaded {0:0.00}KB of {1:0.00}KB",
+                              e.BytesDownloaded/1024.0,
+                              e.TotalBytesToDownload/1024.0, e.ProgressPercentage);
             prgInstallProgress.Value = e.ProgressPercentage;
         }
 
@@ -106,7 +83,8 @@ namespace CitationInstaller.SetupPages
 
         private void CreateWindowsStartup(string productName, string activationUrl, bool create, bool runit)
         {
-            string startupFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\" + productName +
+            string startupFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\" +
+                                     productName +
                                      ".appref-ms";
             if (create)
             {
@@ -147,5 +125,54 @@ namespace CitationInstaller.SetupPages
             EventHandler handler = MoveToNextPage;
             if (handler != null) handler(this, EventArgs.Empty);
         }
+
+        #endregion
+
+        #region ISetupPage Members
+
+        public event EventHandler ExitSetup;
+        public event EventHandler MoveToNextPage;
+        public event EventHandler MoveToPreviousPage;
+
+        public void Initialize(Button cancelButton, Button nextButton, Button backButton)
+        {
+            _cancelButton = cancelButton;
+            _nextButton = nextButton;
+            _backButton = backButton;
+        }
+
+
+        public void DoAction()
+        {
+            _nextButton.Enabled = false;
+            _backButton.Enabled = false;
+
+            _installer = new CustomInstaller();
+            _installer.DownloadProgressChanged += installer_DownloadProgressChanged;
+            _installer.DownloadApplicationCompleted += installer_DownloadApplicationCompleted;
+            _installer.ErrorHandled += _installer_ErrorHandled;
+
+            if (_installer.CheckOldVersion())
+            {
+                lblProgressText.Text = "Removing old version ...";
+                _installer.UninstallOldVersion();
+                lblProgressText.Text = "installing the new version ...";
+            }
+#if DEBUG
+            _installer.InstallApplication("http://sameer-hpc/citation/AllSearch52.application");
+#else
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            object[] attribs = assembly.GetCustomAttributes(false);
+            object attrib = attribs.FirstOrDefault(a => a.ToString() == "CitationInstaller.AssemblyPublishUrlAttribute");
+            if (attrib != null)
+            {
+                var att = attrib as AssemblyPublishUrlAttribute;
+                _installer.InstallApplication(att.PublishUrl);
+            }
+#endif
+            lblProgressText.Text = "Preparing to download files from the server ...";
+        }
+
+        #endregion
     }
 }

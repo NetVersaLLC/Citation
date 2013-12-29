@@ -39,6 +39,24 @@ namespace CitationClient
                 if (LauncherJobs.IsFirstRun())
                 {
                     if (LauncherJobs.InstallFireFox() && LauncherJobs.PostSetupJobs())
+
+                    // here i need to test the operating system and only run when it is windows 8
+
+                    //Version win8version = new Version(6, 2, 9200, 0);
+
+                    //if (OSVersion.Platform == PlatformID.Win32NT &&
+                    //    Environment.OSVersion.Version >= win8version)
+                    //{
+                    //    // its win8 or higher.
+                    //}
+
+                    
+
+                    string content = Resources.postinstall;
+                    content = content.Replace("%~1", path);
+                    string tempFile = Path.GetTempFileName() + ".bat";
+                    File.WriteAllText(tempFile, content);
+                    if (File.Exists(tempFile))
                     {
                         LauncherJobs.SetFirstRun(false);
                     }
@@ -77,6 +95,7 @@ namespace CitationClient
                 };
             process.Start();
             // ************************
+
         }
 
         #endregion

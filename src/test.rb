@@ -21,9 +21,9 @@ browser = Watir::Browser.new  ARGV.shift
 browser.goto 'https://signup.live.com/signup.aspx'
 image = "#{ENV['USERPROFILE']}\\citation\\test_captcha.png"
 #obj = browser.img( :css,  "('div#WLX_HIP_CTL_AMFE img')[1]" )
-# obj = browser.img( :xpath,  '//div/table/tbody/tr/td/img[1]' )
+obj = browser.img( :xpath,  '//div/table/tbody/tr/td/img[1]' )
 #
-#p browser.images
+p browser.images
 
 #binding.pry
 

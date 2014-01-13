@@ -76,15 +76,5 @@ namespace CitationClient.Properties {
                 return ResourceManager.GetString("postinstall", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to echo %~1 is the program location
-        ///.
-        /// </summary>
-        internal static string postuninstall {
-            get {
-                return ResourceManager.GetString("postuninstall", resourceCulture);
-            }
-        }
     }
 }

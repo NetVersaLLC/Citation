@@ -82,8 +82,8 @@
     <TargetZone>Internet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net35\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>.\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -96,29 +96,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomUninstaller.cs" />
     <Compile Include="CustomInstaller.cs" />
+    <Compile Include="CustomUninstaller.cs" />
     <Compile Include="DeploymentUtilsWin32.cs" />
-    <Compile Include="frmLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLogin.Designer.cs">
-      <DependentUpon>frmLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="IShellLink.cs" />
     <Compile Include="LauncherJobs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="Widows8\Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Widows8\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="frmLogin.resx">
-      <DependentUpon>frmLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -157,19 +142,20 @@
       <Link>Files\prefs.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\src\build\Uninstaller.exe">
+      <Link>Files\Uninstaller.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\src\build\webdriver.xpi">
       <Link>Files\webdriver.xpi</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\FirefoxPortable\FirefoxPortable.zip">
+      <Link>Files\FirefoxPortable.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="CitationClientLauncher_TemporaryKey.pfx" />
-    <None Include="Files\atoms\README" />
-    <None Include="Files\ca-bundle.crt" />
-    <None Include="Files\php-embed.ini" />
-    <None Include="Files\prefs.json" />
-    <None Include="Files\webdriver.xpi" />
-    <None Include="packages.config" />
     <None Include="postinstall.bat" />
-    <None Include="postuninstall.bat" />
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
@@ -228,10 +214,6 @@
     </Content>
     <Content Include="..\src\build\citationServer.exe">
       <Link>Files\citationServer.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\src\build\firefox.exe">
-      <Link>Files\firefox.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\src\build\glogin.exe">

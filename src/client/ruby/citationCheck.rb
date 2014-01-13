@@ -19,6 +19,8 @@ require "json"
 require "multi_json"
 MultiJson.engine = :json_gem
 
+require 'dl'
+require 'rautomation'
 require "open-uri"
 require "nokogiri"
 require "pstore"
@@ -29,7 +31,7 @@ require "./lib/captcha"
 
 STDOUT.sync = true
 
-$version = '0.1.3.68'
+$version = '0.1.4.8'
 
 $host = ENV['CITATION_HOST'] || 'https://citation.netversa.com'
 $key  = ARGV.shift
@@ -59,24 +61,32 @@ if $bid == nil or $bid.strip == ''
 end
 
 if ENV['BUILD'] == 'active'
+	def show_message_box(message, title)
+		mb_ok = 0
+		mb_iconexclamation = 48
+		      
+		user32 = DL.dlopen("user32")
+		message_box = user32['MessageBoxA', 'ILSSI']
+		message_box.call(0, message, title, mb_ok | mb_iconexclamation)
+	end
 
-	# browser = 'Mozilla/5.0 (Windows; Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/0.1.3.68 Safari/536.5'
-	#capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs("phantomjs.page.settings.userAgent" => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/0.1.3.68 Safari/537.36")
+	# browser = 'Mozilla/5.0 (Windows; Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/0.1.4.8 Safari/536.5'
+	#capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs("phantomjs.page.settings.userAgent" => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/0.1.4.8 Safari/537.36")
 	#driver = Selenium::WebDriver.for :phantomjs, :desired_capabilities => capabilities
 	#browser = ::Watir::Browser.new driver
 	browser = ::Watir::Browser.new
-	browser.goto 'https://signup.live.com/signup.aspx?'
-	image = "#{ENV['USERPROFILE']}\\citation\\test_captcha.png"
-	obj = browser.img( :id, /wlspispHIPBimg/ )
-	STDERR.puts "CAPTCHA source: #{obj.src}"
-	STDERR.puts "CAPTCHA width: #{obj.width}"
-	#obj.save image
-	#puts browser.html
-	#puts CAPTCHA.solve image, :manual
+	browser.goto 'http://ratemyknockers.com'
+	image = "#{ENV['USERPROFILE']}\\citation\\knockers.jpg"
+	obj = browser.img( :src, /pic.*?.jpe?g/i )
+	obj.save image
 
+	sleep 2
 	STDERR.puts "Version is: #{$version}"
+	window = RAutomation::Window.new(:title => /Knockers/i)
+	if window.exists? 
+		window.close
+	end
 
-	browser.close
 	agent = Mechanize.new
 	agent.agent.http.ca_file = 'files/ca-bundle.crt'
 	agent.user_agent_alias = 'Mac Safari'

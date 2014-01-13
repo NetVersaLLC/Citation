@@ -5,7 +5,7 @@
 
 Global programName$ = GetPathPart(ProgramFilename()) + "citation.exe"
 Global waitTime     = 60000
-Global killTime     = 300000
+Global killTime     = 900000
 
 Procedure.l RunExe()
   PrintN("Running program: "+programName$)
@@ -51,9 +51,9 @@ While 1
   WaitForProgram(program)
   Delay(1000)
 Wend
-; IDE Options = PureBasic 4.61 (Windows - x86)
+; IDE Options = PureBasic 5.20 LTS (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 34
+; CursorPosition = 7
 ; Folding = -
 ; Executable = ..\..\build\server.exe
 ; IncludeVersionInfo

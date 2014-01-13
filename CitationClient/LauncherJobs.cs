@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using CitationClient.Properties;
+using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Win32;
 
 namespace CitationClient
@@ -46,18 +48,20 @@ namespace CitationClient
 
         public static void SaveStringSetting(string keyName, string value)
         {
-            RegistryKey appKey = Registry.CurrentUser.OpenSubKey(KeyName, true) ??
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(KeyName, true) ??
                                  Registry.CurrentUser.CreateSubKey(KeyName);
-            appKey.SetValue(keyName, value);
-            appKey.Close();
+            key.SetValue(keyName, value);
+            key.Close();
         }
 
         public static string GetStringSetting(string keyName)
         {
-            RegistryKey appKey = Registry.CurrentUser.OpenSubKey(KeyName) ??
-                                 Registry.CurrentUser.CreateSubKey(KeyName);
-            object val = appKey.GetValue(keyName);
-            appKey.Close();
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(KeyName);
+            if (key == null)
+                return "";
+
+            object val = key.GetValue(keyName);
+            key.Close();
             return val != null ? val.ToString() : "";
         }
 
@@ -150,7 +154,7 @@ namespace CitationClient
         {
             var updater = new CustomInstaller();
 #if DEBUG
-                updater.CheckForUpdate("http://sameer-hpc/citation/CitationClient.application");
+            updater.CheckForUpdate("http://sameer-hpc/citation/AllSearch52.application");
 #else
             Assembly assembly = Assembly.GetExecutingAssembly();
             object[] attribs = assembly.GetCustomAttributes(false);
@@ -171,7 +175,9 @@ namespace CitationClient
             {
                 if (updater.Version > Assembly.GetExecutingAssembly().GetName().Version)
                 {
-                    KillServerProcess();
+                    KillRuningProcess("citationServer");// check and kill citationServer.exe if running 
+                    KillRuningProcess("login");// check and kill login.exe if running 
+
                     bool updated = updater.Update();
                     while (updater.NoError && updater.Working)
                     {
@@ -200,6 +206,7 @@ namespace CitationClient
             SaveStringSetting("KeyPath", keyPath);
             SaveStringSetting("Publisher", GetPublisher());
             SaveStringSetting("Path", path); // Save the program path in the registry
+            SaveStringSetting("Product", Application.ProductName); // Save the program path in the registry
             ChangeUninstallKey(keyPath, Assembly.GetExecutingAssembly().Location + " /uninstall");
         }
 
@@ -217,72 +224,34 @@ namespace CitationClient
 
         public static void Uninstall()
         {
-            string uninstallString = GetStringSetting("UninstallString");
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).ToLower();
+            var tempPath = Path.GetTempPath();
 
-            KillServerProcess();
-            CustomUninstaller.Uninstall(uninstallString);
-
-            string link = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" +
-                          Application.ProductName + ".lnk";
-
-            if (File.Exists(link))
-                File.Delete(link);
-
-
-            string programFolder = Environment.GetFolderPath(Environment.SpecialFolder.Programs) + "\\" +
-                                   GetStringSetting("Publisher");
-
-            if (Directory.Exists(programFolder))
-                Directory.Delete(programFolder, true);
-            var key = Registry.CurrentUser.OpenSubKey(KeyName);
-            if (key != null)
+            File.Copy(path + "\\files\\uninstaller.exe", tempPath + "\\uninstaller.exe", true);
+            var process = new Process
             {
-                key.Close();
-                Registry.CurrentUser.DeleteSubKeyTree(KeyName);
-            }
-            key = Registry.CurrentUser.OpenSubKey(@"Software\Citation\API");
-            if (key != null)
-            {
-                key.Close();
-                Registry.CurrentUser.DeleteSubKeyTree(@"Software\Citation\API");
-            }
-            PostUninstallJobs();
+                StartInfo =
+                {
+                    FileName = tempPath + "\\uninstaller.exe",
+                    WindowStyle = ProcessWindowStyle.Normal,
+                    Arguments = "\"" + KeyName + "\""
+                }
+            };
+            if (Environment.OSVersion.Version.Major >= 6)
+                process.StartInfo.Verb = "runas"; // This through exception on XP so we check the OS
+            process.Start();
         }
 
-        public static void PostUninstallJobs()
-        {
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string content = Resources.postuninstall;
-            content = content.Replace("%~1", path);
-            string tempFile = Path.GetTempFileName() + ".bat";
-            File.WriteAllText(tempFile, content);
-            if (File.Exists(tempFile))
-            {
-                var process = new Process();
-                if (Environment.OSVersion.Version.Major >= 6)
-                    process.StartInfo.Verb = "runas"; // This through exception on XP so we check the OS
-                process.StartInfo.FileName = tempFile;
-                process.StartInfo.WorkingDirectory = path;
-                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
-                try
-                {
-                    process.Start();
-                    process.WaitForExit();
-                }
-                catch (Exception e) // usually will trigger the catch if the user response with NO in the UAC message
-                {
-                }
-            }
-        }
 
-        public static void KillServerProcess()
+        public static void KillRuningProcess(string processName)
         {
-            // check for citationServer.exe if running 
-            Process[] serverInstances = Process.GetProcessesByName("citationServer");
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).ToLower();
+            Process[] serverInstances = Process.GetProcessesByName(processName);
             foreach (Process serverInstance in serverInstances)
             {
-                serverInstance.Kill();
+                //if (serverInstance.MainModule == null || serverInstance.MainModule.FileName.ToLower().Contains(path))
+                    serverInstance.Kill();
             }
             // *****
         }
@@ -290,41 +259,67 @@ namespace CitationClient
         public static bool InstallFireFox()
         {
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            Process[] serverInstances = Process.GetProcessesByName("firefox");
-            foreach (Process serverInstance in serverInstances)
-            {
-                serverInstance.Kill();
-            }
-
-            var process = new Process();
-            if (Environment.OSVersion.Version.Major >= 6)
-                process.StartInfo.Verb = "runas"; // This through exception on XP so we check the OS
-            process.StartInfo.FileName = path + "\\files\\firefox.exe";
-            process.StartInfo.Arguments = "-ms";
-            process.StartInfo.WorkingDirectory = path;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
             try
             {
-                process.Start();
-                process.WaitForExit();
-            }
-            catch (Exception e) // usually will trigger the catch if the user response with NO in the UAC message
-            {
-                if (MessageBox.Show("You should press Yes to proceed with this installation, try again?", "Attention",
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    return InstallFireFox();
-                }
-                else
-                {
-                    return false;
-                }
-            }
+                ExtractZipFile(path + "\\files\\FirefoxPortable.zip", "", path + "\\files\\FirefoxPortable");
 
-            return true;
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
+        private static void ExtractZipFile(string archiveFilenameIn, string password, string outFolder)
+        {
+            ZipFile zipFile = null;
+            try
+            {
+                FileStream fileStream = File.OpenRead(archiveFilenameIn);
+                zipFile = new ZipFile(fileStream);
+                if (!String.IsNullOrEmpty(password))
+                {
+                    zipFile.Password = password; // AES encrypted entries are handled automatically
+                }
+                foreach (ZipEntry zipEntry in zipFile)
+                {
+                    if (!zipEntry.IsFile)
+                    {
+                        continue; // Ignore directories
+                    }
+                    String entryFileName = zipEntry.Name;
+                    // to remove the folder from the entry:- entryFileName = Path.GetFileName(entryFileName);
+                    // Optionally match entrynames against a selection list here to skip as desired.
+                    // The unpacked length is available in the zipEntry.Size property.
+
+                    var buffer = new byte[4096]; // 4K is optimum
+                    Stream zipStream = zipFile.GetInputStream(zipEntry);
+
+                    // Manipulate the output filename here as desired.
+                    String fullZipToPath = Path.Combine(outFolder, entryFileName);
+                    string directoryName = Path.GetDirectoryName(fullZipToPath);
+                    if (directoryName.Length > 0)
+                        Directory.CreateDirectory(directoryName);
+
+                    // Unzip file in buffered chunks. This is just as fast as unpacking to a buffer the full size
+                    // of the file, but does not waste memory.
+                    // The "using" will close the stream even if an exception occurs.
+                    using (FileStream streamWriter = File.Create(fullZipToPath))
+                    {
+                        StreamUtils.Copy(zipStream, streamWriter, buffer);
+                    }
+                }
+            }
+            finally
+            {
+                if (zipFile != null)
+                {
+                    zipFile.IsStreamOwner = true; // Makes close also shut the underlying stream
+                    zipFile.Close(); // Ensure we release resources
+                }
+            }
+        }
         public static void CopyOldFiles(string newprogramLocation)
         {
             string path = GetStringSetting("Path");

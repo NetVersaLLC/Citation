@@ -38,25 +38,12 @@ namespace CitationClient
                 // This will run early first time the application started after the installation.
                 if (LauncherJobs.IsFirstRun())
                 {
-                    if (LauncherJobs.InstallFireFox() && LauncherJobs.PostSetupJobs())
+                    // Check and extract FireFox portable.
+                    if(!File.Exists(path + "\\files\\FirefoxPortable\\App\\Firefox\\firefox.exe"))
+                        LauncherJobs.InstallFireFox();
+                    // *************
 
-                    // here i need to test the operating system and only run when it is windows 8
-
-                    //Version win8version = new Version(6, 2, 9200, 0);
-
-                    //if (OSVersion.Platform == PlatformID.Win32NT &&
-                    //    Environment.OSVersion.Version >= win8version)
-                    //{
-                    //    // its win8 or higher.
-                    //}
-
-                    
-
-                    string content = Resources.postinstall;
-                    content = content.Replace("%~1", path);
-                    string tempFile = Path.GetTempFileName() + ".bat";
-                    File.WriteAllText(tempFile, content);
-                    if (File.Exists(tempFile))
+                    if (LauncherJobs.PostSetupJobs())
                     {
                         LauncherJobs.SetFirstRun(false);
                     }
@@ -77,14 +64,21 @@ namespace CitationClient
                 }
                 else if (args[0].ToLower() == "/uninstall")
                 {
+                    if (MessageBox.Show(
+                        string.Format("This will remove {0} from your applications, are you sure?",
+                                     Application.ProductName),"Warning!",
+                                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                        return;
                     LauncherJobs.Uninstall();
                 }
                 return;
             }
 
+            // double check, to ensure that the runing instance of citationServer is the latest
+            LauncherJobs.KillRuningProcess("citationServer");// check and kill citationServer.exe if running 
+
 
             // Finaly launch citationServer
-            LauncherJobs.KillServerProcess();
             var process = new Process
                 {
                     StartInfo =
@@ -95,7 +89,6 @@ namespace CitationClient
                 };
             process.Start();
             // ************************
-
         }
 
         #endregion
